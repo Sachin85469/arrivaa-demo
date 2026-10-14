@@ -250,6 +250,10 @@ window.ARRIVA = {
       ["380 m", "Elevation span"] // PLACEHOLDER
     ],
     hint: "Scroll to trace route · Hover or tap waypoints to inspect",
+    sceneLabel: "Interactive procedural moss root world with ferns, flowers, pollen, and a butterfly",
+    sceneCaption: "Sylva Living World · Procedural ecosystem simulation (living-green)",
+    frameHeader: "SYLVA // LIVING-GREEN · PROCEDURAL ROOT WORLD [WEBGL 1.0]",
+    fallbackText: "WebGL 3D ecosystem unavailable · Simulation requires WebGL context",
     pins: [
       {
         id: "pin-1",

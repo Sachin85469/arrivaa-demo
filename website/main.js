@@ -48,10 +48,22 @@
     });
   }
 
+  function formatHeader(chapterStr, titleStr, hiStr) {
+    const num = (chapterStr || '').replace(/[^0-9]/g, '');
+    const cleanTitle = (titleStr || '')
+      .toUpperCase()
+      .replace(/^ARRIVA\s+/, '')
+      .replace(/·\s*/g, '')
+      .trim();
+    const prefix = num ? `${num} / ${cleanTitle}` : cleanTitle;
+    const hiMarkup = hiStr ? `<span class="hi">${hiStr}</span>` : '';
+    return `<span class="chapter-mono">${prefix}</span>${hiMarkup}`;
+  }
+
   // --- Hero (Chapter 00)
   const heroLabel = $('#hero-label'), h1 = $('#h1'), lead = $('#lead'), heroCta = $('#hero-cta'), heroScroll = $('#hero-scroll');
   if (heroLabel && D.hero) {
-    heroLabel.innerHTML = `<span class="hi">${D.hero.hi}</span> ${D.hero.chapter}`;
+    heroLabel.innerHTML = formatHeader(D.hero.chapter, "THE ARRIVAL", D.hero.hi);
   }
   if (h1 && D.hero) {
     h1.innerHTML = D.hero.title.split(' ').map((w, i) => `<span class="w"><span style="--d:${(i * 0.08).toFixed(2)}s">${w}</span></span>`).join(' ');
@@ -72,7 +84,7 @@
       <section class="chapter ${i % 2 ? 'flip' : ''}" id="${p.id}" data-scene="${i + 1}">
         <div class="wrap grid">
           <div class="copy">
-            <p class="label"><span class="hi">${p.hi}</span> ${p.chapter} · ${p.tag}</p>
+            <p class="label">${formatHeader(p.chapter, p.name, p.hi)}</p>
             <h2>${p.name}</h2>
             <p class="lead">${p.desc}</p>
             <ul class="points-list">${p.points.map(pt => `<li>${pt}</li>`).join('')}</ul>
@@ -102,7 +114,7 @@
         <div class="wrap">
           <div class="gallery-head">
             <div>
-              <p class="label"><span class="hi">${G.hi}</span> ${G.chapter} · ${G.title}</p>
+              <p class="label">${formatHeader(G.chapter, G.title, G.hi)}</p>
               <h2>${G.title}</h2>
               <p class="lead" style="margin: 8px 0 0;">${G.subtitle}</p>
               <div class="gallery-tabs" id="gallery-tabs">
@@ -147,7 +159,7 @@
     const dm = D.orvixDemo;
     demoEl.innerHTML = `
       <div class="wrap">
-        <p class="label"><span class="hi">${dm.hi}</span> ${dm.chapter} · <span class="tag-pill">${dm.badge}</span></p>
+        <p class="label">${formatHeader(dm.chapter, dm.title, dm.hi)}</p>
         <h2>${dm.title}</h2>
         <p class="lead">${dm.subtitle}</p>
         <div class="terminal-wrap" id="terminal-box">
@@ -181,61 +193,93 @@
     `;
   }
 
-  // --- Section 3: Tourist Guide Scene (Topographic Ridges & Route)
+  // --- Section 3: Tourist Guide Scene (Route Line & Sylva Living World)
   const tgSceneEl = $('#tourist-guide-scene');
   if (tgSceneEl && D.touristGuideScene) {
     const TS = D.touristGuideScene;
     tgSceneEl.innerHTML = `
       <div class="wrap">
-        <p class="label"><span class="hi">${TS.hi}</span> ${TS.chapter} · ${TS.title}</p>
-        <h2>${TS.title}</h2>
-        <p class="lead">${TS.subtitle}</p>
-        <div class="topo-stats">
-          ${TS.trailStats.map(st => `
-            <div class="topo-stat-pill"><b>${st[0]}</b> <span>${st[1]}</span></div>
-          `).join('')}
-        </div>
-        <div class="topo-canvas-wrap" id="topo-wrap">
-          <svg class="topo-svg" viewBox="0 0 1180 480" preserveAspectRatio="none" aria-hidden="true">
-            <!-- Ridge Layer 1 (Background) -->
-            <path class="ridge-layer ridge-bg" data-speed="-0.04"
-              d="M0 320 Q 240 220 480 290 T 960 210 Q 1070 230 1180 270 L 1180 480 L 0 480 Z"/>
-            <!-- Ridge Layer 2 (Midground) -->
-            <path class="ridge-layer ridge-mid" data-speed="0.05"
-              d="M0 370 Q 210 280 420 340 T 840 290 Q 1010 260 1180 320 L 1180 480 L 0 480 Z"/>
-            <!-- Ridge Layer 3 (Foreground) -->
-            <path class="ridge-layer ridge-fg" data-speed="0.10"
-              d="M0 410 Q 180 360 360 400 T 780 370 Q 980 350 1180 390 L 1180 480 L 0 480 Z"/>
-            <!-- Dashed Trail Route -->
-            <path id="route-line" class="trail-line"
-              d="M 60 340 C 200 240, 310 390, 460 280 S 740 180, 880 300 S 1040 240, 1120 200"/>
-          </svg>
-          <!-- 4 Waypoint Pins -->
-          <div class="topo-pins-overlay" id="topo-pins">
-            ${TS.pins.map((pin, idx) => {
-              const coords = [
-                { left: '6%', top: '71%' },
-                { left: '39%', top: '58%' },
-                { left: '74%', top: '62%' },
-                { left: '94%', top: '42%' }
-              ][idx];
-              return `
-                <div class="waypoint-pin" style="left: ${coords.left}; top: ${coords.top};" tabindex="0" role="button" aria-label="Waypoint ${idx + 1}: ${pin.name}">
-                  <div class="pin-head">
-                    <span class="pin-pulse"></span>
-                    <span>0${idx + 1}</span>
-                  </div>
-                  <div class="pin-card">
-                    <h4>${pin.name} <span class="pin-tag"><span class="hi">${pin.hi}</span>${pin.category}</span></h4>
-                    <p>${pin.desc}</p>
-                    <div class="pin-meta">
-                      <span>Elevation: ${pin.elevation}</span>
-                      <span>Dist: ${pin.dist}</span>
+        <div class="tourist-split-grid">
+          <!-- Text column with chapter info, stats, and route line + 4 pins -->
+          <div class="tourist-text-col">
+            <p class="label">${formatHeader(TS.chapter, TS.title, TS.hi)}</p>
+            <h2>${TS.title}</h2>
+            <p class="lead">${TS.subtitle}</p>
+            
+            <div class="topo-stats">
+              ${TS.trailStats.map(st => `
+                <div class="topo-stat-pill"><b>${st[0]}</b> <span>${st[1]}</span></div>
+              `).join('')}
+            </div>
+
+            <div class="tourist-trail-box" id="topo-wrap">
+              <div class="trail-route-col">
+                <svg class="trail-route-svg" viewBox="0 0 32 380" preserveAspectRatio="none" aria-hidden="true">
+                  <path class="trail-base-line" d="M 16 16 L 16 364" />
+                  <path id="route-line" class="trail-line" d="M 16 16 L 16 364" />
+                </svg>
+              </div>
+              <div class="trail-waypoints-list" id="topo-pins">
+                ${TS.pins.map((pin, idx) => `
+                  <div class="trail-waypoint-item" data-pin-idx="${idx}" tabindex="0" role="button" aria-label="Waypoint ${idx + 1}: ${pin.name}">
+                    <div class="waypoint-pin-node">
+                      <span class="pin-pulse"></span>
+                      <span class="pin-num">0${idx + 1}</span>
+                    </div>
+                    <div class="waypoint-details">
+                      <div class="waypoint-header">
+                        <h4>${pin.name}</h4>
+                        <span class="pin-tag"><span class="hi">${pin.hi}</span>${pin.category}</span>
+                      </div>
+                      <p>${pin.desc}</p>
+                      <div class="pin-meta">
+                        <span>Elevation: ${pin.elevation}</span>
+                        <span>Dist: ${pin.dist}</span>
+                      </div>
                     </div>
                   </div>
+                `).join('')}
+              </div>
+            </div>
+          </div>
+
+          <!-- Scene frame column with dark window, ticks, label bar, iframe, caption -->
+          <div class="tourist-scene-col">
+            <div class="sylva-frame-window" id="sylva-window">
+              <div class="sylva-frame-bar">
+                <div class="sylva-frame-bar-left">
+                  <span class="sylva-live-dot" aria-hidden="true"></span>
+                  <span class="sylva-frame-title">${TS.frameHeader}</span>
                 </div>
-              `;
-            }).join('')}
+                <span class="sylva-frame-badge">PROCEDURAL 3D</span>
+              </div>
+              <div class="sylva-viewport-container">
+                <div class="corner-tick tick-tl" aria-hidden="true"></div>
+                <div class="corner-tick tick-tr" aria-hidden="true"></div>
+                <div class="corner-tick tick-bl" aria-hidden="true"></div>
+                <div class="corner-tick tick-br" aria-hidden="true"></div>
+                
+                <div
+                  class="threeui-background sylva-living-world-scene"
+                  id="sylva-host"
+                  role="img"
+                  aria-label="${TS.sceneLabel}"
+                  data-variant="living-green"
+                >
+                  <div class="sylva-fallback" id="sylva-fallback" style="display:none;">
+                    <p class="sylva-fallback-title">${TS.fallbackText}</p>
+                    <span class="sylva-fallback-caption">${TS.sceneCaption}</span>
+                  </div>
+                  <iframe
+                    id="sylva-iframe"
+                    title="${TS.sceneLabel}"
+                    sandbox="allow-scripts"
+                    loading="lazy"
+                  ></iframe>
+                </div>
+              </div>
+              <figcaption class="sylva-frame-caption">${TS.sceneCaption}</figcaption>
+            </div>
           </div>
         </div>
       </div>
@@ -248,7 +292,7 @@
     const NS = D.nexusScene;
     nexusSceneEl.innerHTML = `
       <div class="wrap">
-        <p class="label"><span class="hi">${NS.hi}</span> ${NS.chapter} · ${NS.title}</p>
+        <p class="label">${formatHeader(NS.chapter, NS.title, NS.hi)}</p>
         <h2>${NS.title}</h2>
         <p class="lead">${NS.subtitle}</p>
         <div class="chat-showcase">
@@ -300,7 +344,7 @@
     const HW = D.howItWorks;
     howEl.innerHTML = `
       <div class="wrap">
-        <p class="label"><span class="hi">${HW.hi}</span> ${HW.chapter} · ${HW.title}</p>
+        <p class="label">${formatHeader(HW.chapter, HW.title, HW.hi)}</p>
         <h2>${HW.title}</h2>
         <p class="lead">${HW.subtitle}</p>
         <div class="how-grid">
@@ -332,7 +376,7 @@
     const AB = D.about;
     aboutEl.innerHTML = `
       <div class="wrap">
-        <p class="label"><span class="hi">${AB.hi}</span> ${AB.chapter} · ${AB.label}</p>
+        <p class="label">${formatHeader(AB.chapter, AB.label || AB.title, AB.hi)}</p>
         <h2>${AB.title}</h2>
         <p class="lead">${AB.text}</p>
         <div class="principles-grid">
@@ -362,7 +406,7 @@
     const TL = D.timeline;
     timeEl.innerHTML = `
       <div class="wrap">
-        <p class="label"><span class="hi">${TL.hi}</span> ${TL.chapter} · ${TL.title}</p>
+        <p class="label">${formatHeader(TL.chapter, TL.title, TL.hi)}</p>
         <h2>${TL.title}</h2>
         <p class="lead">${TL.subtitle}</p>
         <div class="timeline-wrap" id="timeline-box">
@@ -395,7 +439,7 @@
     const TM = D.team;
     teamEl.innerHTML = `
       <div class="wrap">
-        <p class="label"><span class="hi">${TM.hi}</span> ${TM.chapter} · ${TM.title}</p>
+        <p class="label">${formatHeader(TM.chapter, TM.title, TM.hi)}</p>
         <h2>${TM.title}</h2>
         <p class="lead">${TM.subtitle}</p>
         <div class="team-grid">
@@ -422,7 +466,7 @@
     const UP = D.updates;
     updEl.innerHTML = `
       <div class="wrap">
-        <p class="label"><span class="hi">${UP.hi}</span> ${UP.chapter} · ${UP.title}</p>
+        <p class="label">${formatHeader(UP.chapter, UP.title, UP.hi)}</p>
         <h2>${UP.title}</h2>
         <p class="lead">${UP.subtitle}</p>
         <div class="updates-grid">
@@ -453,7 +497,7 @@
     const FQ = D.faq;
     faqEl.innerHTML = `
       <div class="wrap">
-        <p class="label"><span class="hi">${FQ.hi}</span> ${FQ.chapter} · ${FQ.title}</p>
+        <p class="label">${formatHeader(FQ.chapter, FQ.title, FQ.hi)}</p>
         <h2>${FQ.title}</h2>
         <p class="lead">${FQ.subtitle}</p>
         <div class="faq-list" role="region" aria-label="FAQ Accordion">
@@ -500,7 +544,7 @@
     const CM = D.community;
     commEl.innerHTML = `
       <div class="wrap">
-        <p class="label"><span class="hi">${CM.hi}</span> ${CM.chapter} · ${CM.label}</p>
+        <p class="label">${formatHeader(CM.chapter, CM.label || CM.title, CM.hi)}</p>
         <h2>${CM.title}</h2>
         <p class="lead">${CM.lead}</p>
         <div class="row">
@@ -678,11 +722,28 @@
       }
     }
 
-    // Route line drawing on scroll (Tourist Guide Scene)
+    // Route line drawing & waypoint highlight on scroll (Tourist Guide Scene)
     if (routeLine && topoWrap) {
       const rRect = topoWrap.getBoundingClientRect();
-      const rProg = Math.max(0, Math.min(1, (H - rRect.top) / (H + rRect.height)));
-      routeLine.style.strokeDashoffset = `${(1 - rProg) * routeLineLen}`;
+      const rProg = Math.max(0, Math.min(1, (H * 0.75 - rRect.top) / rRect.height));
+      routeLine.style.strokeDashoffset = `${Math.max(0, 1 - rProg) * routeLineLen}`;
+
+      const waypoints = topoWrap.querySelectorAll('.trail-waypoint-item');
+      if (waypoints.length) {
+        waypoints.forEach((wp, idx) => {
+          const threshold = (idx + 0.2) / waypoints.length;
+          wp.classList.toggle('active', rProg >= threshold);
+        });
+      }
+    }
+
+    // Sylva scene hold check: pause #world background render while frame is >= 50% visible
+    const sylvaWin = document.getElementById('sylva-window');
+    if (sylvaWin && window.WORLD && typeof window.WORLD.hold === 'function') {
+      const swr = sylvaWin.getBoundingClientRect();
+      const visibleH = Math.max(0, Math.min(swr.bottom, H) - Math.max(swr.top, 0));
+      const isHalfVis = swr.height > 0 && (visibleH / swr.height >= 0.5);
+      window.WORLD.hold(isHalfVis);
     }
 
     // Timeline fill line & active items
@@ -857,6 +918,69 @@
       replayBtn.addEventListener('click', () => {
         runTerminalSequence();
       });
+    }
+  }
+
+  // ==========================================
+  // 5b. SYLVA LIVING WORLD SCENE ADAPTER (LAZY-LOAD, MOTION, FALLBACK)
+  // ==========================================
+  const sylvaHost = $('#sylva-host');
+  const sylvaIframe = $('#sylva-iframe');
+  const sylvaFallback = $('#sylva-fallback');
+
+  function checkWebGL() {
+    try {
+      const testCanvas = document.createElement('canvas');
+      return Boolean(
+        window.WebGLRenderingContext &&
+        (testCanvas.getContext('webgl') || testCanvas.getContext('experimental-webgl'))
+      );
+    } catch (e) {
+      return false;
+    }
+  }
+
+  if (sylvaHost && sylvaIframe) {
+    if (!checkWebGL()) {
+      if (sylvaFallback) sylvaFallback.style.display = 'flex';
+      sylvaIframe.style.display = 'none';
+    } else {
+      let isNearViewport = false;
+
+      function getSylvaSrc() {
+        const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        return isReduced ? 'vendor/sylva/living-green-reduced.html' : 'vendor/sylva/living-green.html';
+      }
+
+      function syncIframe() {
+        const shouldMount = isNearViewport && !document.hidden;
+        if (shouldMount) {
+          const targetSrc = getSylvaSrc();
+          const currentSrc = sylvaIframe.getAttribute('src');
+          if (currentSrc !== targetSrc) {
+            sylvaIframe.setAttribute('src', targetSrc);
+          }
+        } else {
+          if (sylvaIframe.hasAttribute('src')) {
+            sylvaIframe.removeAttribute('src');
+          }
+        }
+      }
+
+      const lazyObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          isNearViewport = entry.isIntersecting;
+          syncIframe();
+        });
+      }, { rootMargin: '100% 0px' });
+      lazyObserver.observe(sylvaHost);
+
+      document.addEventListener('visibilitychange', syncIframe);
+
+      const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+      if (motionQuery.addEventListener) {
+        motionQuery.addEventListener('change', syncIframe);
+      }
     }
   }
 

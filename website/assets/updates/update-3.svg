@@ -1,19 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
   <defs>
     <linearGradient id="ug_2" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0F172A"/>
-      <stop offset="60%" stop-color="#1E1B4B"/>
-      <stop offset="100%" stop-color="#0F172A"/>
+      <stop offset="0%" stop-color="#F8F7FF"/>
+      <stop offset="60%" stop-color="#EDE9FE"/>
+      <stop offset="100%" stop-color="#F1F5F9"/>
     </linearGradient>
     <linearGradient id="ug_line_2" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="0%" stop-color="#0284C7"/>
       <stop offset="100%" stop-color="#7C3AED"/>
     </linearGradient>
   </defs>
-  <rect width="640" height="360" rx="20" fill="url(#ug_2)"/>
+  <rect width="640" height="360" rx="16" fill="url(#ug_2)"/>
   
-  <!-- Tech grid background -->
-  <g opacity="0.15" stroke="#FFFFFF" stroke-width="1">
+  <!-- Subtle tech grid background -->
+  <g opacity="0.35" stroke="#CBD5E1" stroke-width="1">
     <line x1="80" y1="0" x2="80" y2="360"/>
     <line x1="160" y1="0" x2="160" y2="360"/>
     <line x1="240" y1="0" x2="240" y2="360"/>
@@ -26,19 +26,18 @@
     <line x1="0" y1="270" x2="640" y2="270"/>
   </g>
 
-  <!-- Glowing geometric nodes / curves -->
-  <path d="M 40 260 Q 200 120 360 220 T 600 100" fill="none" stroke="url(#ug_line_2)" stroke-width="4" opacity="0.8"/>
-  <circle cx="200" cy="120" r="8" fill="#38BDF8"/>
-  <circle cx="200" cy="120" r="18" fill="#38BDF8" opacity="0.25"/>
-  <circle cx="360" cy="220" r="10" fill="#7C3AED"/>
-  <circle cx="360" cy="220" r="22" fill="#7C3AED" opacity="0.25"/>
-  <circle cx="500" cy="150" r="6" fill="#F8F7FF"/>
+  <!-- Glowing geometric nodes / curves in brand purple and green -->
+  <path d="M 40 250 Q 200 110 360 210 T 600 90" fill="none" stroke="url(#ug_line_2)" stroke-width="4.5" opacity="0.9"/>
+  <circle cx="200" cy="110" r="8" fill="#0284C7"/>
+  <circle cx="200" cy="110" r="18" fill="#0284C7" opacity="0.2"/>
+  <circle cx="360" cy="210" r="10" fill="#7C3AED"/>
+  <circle cx="360" cy="210" r="22" fill="#7C3AED" opacity="0.2"/>
+  <circle cx="500" cy="140" r="6" fill="#1E293B"/>
 
   <!-- Foreground Badge & Details -->
-  <rect x="44" y="44" width="160" height="28" rx="14" fill="#38BDF8" opacity="0.25"/>
-  <rect x="44" y="44" width="160" height="28" rx="14" fill="none" stroke="#38BDF8" stroke-width="1" opacity="0.6"/>
-  <text x="60" y="63" font-family="Poppins,Arial,sans-serif" font-size="11" font-weight="600" fill="#7C3AED">NEXUS Core Alpha</text>
+  <rect x="44" y="44" width="168" height="28" rx="14" fill="#FFFFFF" stroke="#0284C7" stroke-width="1.2"/>
+  <text x="60" y="63" font-family="Poppins,Arial,sans-serif" font-size="11" font-weight="600" fill="#0284C7">NEXUS Core Alpha</text>
   
-  <text x="44" y="300" font-family="Poppins,Arial,sans-serif" font-size="24" font-weight="700" fill="#FFFFFF">Decentralized Sync Engine</text>
-  <text x="44" y="325" font-family="Poppins,Arial,sans-serif" font-size="13" fill="#94A3B8">ARRIVA Research &amp; Build Log</text>
+  <text x="44" y="300" font-family="Poppins,Arial,sans-serif" font-size="24" font-weight="700" fill="#0F172A">Decentralized Sync Engine</text>
+  <text x="44" y="325" font-family="Poppins,Arial,sans-serif" font-size="13" font-weight="500" fill="#64748B">ARRIVA Research &amp; Build Log</text>
 </svg>
