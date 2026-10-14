@@ -1,3 +1,7 @@
+// ARRIVA - Interactive Frontend Engine & Motion Orchestration
+// Integrates Lenis smooth inertia, GSAP, high-contrast Three.js World,
+// phone/browser device frames, and copy-honest dynamic rendering from content.js.
+
 (function () {
   'use strict';
 
@@ -13,20 +17,78 @@
   const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
 
   // ==========================================
-  // 1. RENDER ALL CONTENT FROM content.js
+  // 1. REUSABLE DEVICE FRAME BUILDER
+  // ==========================================
+  function createDeviceFrame(src, alt, deviceType = 'phone') {
+    const isSvgPlaceholder = typeof src === 'string' && (src.endsWith('.svg') || src.includes('placeholder'));
+    const placeholderBadge = isSvgPlaceholder
+      ? '<span class="placeholder-tag" aria-label="Mockup placeholder">PLACEHOLDER</span>'
+      : '';
+
+    if (deviceType === 'browser') {
+      return `
+        <div class="device-frame device-browser">
+          <div class="browser-header">
+            <div class="browser-controls">
+              <span class="b-dot red"></span>
+              <span class="b-dot yellow"></span>
+              <span class="b-dot green"></span>
+            </div>
+            <div class="browser-address">localhost:11434 / orvix</div>
+            ${placeholderBadge}
+          </div>
+          <div class="browser-screen">
+            <img src="${src}" alt="${alt}" loading="lazy">
+          </div>
+        </div>
+      `;
+    }
+
+    return `
+      <div class="device-frame device-phone">
+        <div class="phone-bezel">
+          <div class="phone-notch">
+            <span class="phone-speaker"></span>
+            <span class="phone-lens"></span>
+          </div>
+          ${placeholderBadge}
+          <div class="phone-screen">
+            <img src="${src}" alt="${alt}" loading="lazy">
+          </div>
+          <div class="phone-home-indicator"></div>
+        </div>
+      </div>
+    `;
+  }
+
+  function formatHeader(chapterStr, titleStr, hiStr) {
+    const num = (chapterStr || '').replace(/[^0-9]/g, '');
+    const cleanTitle = (titleStr || '')
+      .toUpperCase()
+      .replace(/^ARRIVA\s+/, '')
+      .replace(/·\s*/g, '')
+      .trim();
+    const prefix = num ? `${num} / ${cleanTitle}` : cleanTitle;
+    const hiMarkup = hiStr ? `<span class="hi">${hiStr}</span>` : '';
+    return `<span class="chapter-mono">${prefix}</span>${hiMarkup}`;
+  }
+
+  // ==========================================
+  // 2. DYNAMIC DOM GENERATION FROM content.js
   // ==========================================
 
-  // --- Preloader
+  // --- Preloader Texts
   const preHi = $('#pre-hi'), preTitle = $('#pre-title');
   if (preHi && D.preloader) preHi.textContent = D.preloader.hi;
   if (preTitle && D.preloader) preTitle.textContent = D.preloader.title;
 
-  // --- Header & Nav
+  // --- Header & Brand Logo
   const logo = $('#brand-logo');
   if (logo && D.brand) {
     logo.innerHTML = `${D.brand.name}<span>${D.brand.markSuffix}</span>`;
   }
 
+  // --- Primary Navigation
   const nav = $('#nav');
   if (nav && D.nav) {
     nav.innerHTML = D.nav.links.map(l => `<a href="${l.href}">${l.label}</a>`).join('') +
@@ -48,25 +110,15 @@
     });
   }
 
-  function formatHeader(chapterStr, titleStr, hiStr) {
-    const num = (chapterStr || '').replace(/[^0-9]/g, '');
-    const cleanTitle = (titleStr || '')
-      .toUpperCase()
-      .replace(/^ARRIVA\s+/, '')
-      .replace(/·\s*/g, '')
-      .trim();
-    const prefix = num ? `${num} / ${cleanTitle}` : cleanTitle;
-    const hiMarkup = hiStr ? `<span class="hi">${hiStr}</span>` : '';
-    return `<span class="chapter-mono">${prefix}</span>${hiMarkup}`;
-  }
-
-  // --- Hero (Chapter 00)
+  // --- Chapter 00: Hero
   const heroLabel = $('#hero-label'), h1 = $('#h1'), lead = $('#lead'), heroCta = $('#hero-cta'), heroScroll = $('#hero-scroll');
   if (heroLabel && D.hero) {
     heroLabel.innerHTML = formatHeader(D.hero.chapter, "THE ARRIVAL", D.hero.hi);
   }
   if (h1 && D.hero) {
-    h1.innerHTML = D.hero.title.split(' ').map((w, i) => `<span class="w"><span style="--d:${(i * 0.08).toFixed(2)}s">${w}</span></span>`).join(' ');
+    h1.innerHTML = D.hero.title.split(' ').map((w, i) =>
+      `<span class="w"><span class="reveal-word" style="--d:${(i * 0.08).toFixed(2)}s">${w}</span></span>`
+    ).join(' ');
   }
   if (lead && D.hero) lead.textContent = D.hero.sub;
   if (heroCta && D.hero) {
@@ -77,35 +129,102 @@
   }
   if (heroScroll && D.hero) heroScroll.textContent = D.hero.scrollHint;
 
-  // --- 01, 02, 03 Product Chapters
+  // --- Chapters 01, 02, 03: Product Chapters
   const chaptersEl = $('#chapters');
   if (chaptersEl && D.products) {
-    chaptersEl.innerHTML = D.products.map((p, i) => `
-      <section class="chapter ${i % 2 ? 'flip' : ''}" id="${p.id}" data-scene="${i + 1}">
-        <div class="wrap grid">
-          <div class="copy">
-            <p class="label">${formatHeader(p.chapter, p.name, p.hi)}</p>
-            <h2>${p.name}</h2>
-            <p class="lead">${p.desc}</p>
-            <ul class="points-list">${p.points.map(pt => `<li>${pt}</li>`).join('')}</ul>
-            <div class="tech-tags">${p.techUsed ? p.techUsed.map(t => `<span class="tech-pill">${t}</span>`).join('') : ''}</div>
-            <div class="stats">${p.stats.map(s => `<div><b data-count>${s[0]}</b><span>${s[1]}</span></div>`).join('')}</div>
-            <div class="row">
-              <a class="btn solid" href="${p.link[1]}" data-magnet>${p.link[0]}</a>
-              <span class="status">${p.status}</span>
+    chaptersEl.innerHTML = D.products.map((p, i) => {
+      const isTourist = p.id === 'tourist-guide';
+      const isNexus = p.id === 'nexus';
+      const isOrvix = p.id === 'orvix';
+
+      // Specific rich showcase layout per product
+      let visualSide = '';
+      if (isTourist && D.touristGuideScene) {
+        const TS = D.touristGuideScene;
+        visualSide = `
+          <div class="product-visual tourist-visual-box" id="tourist-interactive-scene">
+            <div class="topo-stats-banner">
+              ${TS.trailStats.map(st => `
+                <div class="topo-pill"><b>${st[0]}</b><span>${st[1]}</span></div>
+              `).join('')}
+            </div>
+            <div class="topo-interactive-box" id="topo-wrap">
+              <div class="topo-pins-list" id="topo-pins">
+                ${TS.pins.map((pin, idx) => `
+                  <div class="topo-pin-card" data-pin-idx="${idx}" tabindex="0" role="button" aria-label="Inspect 3D waypoint ${idx + 1}: ${pin.name}">
+                    <div class="topo-pin-header">
+                      <span class="pin-idx">0${idx + 1}</span>
+                      <div class="pin-titles">
+                        <h4>${pin.name}</h4>
+                        <span class="pin-cat"><span class="hi">${pin.hi}</span>${pin.category}</span>
+                      </div>
+                      <span class="pin-elev">${pin.elevation}</span>
+                    </div>
+                    <p class="pin-desc">${pin.desc}</p>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+            <p class="topo-hint">${TS.hint}</p>
+          </div>
+        `;
+      } else if (isNexus) {
+        visualSide = `
+          <div class="product-visual nexus-visual-box" id="nexus-visual">
+            <div class="nexus-device-wrap">
+              ${createDeviceFrame(p.images[0], `${p.name} primary screen`, 'phone')}
+            </div>
+            <div class="nexus-floating-preview">
+              <div class="bubble incoming" style="--py:-12px;">
+                <span class="bubble-sender">Sachin K.</span>
+                <p>Ollama socket verified on ORVIX. Local inference is ready.</p>
+                <span class="bubble-time">10:24 AM · Verified</span>
+              </div>
+              <div class="bubble outgoing" style="--py:14px;">
+                <span class="bubble-sender">You</span>
+                <p>Tourist Guide offline route caching confirmed. Clean build packaged.</p>
+                <span class="bubble-time">10:25 AM · Delivered</span>
+              </div>
             </div>
           </div>
-          <div class="phones" aria-label="${p.name} mobile screens preview">
-            ${p.images.slice(0, 3).map((src, k) => `
-              <img class="phone" data-speed="${[0.08, -0.05, 0.13][k]}" src="${src}" alt="${p.name} screen ${k + 1}" loading="lazy">
-            `).join('')}
+        `;
+      } else {
+        // ORVIX
+        visualSide = `
+          <div class="product-visual orvix-visual-box">
+            <div class="orvix-browser-wrap">
+              ${createDeviceFrame(p.images[1] || p.images[0], `${p.name} console screen`, 'browser')}
+            </div>
           </div>
-        </div>
-      </section>
-    `).join('');
+        `;
+      }
+
+      return `
+        <section class="chapter ${i % 2 ? 'flip' : ''}" id="${p.id}" data-scene="${(i + 1).toFixed(1)}">
+          ${isTourist ? '<div id="tourist-guide-scene" style="position:absolute; top:0; left:0; width:1px; height:1px;"></div>' : ''}
+          <div class="wrap grid">
+            <div class="copy">
+              <p class="label">${formatHeader(p.chapter, p.name, p.hi)}</p>
+              <h2>${p.name}</h2>
+              <p class="lead">${p.desc}</p>
+              <ul class="points-list">${p.points.map(pt => `<li>${pt}</li>`).join('')}</ul>
+              <div class="tech-tags">${p.techUsed ? p.techUsed.map(t => `<span class="tech-pill">${t}</span>`).join('') : ''}</div>
+              <div class="stats">${p.stats.map(s => `<div><b data-count>${s[0]}</b><span>${s[1]}</span></div>`).join('')}</div>
+              <div class="row">
+                <a class="btn solid" href="${p.link[1]}" data-magnet>${p.link[0]}</a>
+                <span class="status">${p.status}</span>
+              </div>
+            </div>
+            <div class="showcase-col">
+              ${visualSide}
+            </div>
+          </div>
+        </section>
+      `;
+    }).join('');
   }
 
-  // --- Section 1: Screens Gallery (Pinned Horizontal)
+  // --- Chapter 04: Screens Gallery (Pinned Horizontal Walk)
   const galEl = $('#screens-gallery');
   if (galEl && D.screensGallery) {
     const G = D.screensGallery;
@@ -140,8 +259,8 @@
                 <div class="gallery-screens-grid">
                   ${grp.screens.map(s => `
                     <div class="gallery-card">
-                      <img src="${s.src}" alt="${s.alt}" loading="lazy">
-                      <span>${s.title}</span>
+                      ${createDeviceFrame(s.src, s.alt, grp.deviceType || 'phone')}
+                      <span class="screen-title">${s.title}</span>
                     </div>
                   `).join('')}
                 </div>
@@ -153,7 +272,7 @@
     `;
   }
 
-  // --- Section 2: ORVIX Live Demo (Terminal)
+  // --- Chapter 05: ORVIX Live Demo (Interactive Terminal Simulation)
   const demoEl = $('#orvix-demo');
   if (demoEl && D.orvixDemo) {
     const dm = D.orvixDemo;
@@ -193,152 +312,7 @@
     `;
   }
 
-  // --- Section 3: Tourist Guide Scene (Route Line & Sylva Living World)
-  const tgSceneEl = $('#tourist-guide-scene');
-  if (tgSceneEl && D.touristGuideScene) {
-    const TS = D.touristGuideScene;
-    tgSceneEl.innerHTML = `
-      <div class="wrap">
-        <div class="tourist-split-grid">
-          <!-- Text column with chapter info, stats, and route line + 4 pins -->
-          <div class="tourist-text-col">
-            <p class="label">${formatHeader(TS.chapter, TS.title, TS.hi)}</p>
-            <h2>${TS.title}</h2>
-            <p class="lead">${TS.subtitle}</p>
-            
-            <div class="topo-stats">
-              ${TS.trailStats.map(st => `
-                <div class="topo-stat-pill"><b>${st[0]}</b> <span>${st[1]}</span></div>
-              `).join('')}
-            </div>
-
-            <div class="tourist-trail-box" id="topo-wrap">
-              <div class="trail-route-col">
-                <svg class="trail-route-svg" viewBox="0 0 32 380" preserveAspectRatio="none" aria-hidden="true">
-                  <path class="trail-base-line" d="M 16 16 L 16 364" />
-                  <path id="route-line" class="trail-line" d="M 16 16 L 16 364" />
-                </svg>
-              </div>
-              <div class="trail-waypoints-list" id="topo-pins">
-                ${TS.pins.map((pin, idx) => `
-                  <div class="trail-waypoint-item" data-pin-idx="${idx}" tabindex="0" role="button" aria-label="Waypoint ${idx + 1}: ${pin.name}">
-                    <div class="waypoint-pin-node">
-                      <span class="pin-pulse"></span>
-                      <span class="pin-num">0${idx + 1}</span>
-                    </div>
-                    <div class="waypoint-details">
-                      <div class="waypoint-header">
-                        <h4>${pin.name}</h4>
-                        <span class="pin-tag"><span class="hi">${pin.hi}</span>${pin.category}</span>
-                      </div>
-                      <p>${pin.desc}</p>
-                      <div class="pin-meta">
-                        <span>Elevation: ${pin.elevation}</span>
-                        <span>Dist: ${pin.dist}</span>
-                      </div>
-                    </div>
-                  </div>
-                `).join('')}
-              </div>
-            </div>
-          </div>
-
-          <!-- Scene frame column with dark window, ticks, label bar, iframe, caption -->
-          <div class="tourist-scene-col">
-            <div class="sylva-frame-window" id="sylva-window">
-              <div class="sylva-frame-bar">
-                <div class="sylva-frame-bar-left">
-                  <span class="sylva-live-dot" aria-hidden="true"></span>
-                  <span class="sylva-frame-title">${TS.frameHeader}</span>
-                </div>
-                <span class="sylva-frame-badge">PROCEDURAL 3D</span>
-              </div>
-              <div class="sylva-viewport-container">
-                <div class="corner-tick tick-tl" aria-hidden="true"></div>
-                <div class="corner-tick tick-tr" aria-hidden="true"></div>
-                <div class="corner-tick tick-bl" aria-hidden="true"></div>
-                <div class="corner-tick tick-br" aria-hidden="true"></div>
-                
-                <div
-                  class="threeui-background sylva-living-world-scene"
-                  id="sylva-host"
-                  role="img"
-                  aria-label="${TS.sceneLabel}"
-                  data-variant="living-green"
-                >
-                  <div class="sylva-fallback" id="sylva-fallback" style="display:none;">
-                    <p class="sylva-fallback-title">${TS.fallbackText}</p>
-                    <span class="sylva-fallback-caption">${TS.sceneCaption}</span>
-                  </div>
-                  <iframe
-                    id="sylva-iframe"
-                    title="${TS.sceneLabel}"
-                    sandbox="allow-scripts"
-                    loading="lazy"
-                  ></iframe>
-                </div>
-              </div>
-              <figcaption class="sylva-frame-caption">${TS.sceneCaption}</figcaption>
-            </div>
-          </div>
-        </div>
-      </div>
-    `;
-  }
-
-  // --- Section 4: NEXUS Scene (Floating Chat Parallax)
-  const nexusSceneEl = $('#nexus-scene');
-  if (nexusSceneEl && D.nexusScene) {
-    const NS = D.nexusScene;
-    nexusSceneEl.innerHTML = `
-      <div class="wrap">
-        <p class="label">${formatHeader(NS.chapter, NS.title, NS.hi)}</p>
-        <h2>${NS.title}</h2>
-        <p class="lead">${NS.subtitle}</p>
-        <div class="chat-showcase">
-          <div class="chat-frame">
-            <div class="chat-header">
-              <div class="chat-header-title">
-                <div class="chat-avatar-group">NX</div>
-                <div>
-                  <h4 style="font-size:0.95rem; margin:0;">ARRIVA Dev Channel</h4>
-                  <span style="font-size:0.75rem; color:var(--mint);">Active · Zero Telemetry</span>
-                </div>
-              </div>
-              <span class="tag-pill">Kotlin Native</span>
-            </div>
-            <div class="chat-body" id="chat-body">
-              ${NS.bubbles.map(b => `
-                <div class="bubble ${b.isMe ? 'outgoing' : 'incoming'}" data-speed="${b.speed}">
-                  <div class="bubble-sender">${b.sender}</div>
-                  <div>${b.text}</div>
-                  <div class="bubble-time">${b.time} · Delivered</div>
-                </div>
-              `).join('')}
-              <div class="typing-box" id="typing-box">
-                <div class="typing-dots"><span></span><span></span><span></span></div>
-                <span>${NS.typingLabel}</span>
-              </div>
-            </div>
-          </div>
-          <div class="chat-info-panel copy">
-            <h3>Zero Feeds. Pure Messaging.</h3>
-            <p class="lead" style="font-size: 0.96rem;">
-              NEXUS replaces algorithmic distraction with high-velocity conversation threads.
-              All messages cache on your device, delivering offline access and instantaneous responses.
-            </p>
-            <ul class="points-list">
-              <li>End-to-end local SQLite database storage</li>
-              <li>Minimal battery overhead on Android devices</li>
-              <li>No surveillance telemetry or advertising hooks</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    `;
-  }
-
-  // --- Section 5: How It Works (Sequence)
+  // --- Chapter 06: How It Works (Sequence)
   const howEl = $('#how-it-works');
   if (howEl && D.howItWorks) {
     const HW = D.howItWorks;
@@ -351,7 +325,7 @@
           ${HW.categories.map(cat => `
             <div class="how-col">
               <div class="how-col-header">
-                <span class="tag-pill"><span class="hi">${cat.hi}</span>System Sequence</span>
+                <span class="tag-pill"><span class="hi">${cat.hi}</span>Sequence</span>
                 <h3>${cat.name}</h3>
               </div>
               ${cat.steps.map(st => `
@@ -370,97 +344,95 @@
     `;
   }
 
-  // --- Section 6: About (Light Lavender Band & Principles)
+  // --- Chapter 07: About & Team (Consolidated Philosophy, Principles, Stats, Timeline, and Team)
   const aboutEl = $('#about');
   if (aboutEl && D.about) {
     const AB = D.about;
     aboutEl.innerHTML = `
       <div class="wrap">
-        <p class="label">${formatHeader(AB.chapter, AB.label || AB.title, AB.hi)}</p>
-        <h2>${AB.title}</h2>
-        <p class="lead">${AB.text}</p>
-        <div class="principles-grid">
-          ${AB.principles.map(pr => `
-            <div class="principle-card">
-              <div class="principle-num">${pr.num} <span class="tag-pill"><span class="hi">${pr.hi}</span>Principle</span></div>
-              <h3>${pr.title}</h3>
-              <p>${pr.desc}</p>
-            </div>
-          `).join('')}
-        </div>
-        <div class="about-stats">
-          ${AB.stats.map(st => `
-            <div class="about-stat">
-              <b data-count>${st[0]}</b>
-              <span>${st[1]}</span>
-            </div>
-          `).join('')}
-        </div>
-      </div>
-    `;
-  }
-
-  // --- Section 7: Journey Timeline
-  const timeEl = $('#timeline');
-  if (timeEl && D.timeline) {
-    const TL = D.timeline;
-    timeEl.innerHTML = `
-      <div class="wrap">
-        <p class="label">${formatHeader(TL.chapter, TL.title, TL.hi)}</p>
-        <h2>${TL.title}</h2>
-        <p class="lead">${TL.subtitle}</p>
-        <div class="timeline-wrap" id="timeline-box">
-          <div class="timeline-spine">
-            <div class="timeline-fill" id="timeline-fill"></div>
+        <div class="about-hero-block">
+          <p class="label">${formatHeader(AB.chapter, AB.label || AB.title, AB.hi)}</p>
+          <h2>${AB.title}</h2>
+          <p class="lead">${AB.text}</p>
+          <div class="principles-grid">
+            ${AB.principles.map(pr => `
+              <div class="principle-card">
+                <div class="principle-num">${pr.num} <span class="tag-pill"><span class="hi">${pr.hi}</span>Principle</span></div>
+                <h3>${pr.title}</h3>
+                <p>${pr.desc}</p>
+              </div>
+            `).join('')}
           </div>
-          <div class="timeline-items" id="timeline-items">
-            ${TL.steps.map(st => `
-              <div class="timeline-item" data-step="${st.step}">
-                <div class="timeline-node">${st.step}</div>
-                <div class="timeline-card">
-                  <div class="timeline-card-header">
-                    <span class="tag-pill"><span class="hi">${st.hi}</span>Phase ${st.step} · ${st.phase}</span>
-                    <span class="status">${st.status}</span>
-                  </div>
-                  <h3>${st.title}</h3>
-                  <p>${st.desc}</p>
-                </div>
+          <div class="about-stats">
+            ${AB.stats.map(st => `
+              <div class="about-stat">
+                <b data-count>${st[0]}</b>
+                <span>${st[1]}</span>
               </div>
             `).join('')}
           </div>
         </div>
-      </div>
-    `;
-  }
 
-  // --- Section 8: Team (3D Tilt Cards)
-  const teamEl = $('#team');
-  if (teamEl && D.team) {
-    const TM = D.team;
-    teamEl.innerHTML = `
-      <div class="wrap">
-        <p class="label">${formatHeader(TM.chapter, TM.title, TM.hi)}</p>
-        <h2>${TM.title}</h2>
-        <p class="lead">${TM.subtitle}</p>
-        <div class="team-grid">
-          ${TM.members.map(m => `
-            <div class="team-card" data-tilt>
-              <div class="team-photo-wrap">
-                <img src="${m.photo}" alt="${m.name} - ${m.role}" loading="lazy">
+        <!-- Integrated Team Section -->
+        ${AB.team ? `
+          <div class="team-sub-block" id="team">
+            <div class="section-subhead">
+              <span class="tag-pill">Builders</span>
+              <h3>The workbench team</h3>
+              <p class="lead">Hands-on engineers and designers building clean digital tools.</p>
+            </div>
+            <div class="team-grid">
+              ${AB.team.map(m => `
+                <div class="team-card" data-tilt>
+                  <div class="team-photo-wrap">
+                    <img src="${m.photo}" alt="${m.name} - ${m.role}" loading="lazy">
+                  </div>
+                  <div class="team-info">
+                    <h4>${m.name}</h4>
+                    <span class="team-role"><span class="hi">${m.hi}</span>${m.role}</span>
+                    <p class="team-line">${m.line}</p>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        ` : ''}
+
+        <!-- Integrated Journey Timeline -->
+        ${AB.timeline ? `
+          <div class="timeline-sub-block" id="timeline">
+            <div class="section-subhead">
+              <span class="tag-pill">Milestones</span>
+              <h3>Journey timeline</h3>
+              <p class="lead">From initial scratchpad problem statements to community-tested software.</p>
+            </div>
+            <div class="timeline-wrap" id="timeline-box">
+              <div class="timeline-spine">
+                <div class="timeline-fill" id="timeline-fill"></div>
               </div>
-              <div class="team-info">
-                <h3>${m.name}</h3>
-                <span class="team-role"><span class="hi">${m.hi}</span>${m.role}</span>
-                <p class="team-line">${m.line}</p>
+              <div class="timeline-items" id="timeline-items">
+                ${AB.timeline.map(st => `
+                  <div class="timeline-item" data-step="${st.step}">
+                    <div class="timeline-node">${st.step}</div>
+                    <div class="timeline-card">
+                      <div class="timeline-card-header">
+                        <span class="tag-pill"><span class="hi">${st.hi}</span>Phase ${st.step} · ${st.phase}</span>
+                        <span class="status">${st.status}</span>
+                      </div>
+                      <h4>${st.title}</h4>
+                      <p>${st.desc}</p>
+                    </div>
+                  </div>
+                `).join('')}
               </div>
             </div>
-          `).join('')}
-        </div>
+          </div>
+        ` : ''}
       </div>
     `;
   }
 
-  // --- Section 9: Updates (Field Notes)
+  // --- Chapter 08: Updates & Build Notes
   const updEl = $('#updates');
   if (updEl && D.updates) {
     const UP = D.updates;
@@ -491,7 +463,7 @@
     `;
   }
 
-  // --- Section 10: FAQ (Accessible Accordions)
+  // --- Chapter 09: FAQ (Accessible Accordions)
   const faqEl = $('#faq');
   if (faqEl && D.faq) {
     const FQ = D.faq;
@@ -518,7 +490,7 @@
       </div>
     `;
 
-    // FAQ keyboard & click toggle
+    // FAQ Accordion Toggle
     $$('.faq-q', faqEl).forEach(btn => {
       btn.addEventListener('click', () => {
         const item = btn.closest('.faq-item');
@@ -538,7 +510,7 @@
     });
   }
 
-  // --- Section 11: Community / Afterlight
+  // --- Outro: Community / Afterlight
   const commEl = $('#community');
   if (commEl && D.community) {
     const CM = D.community;
@@ -556,7 +528,7 @@
     `;
   }
 
-  // --- Section 12: Footer
+  // --- Footer: Consistent Chapters Directory & Legal
   const footEl = $('#foot');
   if (footEl && D.footer) {
     const FT = D.footer;
@@ -588,12 +560,12 @@
   }
 
   // ==========================================
-  // 2. PRELOADER ORCHESTRATION
+  // 3. PRELOADER ORCHESTRATION
   // ==========================================
   let pctVal = 0, isReady = false;
   const pctEl = $('#pct'), barEl = $('#bar');
   const t0 = performance.now();
-  const minLoadTime = rm ? 0 : 1400;
+  const minLoadTime = rm ? 0 : 1200;
 
   Promise.all([
     document.fonts ? document.fonts.ready : Promise.resolve(),
@@ -622,34 +594,81 @@
   requestAnimationFrame(tickPreloader);
 
   // ==========================================
-  // 3. UNIFIED rAF SCROLL HANDLER
+  // 4. LENIS SMOOTH INERTIAL SCROLL SETUP
+  // ==========================================
+  let lenis = null;
+  if (typeof window.Lenis !== 'undefined' && !rm) {
+    try {
+      lenis = new window.Lenis({
+        duration: 1.1,
+        easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: 'vertical',
+        smoothWheel: true,
+        touchMultiplier: 1.5
+      });
+
+      function lenisLoop(time) {
+        lenis.raf(time);
+        requestAnimationFrame(lenisLoop);
+      }
+      requestAnimationFrame(lenisLoop);
+
+      // Handle anchor link smooth scrolling via Lenis
+      $$('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', e => {
+          const targetId = anchor.getAttribute('href');
+          if (targetId && targetId !== '#') {
+            const targetEl = $(targetId);
+            if (targetEl && lenis) {
+              e.preventDefault();
+              lenis.scrollTo(targetEl, { offset: -60 });
+            }
+          }
+        });
+      });
+    } catch (e) {
+      console.warn('Lenis initialization bypassed:', e);
+    }
+  }
+
+  // ==========================================
+  // 5. UNIFIED SCROLL DISPATCHER & 3D INTERACTION
   // ==========================================
   const secs = $$('[data-scene]');
-  const parallaxEls = $$('[data-speed]');
   const progEl = $('#prog');
   const headerEl = $('#header');
-  const routeLine = $('#route-line');
-  const topoWrap = $('#topo-wrap');
   const galTrack = $('#gallery-track');
   const galCounter = $('#gallery-counter');
   const galCaption = $('#gallery-caption');
   const galTabs = $$('.gallery-tab');
   const timeFill = $('#timeline-fill');
   const timeItems = $$('.timeline-item');
+  const topoPins = $$('.topo-pin-card');
 
-  let routeLineLen = 1000;
-  if (routeLine) {
-    try {
-      routeLineLen = routeLine.getTotalLength();
-      routeLine.style.strokeDasharray = `${routeLineLen} ${routeLineLen}`;
-      routeLine.style.strokeDashoffset = `${routeLineLen}`;
-    } catch (e) {}
+  // Waypoint hover/click triggers 3D pin highlight
+  if (topoPins.length) {
+    topoPins.forEach((card, idx) => {
+      card.addEventListener('pointerenter', () => {
+        topoPins.forEach(p => p.classList.remove('active'));
+        card.classList.add('active');
+        if (window.WORLD && typeof window.WORLD.highlightPin === 'function') {
+          window.WORLD.highlightPin(idx);
+        }
+      });
+      card.addEventListener('click', () => {
+        topoPins.forEach(p => p.classList.remove('active'));
+        card.classList.add('active');
+        if (window.WORLD && typeof window.WORLD.highlightPin === 'function') {
+          window.WORLD.highlightPin(idx);
+        }
+      });
+    });
   }
 
-  let ticking = false;
+  let isScrollTicking = false;
 
-  function onScrollTick() {
-    ticking = false;
+  function onScroll() {
+    isScrollTicking = false;
     const y = window.scrollY;
     const H = window.innerHeight;
     const docH = document.documentElement.scrollHeight;
@@ -659,43 +678,44 @@
     if (progEl) progEl.style.transform = `scaleX(${maxScroll > 0 ? y / maxScroll : 0})`;
     if (headerEl) headerEl.classList.toggle('solid', y > 40);
 
-    // 3D Scene float cross-fade
-    const yc = y + H / 2;
+    // Continuous 3D World Scene progress (0.0 -> 4.0) with chapter hold
     let sceneIndex = 0;
     secs.forEach((s, idx) => {
-      if (s.offsetTop <= yc) sceneIndex = idx;
+      if (s.offsetTop <= y + 60) sceneIndex = idx;
     });
+
     const currSec = secs[sceneIndex];
     const nextSec = secs[sceneIndex + 1];
     let sceneVal = currSec ? +currSec.dataset.scene : 0;
-    if (nextSec) {
-      const t = (yc - currSec.offsetTop) / (nextSec.offsetTop - currSec.offsetTop);
-      sceneVal = +currSec.dataset.scene + (+nextSec.dataset.scene - +currSec.dataset.scene) * Math.max(0, Math.min(1, (t - 0.4) / 0.6));
+
+    if (nextSec && currSec) {
+      const segH = nextSec.offsetTop - currSec.offsetTop;
+      if (segH > 0) {
+        const segProgress = Math.max(0, Math.min(1, (y - currSec.offsetTop) / segH));
+        // Hold current scene for first 55% of section, then smoothly transition over remaining 45%
+        if (segProgress > 0.55) {
+          const t = (segProgress - 0.55) / 0.45;
+          const easedT = t * t * (3 - 2 * t);
+          sceneVal = +currSec.dataset.scene + (+nextSec.dataset.scene - +currSec.dataset.scene) * easedT;
+        }
+      }
     }
+
     if (window.WORLD && typeof window.WORLD.set === 'function') {
       window.WORLD.set(sceneVal);
     }
 
-    // Parallax elements
+    // Hero wrap fade & motion
     if (!rm) {
-      parallaxEls.forEach(el => {
-        const r = el.getBoundingClientRect();
-        const speed = parseFloat(el.dataset.speed) || 0;
-        const offset = (r.top + r.height / 2 - H / 2) * speed * -1;
-        el.style.setProperty('--py', offset.toFixed(1) + 'px');
-      });
-
-      // Hero wrap fade
       const topWrap = $('#top .wrap');
       if (topWrap) {
-        topWrap.style.transform = `translateY(${(Math.min(y, H) * 0.18).toFixed(1)}px)`;
+        topWrap.style.transform = `translateY(${(Math.min(y, H) * 0.16).toFixed(1)}px)`;
         topWrap.style.opacity = (1 - Math.min(y / (H * 0.8), 1)).toFixed(2);
       }
     }
 
     // Pinned Horizontal Gallery
     if (galEl && galTrack && innerWidth > 800 && !rm) {
-      const gRect = galEl.getBoundingClientRect();
       const gTop = galEl.offsetTop;
       const gHeight = galEl.offsetHeight;
       const gScrollable = gHeight - H;
@@ -722,57 +742,32 @@
       }
     }
 
-    // Route line drawing & waypoint highlight on scroll (Tourist Guide Scene)
-    if (routeLine && topoWrap) {
-      const rRect = topoWrap.getBoundingClientRect();
-      const rProg = Math.max(0, Math.min(1, (H * 0.75 - rRect.top) / rRect.height));
-      routeLine.style.strokeDashoffset = `${Math.max(0, 1 - rProg) * routeLineLen}`;
+    // Timeline fill line & active items
+    if (timeFill && $('#about')) {
+      const timeBox = $('#timeline');
+      if (timeBox) {
+        const tRect = timeBox.getBoundingClientRect();
+        const tProg = Math.max(0, Math.min(1, (H - tRect.top - 100) / tRect.height));
+        timeFill.style.height = `${tProg * 100}%`;
 
-      const waypoints = topoWrap.querySelectorAll('.trail-waypoint-item');
-      if (waypoints.length) {
-        waypoints.forEach((wp, idx) => {
-          const threshold = (idx + 0.2) / waypoints.length;
-          wp.classList.toggle('active', rProg >= threshold);
+        timeItems.forEach(item => {
+          const ir = item.getBoundingClientRect();
+          item.classList.toggle('active', ir.top <= H * 0.75);
         });
       }
     }
+  }
 
-    // Sylva scene hold check: pause #world background render while frame is >= 50% visible
-    const sylvaWin = document.getElementById('sylva-window');
-    if (sylvaWin && window.WORLD && typeof window.WORLD.hold === 'function') {
-      const swr = sylvaWin.getBoundingClientRect();
-      const visibleH = Math.max(0, Math.min(swr.bottom, H) - Math.max(swr.top, 0));
-      const isHalfVis = swr.height > 0 && (visibleH / swr.height >= 0.5);
-      window.WORLD.hold(isHalfVis);
-    }
-
-    // Timeline fill line & active items
-    if (timeFill && timeEl) {
-      const tRect = timeEl.getBoundingClientRect();
-      const tProg = Math.max(0, Math.min(1, (H - tRect.top - 100) / tRect.height));
-      timeFill.style.height = `${tProg * 100}%`;
-
-      timeItems.forEach(item => {
-        const ir = item.getBoundingClientRect();
-        if (ir.top <= H * 0.7) {
-          item.classList.add('active');
-        } else {
-          item.classList.remove('active');
-        }
-      });
+  function requestTick() {
+    if (!isScrollTicking) {
+      isScrollTicking = true;
+      requestAnimationFrame(onScroll);
     }
   }
 
-  function requestScrollTick() {
-    if (!ticking) {
-      ticking = true;
-      requestAnimationFrame(onScrollTick);
-    }
-  }
-
-  window.addEventListener('scroll', requestScrollTick, { passive: true });
-  window.addEventListener('resize', requestScrollTick, { passive: true });
-  requestScrollTick();
+  window.addEventListener('scroll', requestTick, { passive: true });
+  window.addEventListener('resize', requestTick, { passive: true });
+  requestTick();
 
   // Gallery tabs click handler
   if (galTabs.length && galEl) {
@@ -782,7 +777,11 @@
           const gTop = galEl.offsetTop;
           const gScrollable = galEl.offsetHeight - innerHeight;
           const targetY = gTop + (idx / (galTabs.length - 1)) * gScrollable;
-          window.scrollTo({ top: targetY, behavior: 'smooth' });
+          if (lenis) {
+            lenis.scrollTo(targetY);
+          } else {
+            window.scrollTo({ top: targetY, behavior: 'smooth' });
+          }
         } else {
           const groups = $$('.gallery-group', galTrack);
           if (groups[idx]) {
@@ -794,20 +793,21 @@
   }
 
   // ==========================================
-  // 4. INTERSECTION OBSERVER & COUNTERS
+  // 6. INTERSECTION OBSERVER & COUNTERS
   // ==========================================
   const io = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('in');
 
-        // Number count animation
+        // Numeric count animation
         if (entry.target.dataset.count !== undefined && !entry.target.done) {
           entry.target.done = true;
           const text = entry.target.textContent.trim();
-          const match = text.match(/^(\d+)(.*)$/);
+          const match = text.match(/^(\$?\d+)(.*)$/);
           if (match && !rm) {
-            const num = +match[1];
+            const hasDollar = match[1].startsWith('$');
+            const num = +match[1].replace('$', '');
             const suffix = match[2];
             const startT = performance.now();
             const duration = 1200;
@@ -815,7 +815,7 @@
             function countStep(now) {
               const p = Math.min(1, (now - startT) / duration);
               const eased = 1 - Math.pow(1 - p, 3);
-              entry.target.textContent = Math.round(num * eased) + suffix;
+              entry.target.textContent = (hasDollar ? '$' : '') + Math.round(num * eased) + suffix;
               if (p < 1) requestAnimationFrame(countStep);
             }
             requestAnimationFrame(countStep);
@@ -824,12 +824,12 @@
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.25 });
+  }, { threshold: 0.2 });
 
   $$('.copy, .how-col, .principle-card, .team-card, .update-card, [data-count]').forEach(el => io.observe(el));
 
   // ==========================================
-  // 5. ORVIX TERMINAL LIVE TYPING DEMO
+  // 7. ORVIX TERMINAL LIVE TYPING DEMO
   // ==========================================
   let termRan = false;
   const termBox = $('#terminal-box');
@@ -844,7 +844,6 @@
 
     if (!cmd1El || !D.orvixDemo) return;
 
-    // Reset state
     cmd1El.textContent = '';
     if (logs1El) logs1El.style.display = 'none';
     if (line2El) line2El.style.display = 'none';
@@ -863,14 +862,14 @@
       if (i < cmd1Text.length) {
         cmd1El.textContent += cmd1Text.charAt(i);
         i++;
-        setTimeout(typeCmd1, rm ? 0 : 50);
+        setTimeout(typeCmd1, rm ? 0 : 45);
       } else {
         setTimeout(() => {
           if (logs1El) logs1El.style.display = 'block';
           if (line2El) line2El.style.display = 'block';
           i = 0;
           setTimeout(typeCmd2, rm ? 0 : 300);
-        }, rm ? 0 : 400);
+        }, rm ? 0 : 350);
       }
     }
 
@@ -878,9 +877,9 @@
       if (cmd2El && i < cmd2Text.length) {
         cmd2El.textContent += cmd2Text.charAt(i);
         i++;
-        setTimeout(typeCmd2, rm ? 0 : 20);
+        setTimeout(typeCmd2, rm ? 0 : 18);
       } else {
-        setTimeout(showJsonReply, rm ? 0 : 400);
+        setTimeout(showJsonReply, rm ? 0 : 350);
       }
     }
 
@@ -915,104 +914,20 @@
 
     const replayBtn = $('#replay-term-btn');
     if (replayBtn) {
-      replayBtn.addEventListener('click', () => {
-        runTerminalSequence();
-      });
+      replayBtn.addEventListener('click', runTerminalSequence);
     }
   }
 
   // ==========================================
-  // 5b. SYLVA LIVING WORLD SCENE ADAPTER (LAZY-LOAD, MOTION, FALLBACK)
-  // ==========================================
-  const sylvaHost = $('#sylva-host');
-  const sylvaIframe = $('#sylva-iframe');
-  const sylvaFallback = $('#sylva-fallback');
-
-  function checkWebGL() {
-    try {
-      const testCanvas = document.createElement('canvas');
-      return Boolean(
-        window.WebGLRenderingContext &&
-        (testCanvas.getContext('webgl') || testCanvas.getContext('experimental-webgl'))
-      );
-    } catch (e) {
-      return false;
-    }
-  }
-
-  if (sylvaHost && sylvaIframe) {
-    if (!checkWebGL()) {
-      if (sylvaFallback) sylvaFallback.style.display = 'flex';
-      sylvaIframe.style.display = 'none';
-    } else {
-      let isNearViewport = false;
-
-      function getSylvaSrc() {
-        const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        return isReduced ? 'vendor/sylva/living-green-reduced.html' : 'vendor/sylva/living-green.html';
-      }
-
-      function syncIframe() {
-        const shouldMount = isNearViewport && !document.hidden;
-        if (shouldMount) {
-          const targetSrc = getSylvaSrc();
-          const currentSrc = sylvaIframe.getAttribute('src');
-          if (currentSrc !== targetSrc) {
-            sylvaIframe.setAttribute('src', targetSrc);
-          }
-        } else {
-          if (sylvaIframe.hasAttribute('src')) {
-            sylvaIframe.removeAttribute('src');
-          }
-        }
-      }
-
-      const lazyObserver = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          isNearViewport = entry.isIntersecting;
-          syncIframe();
-        });
-      }, { rootMargin: '100% 0px' });
-      lazyObserver.observe(sylvaHost);
-
-      document.addEventListener('visibilitychange', syncIframe);
-
-      const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-      if (motionQuery.addEventListener) {
-        motionQuery.addEventListener('change', syncIframe);
-      }
-    }
-  }
-
-  // ==========================================
-  // 6. CURSOR GLOW, MAGNETIC BUTTONS & 3D TILT
+  // 8. MAGNETIC BUTTONS & 3D TILT
   // ==========================================
   if (fine && !rm) {
-    // Cursor glow
-    const glow = $('#glow');
-    if (glow) {
-      let gx = 0, gy = 0, tx = 0, ty = 0;
-      window.addEventListener('pointermove', e => {
-        tx = e.clientX;
-        ty = e.clientY;
-        glow.style.opacity = '1';
-      }, { passive: true });
-
-      function loopGlow() {
-        gx += (tx - gx) * 0.12;
-        gy += (ty - gy) * 0.12;
-        glow.style.transform = `translate(${gx}px, ${gy}px)`;
-        requestAnimationFrame(loopGlow);
-      }
-      requestAnimationFrame(loopGlow);
-    }
-
     // Magnetic buttons
     $$('[data-magnet]').forEach(el => {
       el.addEventListener('pointermove', e => {
         const r = el.getBoundingClientRect();
         const mx = (e.clientX - r.left - r.width / 2) * 0.28;
-        const my = (e.clientY - r.top - r.height / 2) * 0.38;
+        const my = (e.clientY - r.top - r.height / 2) * 0.35;
         el.style.transform = `translate(${mx.toFixed(1)}px, ${my.toFixed(1)}px)`;
       });
       el.addEventListener('pointerleave', () => {
@@ -1026,8 +941,8 @@
         const r = card.getBoundingClientRect();
         const x = e.clientX - r.left - r.width / 2;
         const y = e.clientY - r.top - r.height / 2;
-        const rx = -(y / (r.height / 2)) * 8;
-        const ry = (x / (r.width / 2)) * 8;
+        const rx = -(y / (r.height / 2)) * 7;
+        const ry = (x / (r.width / 2)) * 7;
         card.style.transform = `perspective(700px) rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg) translateY(-6px)`;
       });
       card.addEventListener('pointerleave', () => {

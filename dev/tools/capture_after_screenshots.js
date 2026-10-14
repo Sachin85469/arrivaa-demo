@@ -5,10 +5,14 @@ const os = require('os');
 const fs = require('fs');
 
 const chromePath = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
-const websiteDir = path.resolve(__dirname, '..', 'website');
+const websiteDir = fs.existsSync(path.resolve(__dirname, '..', 'website'))
+  ? path.resolve(__dirname, '..', 'website')
+  : path.resolve(__dirname, '..', '..', 'website');
 const cdpPort = 9345;
 const tempUserData = path.join(os.tmpdir(), 'chrome-ss-after-' + Date.now());
-const screenshotsDir = path.resolve(__dirname, '..', 'screenshots');
+const screenshotsDir = fs.existsSync(path.resolve(__dirname, '..', 'screenshots'))
+  ? path.resolve(__dirname, '..', 'screenshots')
+  : path.resolve(__dirname, '..', '..', 'screenshots');
 
 fs.mkdirSync(tempUserData, { recursive: true });
 fs.mkdirSync(screenshotsDir, { recursive: true });
