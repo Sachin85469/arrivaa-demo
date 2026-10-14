@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0F172A">
+<meta name="description" content="ARRIVA builds digital products and shares practical ideas in technology, software development, and AI. Ideas Into Innovation.">
+<meta property="og:title" content="ARRIVA — Ideas Into Innovation">
+<meta property="og:type" content="website">
+<title>ARRIVA — Ideas Into Innovation</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="loading">
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- Preloader -->
+<div class="preloader" id="pre" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+  <div>
+    <span class="hi" id="pre-hi"></span>
+    <b id="pct">0%</b>
+    <p id="pre-title"></p>
+    <i><u id="bar"></u></i>
+  </div>
+</div>
+
+<!-- 3D background canvas, cursor glow & scroll progress bar -->
+<canvas id="world" aria-hidden="true"></canvas>
+<div class="glow" id="glow" aria-hidden="true"></div>
+<div class="bar" aria-hidden="true"><u id="prog"></u></div>
+
+<!-- Site Header -->
+<header class="head" id="header">
+  <a class="mark" href="#top" aria-label="ARRIVA home" id="brand-logo"></a>
+  <nav id="nav" aria-label="Primary navigation"></nav>
+  <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-label="Toggle navigation menu" aria-controls="nav">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- Main Journey Landmark -->
+<main id="main">
+  <!-- 00 Hero -->
+  <section class="hero" id="top" data-scene="0">
+    <div class="wrap">
+      <p class="label" id="hero-label"></p>
+      <h1 id="h1"></h1>
+      <p class="lead" id="lead"></p>
+      <div class="row" id="hero-cta"></div>
+    </div>
+    <p class="scroll" id="hero-scroll"></p>
+  </section>
+
+  <!-- 01, 02, 03 Product Chapters -->
+  <div id="chapters"></div>
+
+  <!-- 1. Screens Gallery (Pinned Horizontal) -->
+  <section class="sec-gallery" id="screens-gallery" data-scene="3.2"></section>
+
+  <!-- 2. ORVIX Live Demo (Terminal) -->
+  <section class="sec-demo" id="orvix-demo" data-scene="3.4"></section>
+
+  <!-- 3. Tourist Guide Scene (Topographic Ridges, Drawn Route, 4 Pins) -->
+  <section class="sec-tourist-scene" id="tourist-guide-scene" data-scene="3.6"></section>
+
+  <!-- 4. NEXUS Scene (Floating Chat Parallax & Typing Indicator) -->
+  <section class="sec-nexus-scene" id="nexus-scene" data-scene="3.8"></section>
+
+  <!-- 5. How It Works (Sequence) -->
+  <section class="sec-how" id="how-it-works" data-scene="3.9"></section>
+
+  <!-- 6. About ARRIVA (Light Lavender Band, 4 Principles, Stats) -->
+  <section class="about" id="about" data-scene="4.0"></section>
+
+  <!-- 7. Journey Timeline (Idea, Prototype, Testing, Release, Feedback) -->
+  <section class="sec-timeline" id="timeline" data-scene="4.0"></section>
+
+  <!-- 8. Team (4 Cards with 3D Tilt on Hover) -->
+  <section class="sec-team" id="team" data-scene="4.0"></section>
+
+  <!-- 9. Updates (3 Cards: Cover, Tag, Date, Title) -->
+  <section class="sec-updates" id="updates" data-scene="4.0"></section>
+
+  <!-- 10. FAQ (6 Accordion Items, Accessible) -->
+  <section class="sec-faq" id="faq" data-scene="4.0"></section>
+
+  <!-- 11. Community / Afterlight (Socials, Email, Giant Outlined Wordmark) -->
+  <section class="community" id="community" data-scene="4.0"></section>
+</main>
+
+<!-- 12. Footer (Columns, Privacy Note, Legal Line) -->
+<footer class="foot" id="foot"></footer>
+
+<!-- Scripts -->
+<script src="vendor/three.min.js"></script>
+<script src="content.js"></script>
+<script src="scene.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
