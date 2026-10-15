@@ -101,10 +101,19 @@ npx serve website
 
 Open `http://localhost:8000` in your browser.
 
-### Automated Screenshot Verification
+### Automated Testing & Verification
 
-To capture desktop (1366x800) and mobile (390x780) screenshots across Hero, Tourist Guide, and Footer:
+1. **Comprehensive Headless Test Suite** (validates WebGL 3D canvas, mobile menu toggle, interactive waypoints, terminal simulation, and console errors):
+```bash
+node dev/tools/verify_phase2.js
+```
 
+2. **File Protocol Direct Opening Verification**:
+```bash
+node dev/tools/verify_file_protocol.js
+```
+
+3. **Automated Screenshot Verification** (captures desktop 1366x800 and mobile 390x780 screenshots across Hero, Tourist Guide, and Footer):
 ```bash
 node dev/tools/capture_after_screenshots.js
 ```

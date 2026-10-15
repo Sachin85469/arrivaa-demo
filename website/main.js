@@ -116,8 +116,9 @@
     heroLabel.innerHTML = formatHeader(D.hero.chapter, "THE ARRIVAL", D.hero.hi);
   }
   if (h1 && D.hero) {
+    h1.setAttribute('aria-label', D.hero.title);
     h1.innerHTML = D.hero.title.split(' ').map((w, i) =>
-      `<span class="w"><span class="reveal-word" style="--d:${(i * 0.08).toFixed(2)}s">${w}</span></span>`
+      `<span class="w" aria-hidden="true"><span class="reveal-word" style="--d:${(i * 0.08).toFixed(2)}s">${w}</span></span>`
     ).join(' ');
   }
   if (lead && D.hero) lead.textContent = D.hero.sub;
@@ -504,10 +505,16 @@
         } else {
           item.classList.add('open');
           btn.setAttribute('aria-expanded', 'true');
-          ans.style.maxHeight = ans.scrollHeight + 'px';
+          ans.style.maxHeight = (ans.scrollHeight + 30) + 'px';
         }
       });
     });
+
+    window.addEventListener('resize', () => {
+      $$('.faq-item.open .faq-a', faqEl).forEach(ans => {
+        ans.style.maxHeight = (ans.scrollHeight + 30) + 'px';
+      });
+    }, { passive: true });
   }
 
   // --- Outro: Community / Afterlight
@@ -577,13 +584,14 @@
     pctVal = Math.min(isReady ? 100 : 92, Math.max(pctVal, Math.min(100, (elapsed / minLoadTime) * 100)));
     pctVal = Math.round(pctVal);
 
+    const pre = $('#pre');
     if (pctEl) pctEl.textContent = pctVal + '%';
     if (barEl) barEl.style.width = pctVal + '%';
+    if (pre) pre.setAttribute('aria-valuenow', String(pctVal));
 
     if (pctVal < 100 || elapsed < minLoadTime) {
       requestAnimationFrame(tickPreloader);
     } else {
-      const pre = $('#pre');
       if (pre) {
         pre.classList.add('done');
         document.body.classList.remove('loading');
@@ -769,10 +777,37 @@
   window.addEventListener('resize', requestTick, { passive: true });
   requestTick();
 
+  // Mobile gallery horizontal swipe sync
+  const galViewport = $('#gallery-viewport');
+  if (galViewport && D.screensGallery) {
+    galViewport.addEventListener('scroll', () => {
+      if (innerWidth <= 800) {
+        const scrollLeft = galViewport.scrollLeft;
+        const cardWidth = galViewport.clientWidth || 1;
+        const groupCount = D.screensGallery.groups.length;
+        const activeIdx = Math.min(groupCount - 1, Math.max(0, Math.round(scrollLeft / cardWidth)));
+        if (galCounter) galCounter.textContent = `0${activeIdx + 1} / ${D.screensGallery.counterTotal}`;
+        if (galCaption && D.screensGallery.groups[activeIdx]) {
+          galCaption.textContent = D.screensGallery.groups[activeIdx].caption;
+        }
+        galTabs.forEach((tab, i) => {
+          tab.classList.toggle('active', i === activeIdx);
+        });
+      }
+    }, { passive: true });
+  }
+
   // Gallery tabs click handler
   if (galTabs.length && galEl) {
     galTabs.forEach((tab, idx) => {
       tab.addEventListener('click', () => {
+        galTabs.forEach((t, i) => t.classList.toggle('active', i === idx));
+        if (galCaption && D.screensGallery && D.screensGallery.groups[idx]) {
+          galCaption.textContent = D.screensGallery.groups[idx].caption;
+        }
+        if (galCounter && D.screensGallery) {
+          galCounter.textContent = `0${idx + 1} / ${D.screensGallery.counterTotal}`;
+        }
         if (innerWidth > 800 && !rm) {
           const gTop = galEl.offsetTop;
           const gScrollable = galEl.offsetHeight - innerHeight;

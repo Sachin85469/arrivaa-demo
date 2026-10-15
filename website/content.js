@@ -60,7 +60,7 @@ window.ARRIVA = {
         ["100+", "Regional places (sample set)"], // TODO-VERIFY
         ["3", "Supported languages (active test)"] // TODO-VERIFY
       ],
-      link: ["Inspect waypoints", "#tourist-guide-scene"],
+      link: ["Inspect waypoints", "#tourist-interactive-scene"],
       images: [
         "assets/screens/tourist-guide-1.svg",
         "assets/screens/tourist-guide-2.svg",
@@ -98,7 +98,7 @@ window.ARRIVA = {
         ["1:1", "and topic channels"], // TODO-VERIFY
         ["0", "Third-party ad trackers"] // TODO-VERIFY
       ],
-      link: ["See NEXUS flow", "#nexus"],
+      link: ["Explore screens", "#screens-gallery"],
       images: [
         "assets/screens/nexus-1.svg",
         "assets/screens/nexus-2.svg",

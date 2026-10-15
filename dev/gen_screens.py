@@ -1,6 +1,6 @@
 # Makes placeholder app screens. Replace the SVGs in website/assets/screens with real screenshots.
 import os
-out=os.path.join(os.path.dirname(__file__),'website/assets/screens')
+out=os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'website','assets','screens')
 P={'tourist-guide':('#7C3AED','#10B981',['Discover places','Plan your trip','Pick a language']),
    'nexus':('#10B981','#7C3AED',['Chats','Conversation','Groups']),
    'orvix':('#A78BFA','#10B981',['Models','Local API','Request log'])}

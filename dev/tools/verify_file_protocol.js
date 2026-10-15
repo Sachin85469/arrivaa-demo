@@ -5,13 +5,18 @@ const os = require('os');
 const fs = require('fs');
 
 const chromePath = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
-const websiteIndex = path.resolve(__dirname, '..', 'website', 'index.html');
+const websiteIndex = fs.existsSync(path.resolve(__dirname, '..', 'website', 'index.html'))
+  ? path.resolve(__dirname, '..', 'website', 'index.html')
+  : path.resolve(__dirname, '..', '..', 'website', 'index.html');
 const fileUrl = 'file:///' + websiteIndex.replace(/\\/g, '/');
 const cdpPort = 9349;
 const tempUserData = path.join(os.tmpdir(), 'chrome-file-' + Date.now());
-const screenshotsDir = path.resolve(__dirname, '..', 'screenshots');
+const screenshotsDir = fs.existsSync(path.resolve(__dirname, '..', 'screenshots'))
+  ? path.resolve(__dirname, '..', 'screenshots')
+  : path.resolve(__dirname, '..', '..', 'screenshots');
 
 fs.mkdirSync(tempUserData, { recursive: true });
+fs.mkdirSync(screenshotsDir, { recursive: true });
 
 function wait(ms) { return new Promise(r => setTimeout(r, ms)); }
 function getJson(url) {
@@ -96,7 +101,7 @@ async function run() {
   const title = await evaluate('document.title');
   console.log('Document title:', title);
 
-  const heroHeading = await evaluate('document.getElementById("hero-heading")?.textContent');
+  const heroHeading = await evaluate('document.getElementById("h1")?.textContent');
   console.log('Hero heading:', heroHeading);
 
   const threeLoaded = await evaluate('typeof THREE !== "undefined"');
@@ -113,34 +118,17 @@ async function run() {
   })()`);
   console.log('WebGL supported:', isWebGL);
 
-  // Scroll to tourist guide scene
-  console.log('Scrolling to tourist guide scene...');
-  await evaluate('document.querySelector("#tourist-guide-scene")?.scrollIntoView({ behavior: "instant" })');
+  const worldApi = await evaluate('typeof window.WORLD !== "undefined" && typeof window.WORLD.set === "function"');
+  console.log('window.WORLD API initialized:', worldApi);
+
+  // Scroll to tourist guide section
+  console.log('Scrolling to tourist guide section...');
+  await evaluate('document.querySelector("#tourist-guide")?.scrollIntoView({ behavior: "instant" })');
   await evaluate('window.dispatchEvent(new Event("scroll"))');
-  await wait(2000);
+  await wait(1500);
 
-  const sylvaHostBox = await evaluate(`(() => {
-    const el = document.getElementById("sylva-host");
-    if (!el) return 'missing';
-    const r = el.getBoundingClientRect();
-    return { top: r.top, bottom: r.bottom, height: r.height, winH: window.innerHeight };
-  })()`);
-  console.log('sylva-host bounding box:', sylvaHostBox);
-
-  const iframeSrc = await evaluate('document.getElementById("sylva-iframe")?.getAttribute("src")');
-  console.log('Iframe src:', iframeSrc);
-
-  // Check if iframe loaded or threw CORS/blocked frame
-  const iframeStatus = await evaluate(`(() => {
-    const ifr = document.getElementById("sylva-iframe");
-    if (!ifr) return 'missing';
-    return {
-      src: ifr.src,
-      offsetWidth: ifr.offsetWidth,
-      offsetHeight: ifr.offsetHeight
-    };
-  })()`);
-  console.log('Iframe status:', iframeStatus);
+  const pinCount = await evaluate('document.querySelectorAll(".topo-pin-card").length');
+  console.log('Waypoint pin cards found:', pinCount);
 
   // Capture screenshot under file://
   const res = await send('Page.captureScreenshot', { format: 'png' });
@@ -154,6 +142,11 @@ async function run() {
     console.log(`[${cm.type}] ${cm.text}`);
   }
 
+  const errors = consoleMessages.filter(m => m.type === 'error' || m.type === 'exception');
+  if (errors.length > 0) {
+    throw new Error(`Encountered console errors under file://: ${errors.map(e => e.text).join('; ')}`);
+  }
+
   ws.close();
 }
 
@@ -161,7 +154,7 @@ run()
   .then(() => {
     if (chromeProc) chromeProc.kill();
     try { fs.rmSync(tempUserData, { recursive: true, force: true }); } catch (e) {}
-    console.log('\nFile protocol verification completed.');
+    console.log('\nFile protocol verification completed successfully.');
     process.exit(0);
   })
   .catch(err => {

@@ -107,7 +107,7 @@
 
   // Inner pulsing emerald core
   const innerCoreGeo = new THREE.IcosahedronGeometry(1.0, 1);
-  const innerCoreMat = new THREE.MeshBasicMaterial({ color: C_GREEN, wireframe: true });
+  const innerCoreMat = new THREE.MeshBasicMaterial({ color: C_GREEN, wireframe: true, transparent: true, opacity: 0.85 });
   const innerCore = new THREE.Mesh(innerCoreGeo, innerCoreMat);
   heroGroup.add(innerCore);
 
@@ -116,7 +116,9 @@
   const ringMat1 = new THREE.MeshStandardMaterial({
     color: C_NAVY,
     roughness: 0.35,
-    metalness: 0.25
+    metalness: 0.25,
+    transparent: true,
+    opacity: 0.9
   });
   const ring1 = new THREE.Mesh(ring1Geo, ringMat1);
   ring1.rotation.x = Math.PI * 0.35;
@@ -126,7 +128,9 @@
   const ringMat2 = new THREE.MeshStandardMaterial({
     color: C_PURPLE,
     roughness: 0.3,
-    metalness: 0.2
+    metalness: 0.2,
+    transparent: true,
+    opacity: 0.9
   });
   const ring2 = new THREE.Mesh(ring2Geo, ringMat2);
   ring2.rotation.y = Math.PI * 0.45;
@@ -154,7 +158,7 @@
   heroGroup.add(heroOrbitGroup);
 
   const orbNodeGeo = new THREE.SphereGeometry(0.2, 16, 16);
-  const orbNodeMat = new THREE.MeshBasicMaterial({ color: C_GREEN });
+  const orbNodeMat = new THREE.MeshBasicMaterial({ color: C_GREEN, transparent: true, opacity: 0.95 });
   const orbNode = new THREE.Mesh(orbNodeGeo, orbNodeMat);
   orbNode.position.set(3.8, 0, 0);
   heroOrbitGroup.add(orbNode);
@@ -292,7 +296,7 @@
 
     // Glowing head
     const headGeo = new THREE.SphereGeometry(0.24, 16, 16);
-    const headMat = new THREE.MeshBasicMaterial({ color: idx === 0 ? C_GREEN : C_PURPLE });
+    const headMat = new THREE.MeshBasicMaterial({ color: idx === 0 ? C_GREEN : C_PURPLE, transparent: true, opacity: 0.95 });
     const head = new THREE.Mesh(headGeo, headMat);
     head.position.y = 1.9;
     pg.add(head);
@@ -375,7 +379,9 @@
   const hubMat = new THREE.MeshStandardMaterial({
     color: C_NAVY,
     roughness: 0.2,
-    metalness: 0.3
+    metalness: 0.3,
+    transparent: true,
+    opacity: 0.9
   });
   const hubMesh = new THREE.Mesh(hubGeo, hubMat);
   nexusGroup.add(hubMesh);
@@ -400,7 +406,7 @@
   const packetCount = 12;
   const packets = [];
   const packetGeo = new THREE.SphereGeometry(0.1, 12, 12);
-  const packetMat = new THREE.MeshBasicMaterial({ color: C_GREEN });
+  const packetMat = new THREE.MeshBasicMaterial({ color: C_GREEN, transparent: true, opacity: 0.95 });
 
   for (let i = 0; i < packetCount; i++) {
     const pair = nexusPairs[i % nexusPairs.length] || { a: nexusNodes[0], b: nexusNodes[1] };
@@ -479,7 +485,7 @@
   const dataPacketCount = 14;
   const dataPackets = [];
   const dataPackGeo = new THREE.BoxGeometry(0.12, 0.12, 0.12);
-  const dataPackMat = new THREE.MeshBasicMaterial({ color: C_GREEN });
+  const dataPackMat = new THREE.MeshBasicMaterial({ color: C_GREEN, transparent: true, opacity: 0.95 });
 
   for (let i = 0; i < dataPacketCount; i++) {
     const startIdx = Math.floor(Math.random() * cubeCenters.length);
@@ -504,7 +510,9 @@
   const outerRingMat = new THREE.MeshStandardMaterial({
     color: C_PURPLE,
     metalness: 0.35,
-    roughness: 0.25
+    roughness: 0.25,
+    transparent: true,
+    opacity: 0.9
   });
   const outroRing1 = new THREE.Mesh(outerRingGeo, outerRingMat);
   outroGroup.add(outroRing1);
@@ -513,7 +521,9 @@
   const innerRingMat = new THREE.MeshStandardMaterial({
     color: C_NAVY,
     metalness: 0.25,
-    roughness: 0.35
+    roughness: 0.35,
+    transparent: true,
+    opacity: 0.9
   });
   const outroRing2 = new THREE.Mesh(innerRingGeo, innerRingMat);
   outroRing2.rotation.x = Math.PI / 3;

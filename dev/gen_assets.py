@@ -1,9 +1,10 @@
 import os
 
-base_dir = os.path.dirname(os.path.abspath(__file__))
-screens_dir = os.path.join(base_dir, 'website', 'assets', 'screens')
-team_dir = os.path.join(base_dir, 'website', 'assets', 'team')
-updates_dir = os.path.join(base_dir, 'website', 'assets', 'updates')
+dev_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(dev_dir)
+screens_dir = os.path.join(project_root, 'website', 'assets', 'screens')
+team_dir = os.path.join(project_root, 'website', 'assets', 'team')
+updates_dir = os.path.join(project_root, 'website', 'assets', 'updates')
 
 os.makedirs(screens_dir, exist_ok=True)
 os.makedirs(team_dir, exist_ok=True)
