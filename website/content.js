@@ -4,10 +4,17 @@
 // Images: drop your screenshots into assets/screens/ and update the paths below (PNG/JPG/WebP/SVG all supported).
 
 window.ARRIVA = {
+  site: {
+    domain: "https://arrivaa.tech",
+    canonical: "https://arrivaa.tech/",
+    ogImage: "https://arrivaa.tech/assets/og-image.png"
+  },
+
   brand: {
     name: "ARRIVA",
     tagline: "Ideas Into Innovation.",
-    markSuffix: "."
+    markSuffix: ".",
+    browserAddress: "localhost:11434 / orvix"
   },
 
   nav: {
@@ -115,7 +122,50 @@ window.ARRIVA = {
       faqs: [
         { q: "Why build NEXUS when other chat apps exist?", a: "Many modern chat applications prioritize social engagement algorithms and stories. NEXUS focuses strictly on low-latency, private text communication." }, // TODO-VERIFY
         { q: "Is an iOS or desktop client planned?", a: "Initial development is focused on perfecting the Android native client first, after which lightweight web and desktop clients are planned." } // TODO-VERIFY
-      ]
+      ],
+      previewMessages: [
+        {
+          incoming: true,
+          sender: "Sachin K.",
+          text: "Ollama socket verified on ORVIX. Local inference is ready.",
+          time: "10:24 AM · Verified",
+          py: "-12px"
+        },
+        {
+          incoming: false,
+          sender: "You",
+          text: "Tourist Guide offline route caching confirmed. Clean build packaged.",
+          time: "10:25 AM · Delivered",
+          py: "14px"
+        }
+      ],
+      chatDemo: {
+        badge: "Interactive demo · Simulated socket",
+        channels: ["#general", "#dev-build", "#sahyadri-hike"],
+        activeChannel: "#general",
+        inputPlaceholder: "Type a simulated message... (Press Enter)",
+        sendButton: "Send",
+        messages: {
+          "#general": [
+            { sender: "Sachin K.", text: "Welcome to the ARRIVA test channel. Clean sockets, zero telemetry.", time: "10:20 AM", incoming: true },
+            { sender: "Pooja S.", text: "Devanagari font rendering test passed on Android build.", time: "10:22 AM", incoming: true }
+          ],
+          "#dev-build": [
+            { sender: "Vikram N.", text: "Quantized Llama-3 running at ~42 tok/s on local hardware.", time: "09:40 AM", incoming: true },
+            { sender: "Sachin K.", text: "Confirmed. Zero cloud token calls made.", time: "09:44 AM", incoming: true }
+          ],
+          "#sahyadri-hike": [
+            { sender: "Ananya R.", text: "Sinhagad Ridge offline trail map cached successfully.", time: "Yesterday", incoming: true },
+            { sender: "You", text: "Ready for the weekend trail walk.", time: "08:15 AM", incoming: false }
+          ]
+        },
+        cannedReplies: [
+          "Socket handshake acknowledged. Message saved locally to SQLite.",
+          "Confirmed on-device with zero background tracking.",
+          "Received! No cloud server hops required.",
+          "Local dispatch verified across encrypted loopback."
+        ]
+      }
     },
 
     {
@@ -162,7 +212,7 @@ window.ARRIVA = {
     chapter: "Chapter 04",
     hi: "दीर्घा",
     title: "Screens gallery",
-    subtitle: "A horizontal walk through actual interfaces, navigation patterns, and workflows across our trio.",
+    subtitle: "A horizontal walk through interface concepts, navigation patterns, and planned workflows across our trio.",
     counterTotal: "03",
     groups: [
       {
@@ -213,8 +263,11 @@ window.ARRIVA = {
     hi: "प्रयोगशाला",
     title: "ORVIX live terminal",
     badge: "Interactive simulation",
+    statusBadge: "LOCAL 127.0.0.1:11434 (Simulated)",
     subtitle: "Observe how ORVIX bridges a local Ollama daemon process with standard REST requests without external cloud calls.",
-    replayLabel: "Replay terminal sequence",
+    daemonNote: "ollama serve runs as a long-lived local daemon. Client commands execute in a second tab/terminal.",
+    replayLabel: "Replay sequence",
+    skipLabel: "Skip to output",
     terminal: {
       windowTitle: "orvix@local — bash — 80x24",
       userHost: "developer@arriva-local:~$ ",
@@ -225,7 +278,7 @@ window.ARRIVA = {
         "time=2026-10-14T15:30:00.120Z level=INFO msg=\"ORVIX bridge listening on localhost:11434 (local loopback)\""
       ],
       userHost2: "developer@arriva-local:~$ ",
-      command2: "curl -s -X POST http://localhost:11434/api/generate -d '{\"model\":\"llama3\",\"prompt\":\"Ideas into innovation.\"}'",
+      command2: "curl -s -X POST http://localhost:11434/api/generate -d '{\"model\":\"llama3\",\"prompt\":\"Ideas into innovation.\",\"stream\":false}'",
       jsonOutput: {
         "model": "llama3:latest",
         "created_at": "2026-10-14T15:30:01.428Z",
@@ -234,7 +287,9 @@ window.ARRIVA = {
         "total_duration": "382ms", // TODO-VERIFY
         "load_duration": "12ms", // TODO-VERIFY
         "prompt_eval_count": 6, // TODO-VERIFY
+        "prompt_eval_duration": "43ms", // TODO-VERIFY
         "eval_count": 14, // TODO-VERIFY
+        "eval_duration": "327ms", // TODO-VERIFY
         "eval_rate": "42.8 tok/s" // TODO-VERIFY
       },
       stats: [
@@ -242,6 +297,43 @@ window.ARRIVA = {
         ["127.0.0.1", "Host loopback"],
         ["Local hardware", "Execution environment"] // TODO-VERIFY
       ]
+    },
+    interactive: {
+      enabled: true,
+      badge: "Interactive terminal mode (Simulated)",
+      promptUser: "developer@arriva-local:~$ ",
+      placeholder: "Type a command (try: help, ollama list, ollama run llama3)...",
+      chips: ["help", "ollama list", "ollama run llama3", "curl test", "clear"],
+      help: [
+        "Available simulation commands:",
+        "  help                         - Show this help summary",
+        "  clear                        - Clear the terminal screen",
+        "  ollama list                  - List installed local models",
+        "  ollama run llama3 \"<prompt>\" - Stream tokens from local model",
+        "  curl test                    - Test generate endpoint with stream:false",
+        "Note: ORVIX communicates with local daemons. No third-party API calls."
+      ],
+      modelsList: [
+        "NAME              ID           SIZE      MODIFIED",
+        "llama3:latest     365c0bd3c000 4.7 GB    2 days ago",
+        "mistral:7b        61e88e884507 4.1 GB    5 days ago",
+        "gemma2:2b         8ccf12a95c5d 1.6 GB    1 week ago"
+      ],
+      curlTestOutput: {
+        "model": "llama3:latest",
+        "created_at": "2026-10-19T14:40:00.000Z",
+        "response": "Practical local execution with zero cloud billing and zero network egress.",
+        "done": true,
+        "total_duration": "310ms", // TODO-VERIFY
+        "load_duration": "9ms", // TODO-VERIFY
+        "prompt_eval_count": 4, // TODO-VERIFY
+        "eval_count": 12, // TODO-VERIFY
+        "eval_duration": "280ms" // TODO-VERIFY
+      },
+      tokenStreamSamples: {
+        default: "Ideas into innovation: durable software designed for genuine utility, tested on local workstations, and crafted without surveillance overhead.",
+        short: "Local model running on host loopback 127.0.0.1:11434 with zero external telemetry."
+      }
     }
   },
 
@@ -324,6 +416,11 @@ window.ARRIVA = {
       ["Independent", "Workbench culture"], // TODO-VERIFY
       ["2026", "Launch year"] // TODO-VERIFY
     ],
+    teamSubhead: {
+      tag: "Builders",
+      title: "The workbench team",
+      lead: "Hands-on engineers and designers building clean digital tools."
+    },
     team: [
       {
         name: "Sachin K.",
@@ -354,6 +451,11 @@ window.ARRIVA = {
         line: "Brings typographic balance, Devanagari harmony, and subtle motion to screens."
       }
     ],
+    timelineSubhead: {
+      tag: "Milestones",
+      title: "Journey timeline",
+      lead: "From initial scratchpad problem statements to community-tested software."
+    },
     timeline: [
       {
         step: "01",
@@ -404,6 +506,7 @@ window.ARRIVA = {
     hi: "वृत्तांत",
     title: "Updates & build notes",
     subtitle: "Engineering logs, progress milestones, and honest observations from our build workbench.",
+    dispatchBadge: "Coming soon",
     items: [
       {
         title: "Running Local-First AI with Ollama and ORVIX",
@@ -411,7 +514,7 @@ window.ARRIVA = {
         date: "October 2026",
         cover: "assets/updates/update-1.svg",
         excerpt: "Why we built a dedicated local API adapter to bypass external cloud pricing and keep experimental prompts private.",
-        link: "#"
+        status: "Coming soon"
       },
       {
         title: "Rendering Devanagari Maps for Offline Travellers",
@@ -419,7 +522,7 @@ window.ARRIVA = {
         date: "September 2026",
         cover: "assets/updates/update-2.svg",
         excerpt: "How vector tile clipping and custom font sub-setting allow rich multilingual wayfinding on limited phone storage.",
-        link: "#"
+        status: "Coming soon"
       },
       {
         title: "Stripping Bloat from Modern Android Messaging",
@@ -427,7 +530,7 @@ window.ARRIVA = {
         date: "August 2026",
         cover: "assets/updates/update-3.svg",
         excerpt: "Building a lean socket messaging client with zero background telemetry, saving memory and battery life.",
-        link: "#"
+        status: "Coming soon"
       }
     ]
   },
@@ -438,6 +541,10 @@ window.ARRIVA = {
     hi: "प्रश्नोत्तरे",
     title: "Frequently asked questions",
     subtitle: "Straight answers to common questions about our products, direction, and technical choices.",
+    searchPlaceholder: "Search FAQ (e.g. offline, privacy, Ollama)...",
+    expandAllLabel: "Expand all",
+    collapseAllLabel: "Collapse all",
+    noResultsText: "No questions match your search.",
     items: [
       {
         q: "What is ARRIVA?",
@@ -536,9 +643,15 @@ window.ARRIVA = {
     trailStats: [
       ["14.2 km", "Route length"], // TODO-VERIFY
       ["4", "Waypoints"], // TODO-VERIFY
-      ["380 m", "Elevation span"] // TODO-VERIFY
+      ["752 m", "Elevation span"] // TODO-VERIFY
     ],
     hint: "Scroll to trace route · Click or hover waypoints to inspect 3D markers",
+    elevationTitle: "Elevation Profile & Route Scrubber",
+    elevationHint: "Drag scrubber or select waypoints to inspect elevation along the Sahyadri route",
+    plannerTitle: "Custom Day Trail Planner",
+    plannerSubtitle: "Toggle waypoints on or off to assemble your itinerary. Total route distance and estimated walking time update live.",
+    plannerDistanceLabel: "Route distance",
+    plannerTimeLabel: "Walking time",
     pins: [
       {
         id: "pin-1",
@@ -546,7 +659,9 @@ window.ARRIVA = {
         hi: "सिंहगड",
         category: "Historic Fort",
         elevation: "1,312 m", // TODO-VERIFY
+        elevationNum: 1312,
         dist: "0.0 km", // TODO-VERIFY
+        distNum: 0.0,
         desc: "Ancient hill bastion with windward parapets, stone gateways and panoramic views across Sahyadri peaks."
       },
       {
@@ -555,7 +670,9 @@ window.ARRIVA = {
         hi: "मुठा नदी",
         category: "Nature Basin",
         elevation: "560 m", // TODO-VERIFY
+        elevationNum: 560,
         dist: "4.8 km", // TODO-VERIFY
+        distNum: 4.8,
         desc: "A calm, shaded riverfront pathway framed by indigenous banyan trees and morning bird calls."
       },
       {
@@ -564,7 +681,9 @@ window.ARRIVA = {
         hi: "जुना बाजार",
         category: "Cultural District",
         elevation: "572 m", // TODO-VERIFY
+        elevationNum: 572,
         dist: "9.1 km", // TODO-VERIFY
+        distNum: 9.1,
         desc: "Centuries-old market lanes teeming with brass handicrafts, regional spices, and handwritten signboards."
       },
       {
@@ -573,9 +692,23 @@ window.ARRIVA = {
         hi: "कात्रज घाट",
         category: "Scenic Overlook",
         elevation: "940 m", // TODO-VERIFY
+        elevationNum: 940,
         dist: "14.2 km", // TODO-VERIFY
+        distNum: 14.2,
         desc: "A wide vantage pass overlooking the southern highway corridor where the city meets open hills."
       }
     ]
+  },
+
+  ui: {
+    copyToast: "Copied to clipboard",
+    copyCode: "Copy",
+    backToTop: "Return to top",
+    exploreWaypoints: "Inspect waypoints",
+    prevWaypoint: "Previous waypoint",
+    nextWaypoint: "Next waypoint",
+    lightboxClose: "Close lightbox (Esc)",
+    lightboxPrev: "Previous screen (Left arrow)",
+    lightboxNext: "Next screen (Right arrow)"
   }
 };

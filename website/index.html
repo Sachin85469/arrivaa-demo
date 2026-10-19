@@ -3,23 +3,28 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0F172A">
+<meta name="theme-color" content="#F8F7FF">
 <meta name="description" content="ARRIVA builds digital products and shares practical technology, software engineering, and AI workflows. Ideas Into Innovation.">
-<link rel="canonical" href="https://arriva.web.app/">
+<link rel="canonical" href="https://arrivaa.tech/">
 <meta property="og:title" content="ARRIVA — Ideas Into Innovation">
 <meta property="og:description" content="ARRIVA builds focused digital products and shares practical technology, software engineering, and AI workflows. Ideas Into Innovation.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://arriva.web.app/">
-<meta property="og:image" content="assets/screens/tourist-guide-1.svg">
+<meta property="og:url" content="https://arrivaa.tech/">
+<meta property="og:image" content="https://arrivaa.tech/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ARRIVA — Ideas Into Innovation">
+<meta name="twitter:description" content="ARRIVA builds focused digital products and shares practical technology, software engineering, and AI workflows. Ideas Into Innovation.">
+<meta name="twitter:image" content="https://arrivaa.tech/assets/og-image.png">
 <title>ARRIVA — Ideas Into Innovation</title>
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body class="loading">
+<noscript>
+  <div style="padding: 16px 24px; background: #EDE9FE; border-bottom: 1px solid #CBD5E1; text-align: center; font-family: 'Poppins', sans-serif; font-size: 0.95rem;">
+    <strong>ARRIVA — Ideas Into Innovation.</strong> JavaScript is recommended for interactive 3D simulations and device walkthroughs.
+  </div>
+</noscript>
 <a class="skip" href="#main">Skip to content</a>
 
 <!-- Preloader Orchestration -->
@@ -44,22 +49,36 @@
     <span></span><span></span><span></span>
   </button>
 </header>
+<div class="nav-backdrop" id="nav-backdrop" aria-hidden="true"></div>
 
 <!-- Main Journey Landmark -->
 <main id="main">
   <!-- Chapter 00: Hero -->
   <section class="hero" id="top" data-scene="0">
     <div class="wrap">
-      <p class="label" id="hero-label"></p>
-      <h1 id="h1"></h1>
-      <p class="lead" id="lead"></p>
+      <p class="label" id="hero-label"><span class="chapter-mono">00 / THE ARRIVAL</span><span class="hi">आगमन</span></p>
+      <h1 id="h1">Ideas into innovation.</h1>
+      <p class="lead" id="lead">ARRIVA builds focused digital products and shares practical technology, software engineering, and AI workflows, one durable idea at a time.</p>
       <div class="row" id="hero-cta"></div>
     </div>
-    <p class="scroll" id="hero-scroll"></p>
+    <p class="scroll" id="hero-scroll">Scroll to arrive</p>
   </section>
 
   <!-- Chapters 01, 02, 03: Product Chapters -->
-  <div id="chapters"></div>
+  <div id="chapters">
+    <section class="chapter" id="tourist-guide-fallback" style="display:none;" aria-hidden="true">
+      <h2>ARRIVA Tourist Guide</h2>
+      <p>A travel companion designed to help people discover regional landmarks, read cultural context in their preferred language, and plan a custom day sequence.</p>
+    </section>
+    <section class="chapter" id="nexus-fallback" style="display:none;" aria-hidden="true">
+      <h2>ARRIVA NEXUS</h2>
+      <p>A communication tool focused on straightforward messaging: quick chats, topic-focused channels, and a clean interface without algorithmic feeds.</p>
+    </section>
+    <section class="chapter" id="orvix-fallback" style="display:none;" aria-hidden="true">
+      <h2>ARRIVA ORVIX</h2>
+      <p>A developer utility that connects to an Ollama daemon running on your local machine, exposing a clean API workflow for building and testing AI ideas.</p>
+    </section>
+  </div>
 
   <!-- Chapter 04: Screens Gallery (Pinned Horizontal Walk) -->
   <section class="sec-gallery" id="screens-gallery" data-scene="3.0"></section>
@@ -86,11 +105,16 @@
 <!-- Footer: Consistent Chapters Directory & Legal -->
 <footer class="foot" id="foot"></footer>
 
+<!-- Interactive UI Layers -->
+<div class="chapter-rail" id="chapter-rail" aria-label="Chapter progression" role="navigation"></div>
+<div class="lightbox-modal" id="gallery-lightbox" role="dialog" aria-modal="true" aria-hidden="true" tabindex="-1"></div>
+<div class="toast-msg" id="toast-msg" role="status" aria-live="polite"></div>
+<button class="back-to-top-btn" id="back-to-top-btn" aria-label="Return to top" data-magnet>&uarr;</button>
+<div id="cursor-glow" aria-hidden="true"></div>
+
 <!-- Local Vendor Scripts (Zero CDN) -->
 <script src="vendor/lenis.min.js"></script>
 <script src="vendor/three.min.js"></script>
-<script src="vendor/gsap.min.js"></script>
-<script src="vendor/ScrollTrigger.min.js"></script>
 <script src="content.js"></script>
 <script src="scene.js"></script>
 <script src="main.js"></script>

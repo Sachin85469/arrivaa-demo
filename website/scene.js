@@ -1,7 +1,3 @@
-// ARRIVA High-Contrast Scroll-Driven Three.js World
-// Light technical paper theme (#F8F7FF) with depth fog, layered ribbons,
-// procedural terrain, pulsing message packets, and continuous camera path.
-
 (function () {
   'use strict';
 
@@ -10,6 +6,8 @@
 
   const rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let renderer;
+  let isContextLost = false;
+  let isPageVisible = true;
 
   try {
     renderer = new THREE.WebGLRenderer({
@@ -20,11 +18,10 @@
     });
   } catch (e) {
     document.documentElement.classList.add('no-gl');
-    window.WORLD = { set() {}, highlightPin() {} };
+    window.WORLD = { set() {}, highlightPin() {}, focusPin() {}, emitGemPulse() {}, burstNexus() {} };
     return;
   }
 
-  // --- Brand Colors ---
   const C_PAPER = 0xF8F7FF;
   const C_PURPLE = 0x7C3AED;
   const C_PURPLE_LIGHT = 0xA78BFA;
@@ -40,7 +37,6 @@
   const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
   camera.position.set(0, 0, 10.5);
 
-  // --- Lighting ---
   const ambientLight = new THREE.AmbientLight(0xffffff, 1.1);
   scene.add(ambientLight);
 
@@ -56,7 +52,6 @@
   dirLightTop.position.set(0, 20, 10);
   scene.add(dirLightTop);
 
-  // Background subtle technical dust particles
   const dustCount = 350;
   const dustGeo = new THREE.BufferGeometry();
   const dustPos = new Float32Array(dustCount * 3);
@@ -72,17 +67,13 @@
     transparent: true,
     opacity: 0.22
   });
+  dustMat.userData = { baseOpacity: 0.22 };
   const dustPoints = new THREE.Points(dustGeo, dustMat);
   scene.add(dustPoints);
 
-  // -------------------------------------------------------------
-  // STATION 0: HERO (The Arrival Sculpture)
-  // Bold kinetic centerpiece on the right half of desktop hero
-  // -------------------------------------------------------------
   const heroGroup = new THREE.Group();
   scene.add(heroGroup);
 
-  // 1. Faceted Icosahedron Gem Core (Crisp royal purple with dark edges)
   const gemGeo = new THREE.IcosahedronGeometry(2.35, 1);
   const gemMat = new THREE.MeshStandardMaterial({
     color: 0x7C3AED,
@@ -92,26 +83,26 @@
     opacity: 0.88,
     flatShading: true
   });
+  gemMat.userData = { baseOpacity: 0.88 };
   const gemMesh = new THREE.Mesh(gemGeo, gemMat);
   heroGroup.add(gemMesh);
 
-  // High contrast wireframe lines on gem
   const gemWireGeo = new THREE.WireframeGeometry(gemGeo);
   const gemWireMat = new THREE.LineBasicMaterial({
     color: C_NAVY,
     transparent: true,
     opacity: 0.75
   });
+  gemWireMat.userData = { baseOpacity: 0.75 };
   const gemWire = new THREE.LineSegments(gemWireGeo, gemWireMat);
   heroGroup.add(gemWire);
 
-  // Inner pulsing emerald core
   const innerCoreGeo = new THREE.IcosahedronGeometry(1.0, 1);
   const innerCoreMat = new THREE.MeshBasicMaterial({ color: C_GREEN, wireframe: true, transparent: true, opacity: 0.85 });
+  innerCoreMat.userData = { baseOpacity: 0.85 };
   const innerCore = new THREE.Mesh(innerCoreGeo, innerCoreMat);
   heroGroup.add(innerCore);
 
-  // 2. Gyroscopic gimbal rings (Bold Navy and Purple)
   const ring1Geo = new THREE.TorusGeometry(3.5, 0.055, 16, 120);
   const ringMat1 = new THREE.MeshStandardMaterial({
     color: C_NAVY,
@@ -120,6 +111,7 @@
     transparent: true,
     opacity: 0.9
   });
+  ringMat1.userData = { baseOpacity: 0.9 };
   const ring1 = new THREE.Mesh(ring1Geo, ringMat1);
   ring1.rotation.x = Math.PI * 0.35;
   heroGroup.add(ring1);
@@ -132,11 +124,34 @@
     transparent: true,
     opacity: 0.9
   });
+  ringMat2.userData = { baseOpacity: 0.9 };
   const ring2 = new THREE.Mesh(ring2Geo, ringMat2);
   ring2.rotation.y = Math.PI * 0.45;
   heroGroup.add(ring2);
 
-  // 3. Technical ticks along outer equator
+  const pulseRingGeo = new THREE.RingGeometry(2.4, 2.5, 64);
+  const pulseRingMat = new THREE.MeshBasicMaterial({
+    color: C_PURPLE_LIGHT,
+    side: THREE.DoubleSide,
+    transparent: true,
+    opacity: 0.0
+  });
+  pulseRingMat.userData = { baseOpacity: 0.9 };
+  const pulseRing = new THREE.Mesh(pulseRingGeo, pulseRingMat);
+  pulseRing.visible = false;
+  heroGroup.add(pulseRing);
+
+  let pulseActive = false;
+  let pulseScale = 1.0;
+  let pulseOpacity = 0.0;
+
+  function triggerGemPulse() {
+    pulseActive = true;
+    pulseScale = 1.0;
+    pulseOpacity = 0.9;
+    pulseRing.visible = true;
+  }
+
   const tickCount = 48;
   const tickPts = [];
   for (let i = 0; i < tickCount; i++) {
@@ -150,20 +165,20 @@
   }
   const tickGeo = new THREE.BufferGeometry().setFromPoints(tickPts);
   const tickMat = new THREE.LineBasicMaterial({ color: C_NAVY, transparent: true, opacity: 0.6 });
+  tickMat.userData = { baseOpacity: 0.6 };
   const tickRing = new THREE.LineSegments(tickGeo, tickMat);
   heroGroup.add(tickRing);
 
-  // 4. Orbiting emerald node and ribbon trail
   const heroOrbitGroup = new THREE.Group();
   heroGroup.add(heroOrbitGroup);
 
   const orbNodeGeo = new THREE.SphereGeometry(0.2, 16, 16);
   const orbNodeMat = new THREE.MeshBasicMaterial({ color: C_GREEN, transparent: true, opacity: 0.95 });
+  orbNodeMat.userData = { baseOpacity: 0.95 };
   const orbNode = new THREE.Mesh(orbNodeGeo, orbNodeMat);
   orbNode.position.set(3.8, 0, 0);
   heroOrbitGroup.add(orbNode);
 
-  // Orbiting particle ribbon
   const ribbonPts = [];
   const ribbonCount = 160;
   for (let i = 0; i < ribbonCount; i++) {
@@ -181,20 +196,17 @@
     transparent: true,
     opacity: 0.75
   });
+  ribbonMat.userData = { baseOpacity: 0.75 };
   const ribbon = new THREE.Points(ribbonGeo, ribbonMat);
   heroGroup.add(ribbon);
 
-  // -------------------------------------------------------------
-  // STATION 1: TOURIST GUIDE (Native Procedural Ridge Terrain)
-  // Layered contour mountain ridges with animated route & glowing pins
-  // -------------------------------------------------------------
   const touristGroup = new THREE.Group();
   scene.add(touristGroup);
 
   const terCols = 44;
   const terRows = 36;
-  const terWidth = 24;
-  const terDepth = 20;
+  const terWidth = 22;
+  const terDepth = 18;
   const terGeo = new THREE.PlaneGeometry(terWidth, terDepth, terCols - 1, terRows - 1);
   terGeo.rotateX(-Math.PI / 2.3);
 
@@ -216,28 +228,27 @@
   }
   terGeo.computeVertexNormals();
 
-  // Subtle shaded terrain underlay
   const terMeshMat = new THREE.MeshStandardMaterial({
     color: 0xEDE9FE,
     roughness: 0.7,
     metalness: 0.1,
     flatShading: true,
     transparent: true,
-    opacity: 0.65
+    opacity: 0.22
   });
+  terMeshMat.userData = { baseOpacity: 0.22 };
   const terMesh = new THREE.Mesh(terGeo, terMeshMat);
   touristGroup.add(terMesh);
 
-  // High contrast contour ridge lines
   const terWireMat = new THREE.LineBasicMaterial({
     color: C_PURPLE,
     transparent: true,
-    opacity: 0.55
+    opacity: 0.35
   });
+  terWireMat.userData = { baseOpacity: 0.35 };
   const terWire = new THREE.LineSegments(new THREE.WireframeGeometry(terGeo), terWireMat);
   touristGroup.add(terWire);
 
-  // 3D Dashed Winding Route across Sahyadri peaks
   const routeWaypoints = [
     new THREE.Vector3(-7.5, getTerrainHeight(-7.5, 4.5) + 0.35, 4.5),
     new THREE.Vector3(-3.5, getTerrainHeight(-3.5, 2.2) + 0.45, 2.2),
@@ -249,7 +260,6 @@
   const routeCurve = new THREE.CatmullRomCurve3(routeWaypoints);
   const routeCurvePoints = routeCurve.getPoints(120);
 
-  // Base dotted trail
   const routeTrailGeo = new THREE.BufferGeometry().setFromPoints(routeCurvePoints);
   const routeBaseMat = new THREE.LineDashedMaterial({
     color: C_NAVY_MUTED,
@@ -258,70 +268,83 @@
     transparent: true,
     opacity: 0.4
   });
+  routeBaseMat.userData = { baseOpacity: 0.4 };
   const routeBaseLine = new THREE.Line(routeTrailGeo, routeBaseMat);
   routeBaseLine.computeLineDistances();
   touristGroup.add(routeBaseLine);
 
-  // Dynamic green trail drawn on scroll
+  const maxRoutePoints = routeCurvePoints.length;
+  const routePositions = new Float32Array(maxRoutePoints * 3);
+  for (let i = 0; i < maxRoutePoints; i++) {
+    routePositions[i * 3] = routeCurvePoints[i].x;
+    routePositions[i * 3 + 1] = routeCurvePoints[i].y;
+    routePositions[i * 3 + 2] = routeCurvePoints[i].z;
+  }
   const routeProgGeo = new THREE.BufferGeometry();
+  routeProgGeo.setAttribute('position', new THREE.BufferAttribute(routePositions, 3));
+  routeProgGeo.setDrawRange(0, 0);
+
   const routeProgMat = new THREE.LineBasicMaterial({
     color: C_GREEN,
     linewidth: 3,
     transparent: true,
     opacity: 0.95
   });
+  routeProgMat.userData = { baseOpacity: 0.95 };
   const routeProgLine = new THREE.Line(routeProgGeo, routeProgMat);
   touristGroup.add(routeProgLine);
 
-  // 4 Glowing 3D Waypoint Pins with vertical beacons
   const pinData = [
-    { pos: routeWaypoints[0], name: "Sinhagad Ridge", hi: "सिंहगड" },
-    { pos: routeWaypoints[1], name: "Mutha River Walk", hi: "मुठा नदी" },
-    { pos: routeWaypoints[3], name: "Old Bazaar Arcade", hi: "जुना बाजार" },
-    { pos: routeWaypoints[4], name: "Katraj Valley View", hi: "कात्रज घाट" }
+    { pos: routeWaypoints[0], name: 'Sinhagad Ridge' },
+    { pos: routeWaypoints[1], name: 'Mutha River Walk' },
+    { pos: routeWaypoints[3], name: 'Old Bazaar Arcade' },
+    { pos: routeWaypoints[4], name: 'Katraj Valley View' }
   ];
 
   const pinGroups = [];
+  const interactivePickables = [];
+
   pinData.forEach((pin, idx) => {
     const pg = new THREE.Group();
     pg.position.copy(pin.pos);
 
-    // Vertical beacon stem
     const stemGeo = new THREE.BufferGeometry().setFromPoints([
       new THREE.Vector3(0, 0, 0),
-      new THREE.Vector3(0, 1.9, 0)
+      new THREE.Vector3(0, 1.5, 0)
     ]);
-    const stemMat = new THREE.LineBasicMaterial({ color: C_PURPLE, transparent: true, opacity: 0.85 });
+    const stemMat = new THREE.LineBasicMaterial({ color: C_PURPLE, transparent: true, opacity: 0.75 });
+    stemMat.userData = { baseOpacity: 0.75 };
     pg.add(new THREE.Line(stemGeo, stemMat));
 
-    // Glowing head
-    const headGeo = new THREE.SphereGeometry(0.24, 16, 16);
+    const headGeo = new THREE.SphereGeometry(0.15, 16, 16);
     const headMat = new THREE.MeshBasicMaterial({ color: idx === 0 ? C_GREEN : C_PURPLE, transparent: true, opacity: 0.95 });
+    headMat.userData = { baseOpacity: 0.95 };
     const head = new THREE.Mesh(headGeo, headMat);
-    head.position.y = 1.9;
+    head.position.y = 1.5;
+    head.userData = { pinIndex: idx, type: 'pin' };
     pg.add(head);
+    interactivePickables.push(head);
 
-    // Ground ripple ring
-    const rippleGeo = new THREE.RingGeometry(0.25, 0.45, 32);
+    const rippleGeo = new THREE.RingGeometry(0.2, 0.36, 32);
     rippleGeo.rotateX(-Math.PI / 2);
     const rippleMat = new THREE.MeshBasicMaterial({
       color: idx === 0 ? C_GREEN : C_PURPLE,
       side: THREE.DoubleSide,
       transparent: true,
-      opacity: 0.65
+      opacity: idx === 0 ? 0.9 : 0.4
     });
+    rippleMat.userData = { baseOpacity: 0.5, isRipple: true };
     const ripple = new THREE.Mesh(rippleGeo, rippleMat);
     ripple.position.y = 0.05;
+    ripple.userData = { pinIndex: idx, type: 'pin' };
     pg.add(ripple);
+    interactivePickables.push(ripple);
 
     pg.userData = { head, ripple, headMat, rippleMat, baseIdx: idx };
     pinGroups.push(pg);
     touristGroup.add(pg);
   });
 
-  // -------------------------------------------------------------
-  // STATION 2: NEXUS (Communication Constellation & Message Packets)
-  // -------------------------------------------------------------
   const nexusGroup = new THREE.Group();
   scene.add(nexusGroup);
 
@@ -342,7 +365,6 @@
     nexusNodePos.push(v.x, v.y, v.z);
   }
 
-  // Network connections
   const nexusLines = [];
   const nexusPairs = [];
   for (let i = 0; i < nexusNodeCount; i++) {
@@ -361,9 +383,9 @@
     transparent: true,
     opacity: 0.6
   });
+  nexLineMat.userData = { baseOpacity: 0.6 };
   nexusGroup.add(new THREE.LineSegments(nexLineGeo, nexLineMat));
 
-  // Node Points
   const nexNodeGeo = new THREE.BufferGeometry();
   nexNodeGeo.setAttribute('position', new THREE.Float32BufferAttribute(nexusNodePos, 3));
   const nexNodeMat = new THREE.PointsMaterial({
@@ -372,9 +394,9 @@
     transparent: true,
     opacity: 0.9
   });
+  nexNodeMat.userData = { baseOpacity: 0.9 };
   nexusGroup.add(new THREE.Points(nexNodeGeo, nexNodeMat));
 
-  // Central hub sphere
   const hubGeo = new THREE.SphereGeometry(0.6, 24, 24);
   const hubMat = new THREE.MeshStandardMaterial({
     color: C_NAVY,
@@ -383,10 +405,12 @@
     transparent: true,
     opacity: 0.9
   });
+  hubMat.userData = { baseOpacity: 0.9 };
   const hubMesh = new THREE.Mesh(hubGeo, hubMat);
+  hubMesh.userData = { type: 'nexusHub' };
   nexusGroup.add(hubMesh);
+  interactivePickables.push(hubMesh);
 
-  // Concentric radar waves from hub
   const radarRings = [];
   for (let k = 0; k < 3; k++) {
     const ringG = new THREE.RingGeometry(1.2 + k * 1.3, 1.25 + k * 1.3, 48);
@@ -397,16 +421,17 @@
       transparent: true,
       opacity: 0.3 - k * 0.08
     });
+    ringM.userData = { baseOpacity: 0.3 - k * 0.08 };
     const ringMesh = new THREE.Mesh(ringG, ringM);
     radarRings.push(ringMesh);
     nexusGroup.add(ringMesh);
   }
 
-  // Active pulsing message packets traveling along network lines
-  const packetCount = 12;
+  const packetCount = 14;
   const packets = [];
   const packetGeo = new THREE.SphereGeometry(0.1, 12, 12);
   const packetMat = new THREE.MeshBasicMaterial({ color: C_GREEN, transparent: true, opacity: 0.95 });
+  packetMat.userData = { baseOpacity: 0.95 };
 
   for (let i = 0; i < packetCount; i++) {
     const pair = nexusPairs[i % nexusPairs.length] || { a: nexusNodes[0], b: nexusNodes[1] };
@@ -421,9 +446,14 @@
     });
   }
 
-  // -------------------------------------------------------------
-  // STATION 3: ORVIX (Local Compute Matrix & Streaming Data Packets)
-  // -------------------------------------------------------------
+  function burstNexusPackets() {
+    packets.forEach((p, idx) => {
+      p.progress = 0;
+      p.speed = 1.5 + Math.random() * 1.2;
+      setTimeout(() => { p.speed = 0.28 + Math.random() * 0.32; }, 1200);
+    });
+  }
+
   const orvixGroup = new THREE.Group();
   scene.add(orvixGroup);
 
@@ -442,9 +472,12 @@
     transparent: true,
     opacity: 0.7
   });
+  cubeMat.userData = { baseOpacity: 0.7 };
   const wireMatOrv = new THREE.LineBasicMaterial({ color: C_NAVY, transparent: true, opacity: 0.75 });
+  wireMatOrv.userData = { baseOpacity: 0.75 };
 
   const cubeCenters = [];
+  const cubeMeshes = [];
 
   for (let x = 0; x < gridSize; x++) {
     for (let y = 0; y < 3; y++) {
@@ -453,12 +486,17 @@
         const py = (y - 1) * (latticeSpacing * 1.3);
         const pz = (z - (gridSize - 1) / 2) * latticeSpacing;
 
-        const cb = new THREE.Mesh(cubeGeo, cubeMat);
+        const cbMat = cubeMat.clone();
+        cbMat.userData = { baseOpacity: 0.7 };
+        const cb = new THREE.Mesh(cubeGeo, cbMat);
         cb.position.set(px, py, pz);
         const cbWire = new THREE.LineSegments(cubeWireGeo, wireMatOrv);
         cb.add(cbWire);
+        cb.userData = { type: 'orvixCube', index: cubeMeshes.length };
         boxInstGroup.add(cb);
         cubeCenters.push(new THREE.Vector3(px, py, pz));
+        cubeMeshes.push(cb);
+        interactivePickables.push(cb);
 
         if (x < gridSize - 1) latticePts.push(new THREE.Vector3(px, py, pz), new THREE.Vector3(px + latticeSpacing, py, pz));
         if (y < 2) latticePts.push(new THREE.Vector3(px, py, pz), new THREE.Vector3(px, py + latticeSpacing * 1.3, pz));
@@ -469,9 +507,10 @@
 
   const busGeo = new THREE.BufferGeometry().setFromPoints(latticePts);
   const busMat = new THREE.LineBasicMaterial({ color: C_LINE_DARK, transparent: true, opacity: 0.55 });
-  orvixGroup.add(new THREE.LineSegments(busGeo, busMat));
+  busMat.userData = { baseOpacity: 0.55 };
+  const busLineSegments = new THREE.LineSegments(busGeo, busMat);
+  orvixGroup.add(busLineSegments);
 
-  // Big outer framing chassis
   const rackBoxGeo = new THREE.BoxGeometry(
     gridSize * latticeSpacing * 1.1,
     3.8 * latticeSpacing,
@@ -479,13 +518,14 @@
   );
   const rackEdges = new THREE.EdgesGeometry(rackBoxGeo);
   const rackMat = new THREE.LineBasicMaterial({ color: C_PURPLE, transparent: true, opacity: 0.65 });
+  rackMat.userData = { baseOpacity: 0.65 };
   orvixGroup.add(new THREE.LineSegments(rackEdges, rackMat));
 
-  // Streaming Token Data Packets
   const dataPacketCount = 14;
   const dataPackets = [];
   const dataPackGeo = new THREE.BoxGeometry(0.12, 0.12, 0.12);
   const dataPackMat = new THREE.MeshBasicMaterial({ color: C_GREEN, transparent: true, opacity: 0.95 });
+  dataPackMat.userData = { baseOpacity: 0.95 };
 
   for (let i = 0; i < dataPacketCount; i++) {
     const startIdx = Math.floor(Math.random() * cubeCenters.length);
@@ -500,9 +540,6 @@
     });
   }
 
-  // -------------------------------------------------------------
-  // STATION 4: OUTRO (Afterlight Astrolabe Ring & Community)
-  // -------------------------------------------------------------
   const outroGroup = new THREE.Group();
   scene.add(outroGroup);
 
@@ -514,6 +551,7 @@
     transparent: true,
     opacity: 0.9
   });
+  outerRingMat.userData = { baseOpacity: 0.9 };
   const outroRing1 = new THREE.Mesh(outerRingGeo, outerRingMat);
   outroGroup.add(outroRing1);
 
@@ -525,6 +563,7 @@
     transparent: true,
     opacity: 0.9
   });
+  innerRingMat.userData = { baseOpacity: 0.9 };
   const outroRing2 = new THREE.Mesh(innerRingGeo, innerRingMat);
   outroRing2.rotation.x = Math.PI / 3;
   outroGroup.add(outroRing2);
@@ -537,6 +576,7 @@
     transparent: true,
     opacity: 0.85
   });
+  coreIcoMat.userData = { baseOpacity: 0.85 };
   const coreIco = new THREE.Mesh(coreIcoGeo, coreIcoMat);
   coreIco.add(new THREE.LineSegments(new THREE.WireframeGeometry(coreIcoGeo), new THREE.LineBasicMaterial({ color: C_NAVY })));
   outroGroup.add(coreIco);
@@ -550,14 +590,28 @@
   }
   const haloGeo = new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(haloPts, 3));
   const haloMat = new THREE.PointsMaterial({ color: C_PURPLE_LIGHT, size: 0.07, transparent: true, opacity: 0.55 });
+  haloMat.userData = { baseOpacity: 0.55 };
   outroGroup.add(new THREE.Points(haloGeo, haloMat));
 
-  // Array of all 5 station groups
   const stations = [heroGroup, touristGroup, nexusGroup, orvixGroup, outroGroup];
-
-  // Base X coordinates for each station [Hero (right), Tourist (right), NEXUS (left), ORVIX (right), Outro (center)]
-  const stationDesktopX = [3.4, 3.4, -3.2, 3.2, 0.0];
+  const stationDesktopX = [3.4, 4.4, -3.2, 3.2, 0.0];
   const stationDesktopY = [0.1, -0.1, 0.0, 0.0, 0.0];
+
+  const stationMaterials = stations.map(g => {
+    const list = [];
+    g.traverse(child => {
+      if (child.material && child.material.opacity !== undefined) {
+        list.push({
+          material: child.material,
+          baseOpacity: (child.material.userData && child.material.userData.baseOpacity !== undefined)
+            ? child.material.userData.baseOpacity
+            : (child.isPoints ? 0.8 : (child.isLine ? 0.65 : 0.85)),
+          isRipple: Boolean(child.material.userData && child.material.userData.isRipple)
+        });
+      }
+    });
+    return list;
+  });
 
   let currentScroll = 0;
   let targetScroll = 0;
@@ -565,11 +619,22 @@
   let targetMouseX = 0, targetMouseY = 0;
   let lastTime = performance.now();
   let isHeld = false;
+  let activePinIdx = null;
+
+  let gemSpinVelX = 0;
+  let gemSpinVelY = 0;
+  let isDraggingGem = false;
+  let dragLastX = 0;
+  let dragLastY = 0;
+
+  let cameraPinTargetX = 0;
+  let cameraPinTargetY = 0;
 
   function handleResize() {
     const w = window.innerWidth;
     const h = window.innerHeight;
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.75));
+    const isMobile = w < 800 || ('ontouchstart' in window);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isMobile ? 1.25 : 1.75));
     renderer.setSize(w, h, false);
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
@@ -580,8 +645,9 @@
         g.position.set(0, i === 0 ? -1.3 : -1.6, 0);
         g.scale.setScalar(0.62);
       } else {
+        const baseScale = i === 1 ? 0.85 : 1.0;
         g.position.set(stationDesktopX[i], stationDesktopY[i], 0);
-        g.scale.setScalar(1.0);
+        g.scale.setScalar(baseScale);
       }
     });
   }
@@ -589,21 +655,127 @@
   window.addEventListener('resize', handleResize, { passive: true });
   handleResize();
 
+  cv.addEventListener('webglcontextlost', (e) => {
+    e.preventDefault();
+    isContextLost = true;
+  }, false);
+
+  cv.addEventListener('webglcontextrestored', () => {
+    isContextLost = false;
+    lastTime = performance.now();
+    handleResize();
+  }, false);
+
+  document.addEventListener('visibilitychange', () => {
+    isPageVisible = !document.hidden;
+    if (isPageVisible) lastTime = performance.now();
+  });
+
+  const raycaster = new THREE.Raycaster();
+  const mouseNorm = new THREE.Vector2();
+
   window.addEventListener('pointermove', e => {
     targetMouseX = (e.clientX / window.innerWidth - 0.5) * 2;
     targetMouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+    mouseNorm.x = (e.clientX / window.innerWidth) * 2 - 1;
+    mouseNorm.y = -(e.clientY / window.innerHeight) * 2 + 1;
+
+    if (isDraggingGem) {
+      const dx = e.clientX - dragLastX;
+      const dy = e.clientY - dragLastY;
+      dragLastX = e.clientX;
+      dragLastY = e.clientY;
+      gemMesh.rotation.y += dx * 0.012;
+      gemMesh.rotation.x += dy * 0.012;
+      gemWire.rotation.copy(gemMesh.rotation);
+      gemSpinVelY = dx * 0.008;
+      gemSpinVelX = dy * 0.008;
+      return;
+    }
+
+    if (touristGroup.visible && !isNarrow()) {
+      raycaster.setFromCamera(mouseNorm, camera);
+      const hits = raycaster.intersectObjects(interactivePickables, false);
+      if (hits.length > 0) {
+        const target = hits[0].object;
+        if (target.userData && target.userData.type === 'pin') {
+          cv.style.cursor = 'pointer';
+          return;
+        }
+      }
+      cv.style.cursor = 'default';
+    }
   }, { passive: true });
 
-  document.addEventListener('visibilitychange', () => {
-    if (!document.hidden) lastTime = performance.now();
+  window.addEventListener('pointerdown', e => {
+    if (e.target.closest('a, button, input, .topo-pin-card, .faq-item, .chat-widget')) return;
+
+    mouseNorm.x = (e.clientX / window.innerWidth) * 2 - 1;
+    mouseNorm.y = -(e.clientY / window.innerHeight) * 2 + 1;
+    raycaster.setFromCamera(mouseNorm, camera);
+
+    if (heroGroup.visible && currentScroll < 0.6) {
+      const hits = raycaster.intersectObject(gemMesh, false);
+      if (hits.length > 0) {
+        isDraggingGem = true;
+        dragLastX = e.clientX;
+        dragLastY = e.clientY;
+        gemSpinVelX = 0;
+        gemSpinVelY = 0;
+        return;
+      }
+    }
   });
 
-  // -------------------------------------------------------------
-  // ANIMATION RENDER LOOP
-  // -------------------------------------------------------------
+  window.addEventListener('pointerup', () => {
+    isDraggingGem = false;
+  });
+
+  window.addEventListener('click', e => {
+    if (e.target.closest('a, button, input, .topo-pin-card, .faq-item')) return;
+
+    mouseNorm.x = (e.clientX / window.innerWidth) * 2 - 1;
+    mouseNorm.y = -(e.clientY / window.innerHeight) * 2 + 1;
+    raycaster.setFromCamera(mouseNorm, camera);
+
+    if (heroGroup.visible && currentScroll < 0.6) {
+      const hits = raycaster.intersectObject(gemMesh, false);
+      if (hits.length > 0) {
+        triggerGemPulse();
+        return;
+      }
+    }
+
+    if (touristGroup.visible && Math.abs(currentScroll - 1) < 0.8) {
+      const hits = raycaster.intersectObjects(interactivePickables, false);
+      if (hits.length > 0) {
+        const item = hits[0].object;
+        if (item.userData && item.userData.type === 'pin') {
+          const pIdx = item.userData.pinIndex;
+          if (typeof window.onPinSelectFrom3D === 'function') {
+            window.onPinSelectFrom3D(pIdx);
+          }
+          return;
+        }
+      }
+    }
+
+    if (nexusGroup.visible && Math.abs(currentScroll - 2) < 0.8) {
+      const hits = raycaster.intersectObject(hubMesh, false);
+      if (hits.length > 0) {
+        burstNexusPackets();
+        return;
+      }
+    }
+  });
+
+  function isNarrow() {
+    return window.innerWidth < 800;
+  }
+
   function renderLoop(time) {
     requestAnimationFrame(renderLoop);
-    if (document.hidden || isHeld) return;
+    if (!isPageVisible || isContextLost || isHeld) return;
 
     const dt = Math.min((time - lastTime) / 1000, 0.05);
     lastTime = time;
@@ -615,51 +787,48 @@
     mouseY += (targetMouseY - mouseY) * Math.min(1, dt * 4.0);
 
     const clampedScroll = Math.max(0, Math.min(4, currentScroll));
-    const isNarrow = window.innerWidth < 800;
+    const narrow = isNarrow();
 
-    // Orchestrate cross-fade & visibility between stations
     stations.forEach((g, i) => {
       const dist = Math.abs(clampedScroll - i);
       const weight = Math.max(0, 1 - dist * 1.6);
 
       g.visible = weight > 0.01;
       if (g.visible) {
-        const baseScale = isNarrow ? 0.62 : 1.0;
+        const baseScale = narrow ? 0.62 : (i === 1 ? 0.85 : 1.0);
         const dynamicScale = baseScale * (0.88 + 0.12 * weight);
         g.scale.setScalar(dynamicScale);
 
-        // Position with subtle scroll drift
-        const baseX = isNarrow ? 0 : stationDesktopX[i];
-        const baseY = isNarrow ? (i === 0 ? -1.3 : -1.6) : stationDesktopY[i];
-        const driftY = (clampedScroll - i) * (isNarrow ? -0.8 : -1.4);
+        const baseX = narrow ? 0 : stationDesktopX[i];
+        const baseY = narrow ? (i === 0 ? -1.3 : -1.6) : stationDesktopY[i];
+        const driftY = (clampedScroll - i) * (narrow ? -0.8 : -1.4);
         g.position.set(baseX, baseY + driftY, 0);
 
-        // Fade materials based on weight
-        g.traverse(child => {
-          if (child.material) {
-            if (child.material.opacity !== undefined) {
-              const maxOp = child.userData && child.userData.baseOpacity !== undefined
-                ? child.userData.baseOpacity
-                : (child.isPoints ? 0.8 : (child.isLine ? 0.65 : 0.85));
-              const mobileMod = isNarrow ? 0.55 : 1.0;
-              child.material.opacity = weight * maxOp * mobileMod;
-            }
+        const mobileMod = narrow ? 0.55 : 1.0;
+        const mats = stationMaterials[i];
+        for (let m = 0; m < mats.length; m++) {
+          const entry = mats[m];
+          if (entry.isRipple && activePinIdx !== null) {
+            continue;
           }
-        });
+          entry.material.opacity = weight * entry.baseOpacity * mobileMod;
+        }
       }
     });
 
-    // Mouse parallax on camera
     if (!rm) {
-      camera.position.x = mouseX * 0.45;
-      camera.position.y = -mouseY * 0.35;
+      camera.position.x = mouseX * 0.45 + cameraPinTargetX * 0.05;
+      camera.position.y = -mouseY * 0.35 + cameraPinTargetY * 0.05;
       camera.lookAt(0, 0, 0);
     }
 
-    // 1. Hero Kinetic Animations
     if (!rm && heroGroup.visible) {
-      gemMesh.rotation.y += dt * 0.28;
-      gemMesh.rotation.x = Math.sin(time * 0.0009) * 0.18;
+      if (!isDraggingGem) {
+        gemMesh.rotation.y += (dt * 0.28) + gemSpinVelY;
+        gemMesh.rotation.x += (Math.sin(time * 0.0009) * 0.08 * dt) + gemSpinVelX;
+        gemSpinVelX *= 0.94;
+        gemSpinVelY *= 0.94;
+      }
       gemWire.rotation.copy(gemMesh.rotation);
       innerCore.rotation.y -= dt * 0.4;
 
@@ -669,28 +838,36 @@
 
       heroOrbitGroup.rotation.y += dt * 0.85;
       ribbon.rotation.y += dt * 0.35;
+
+      if (pulseActive) {
+        pulseScale += dt * 4.5;
+        pulseOpacity -= dt * 1.2;
+        pulseRing.scale.set(pulseScale, pulseScale, 1);
+        pulseRingMat.opacity = Math.max(0, pulseOpacity);
+        if (pulseOpacity <= 0) {
+          pulseActive = false;
+          pulseRing.visible = false;
+        }
+      }
     }
 
-    // 2. Tourist Guide Trail Progress
     if (touristGroup.visible) {
       const touristProgress = Math.max(0, Math.min(1, (clampedScroll - 0.5) / 1.0));
-      const pointCountToDraw = Math.max(2, Math.floor(touristProgress * routeCurvePoints.length));
-      const drawnPts = routeCurvePoints.slice(0, pointCountToDraw);
-      routeProgGeo.setFromPoints(drawnPts);
+      const pointCountToDraw = Math.max(2, Math.floor(touristProgress * maxRoutePoints));
+      routeProgGeo.setDrawRange(0, pointCountToDraw);
 
       pinGroups.forEach((pg, i) => {
         const pTime = time * 0.003 + i * 1.5;
         const s = 1.0 + Math.sin(pTime) * 0.22;
         pg.userData.ripple.scale.set(s, s, 1);
-        pg.userData.head.position.y = 1.9 + Math.sin(pTime) * 0.12;
+        pg.userData.head.position.y = 1.5 + Math.sin(pTime) * 0.1;
       });
 
       if (!rm) {
-        touristGroup.rotation.y = Math.sin(time * 0.0005) * 0.08;
+        touristGroup.rotation.y = Math.sin(time * 0.0005) * 0.06;
       }
     }
 
-    // 3. NEXUS Network Message Packets Animation
     if (!rm && nexusGroup.visible) {
       hubMesh.rotation.y += dt * 0.3;
       radarRings.forEach((ring, idx) => {
@@ -706,7 +883,6 @@
       });
     }
 
-    // 4. ORVIX Compute Matrix Data Packets Animation
     if (!rm && orvixGroup.visible) {
       boxInstGroup.rotation.y += dt * 0.1;
 
@@ -722,7 +898,6 @@
       });
     }
 
-    // 5. Outro Astrolabe Rotation
     if (!rm && outroGroup.visible) {
       outroRing1.rotation.y += dt * 0.22;
       outroRing2.rotation.z += dt * 0.18;
@@ -734,9 +909,6 @@
 
   requestAnimationFrame(renderLoop);
 
-  // -------------------------------------------------------------
-  // PUBLIC API: window.WORLD
-  // -------------------------------------------------------------
   window.WORLD = {
     set(val) {
       targetScroll = Math.max(0, Math.min(4, val));
@@ -747,12 +919,27 @@
       if (!isHeld) lastTime = performance.now();
     },
     highlightPin(pinIdx) {
+      activePinIdx = pinIdx;
       pinGroups.forEach((pg, i) => {
         const isTarget = i === pinIdx;
         pg.userData.headMat.color.setHex(isTarget ? C_GREEN : C_PURPLE);
         pg.userData.rippleMat.color.setHex(isTarget ? C_GREEN : C_PURPLE);
-        pg.userData.rippleMat.opacity = isTarget ? 0.95 : 0.5;
+        pg.userData.rippleMat.opacity = isTarget ? 0.95 : 0.35;
       });
+    },
+    focusPin(pinIdx) {
+      this.highlightPin(pinIdx);
+      if (pinGroups[pinIdx]) {
+        const p = pinGroups[pinIdx].position;
+        cameraPinTargetX = p.x;
+        cameraPinTargetY = p.y;
+      }
+    },
+    emitGemPulse() {
+      triggerGemPulse();
+    },
+    burstNexus() {
+      burstNexusPackets();
     }
   };
 
