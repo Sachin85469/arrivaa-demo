@@ -608,7 +608,7 @@
     const dt = Math.min((time - lastTime) / 1000, 0.05);
     lastTime = time;
 
-    const scrollDamping = rm ? 1 : Math.min(1, dt * 6.0);
+    const scrollDamping = rm ? 1 : Math.min(1, dt * 10.0);
     currentScroll += (targetScroll - currentScroll) * scrollDamping;
 
     mouseX += (targetMouseX - mouseX) * Math.min(1, dt * 4.0);

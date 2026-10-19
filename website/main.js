@@ -608,11 +608,11 @@
   if (typeof window.Lenis !== 'undefined' && !rm) {
     try {
       lenis = new window.Lenis({
-        duration: 1.1,
-        easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        lerp: 0.1,
         orientation: 'vertical',
         smoothWheel: true,
-        touchMultiplier: 1.5
+        wheelMultiplier: 1.0,
+        touchMultiplier: 1.0
       });
 
       function lenisLoop(time) {
@@ -775,6 +775,9 @@
 
   window.addEventListener('scroll', requestTick, { passive: true });
   window.addEventListener('resize', requestTick, { passive: true });
+  if (lenis) {
+    lenis.on('scroll', onScroll);
+  }
   requestTick();
 
   // Mobile gallery horizontal swipe sync
