@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy Policy — ARRIVA Travel Companion</title>
-  <meta name="description" content="Official Privacy Policy and Data Safety Disclosures for Arriva Android Travel Companion. Aligned with Google Play 2026 Developer Policies and global privacy regulations.">
+  <title>Privacy Policy & Data Safety — ARRIVA Studio</title>
+  <meta name="description" content="Official Privacy Policy, Data Safety Disclosures, and Deletion Mandates for ARRIVA Studio and the Arriva Tourist Guide Android app. Google Play 2026 Developer Policy compliant.">
   <meta name="author" content="Sachin Bableshwar">
   
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://arrivaa.tech/privacy.html">
-  <meta property="og:title" content="Privacy Policy — ARRIVA Travel Companion">
-  <meta property="og:description" content="Transparent, Google Play-compliant privacy policy for Arriva Android app. Zero tracking, offline-first design, on-device ML.">
+  <meta property="og:title" content="Privacy Policy — ARRIVA Studio">
+  <meta property="og:description" content="Transparent, Google Play-compliant privacy policy for ARRIVA and the Tourist Guide Android application.">
   <meta property="og:image" content="assets/og-image.png">
 
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -25,21 +25,22 @@
       theme: {
         extend: {
           colors: {
-            canvas: '#0A0D14',
-            surface1: '#121622',
-            surface2: '#181E2E',
-            surface3: '#222A3E',
-            borderSubtle: 'rgba(255, 255, 255, 0.08)',
-            borderHighlight: 'rgba(139, 92, 246, 0.35)',
-            accentViolet: '#8B5CF6',
-            accentEmerald: '#10B981',
-            accentAmber: '#F59E0B',
-            textMain: '#F8FAFC',
-            textMuted: '#94A3B8',
-            textDim: '#64748B',
+            obsidian: '#080A0F',
+            surface1: '#0F131D',
+            surface2: '#161C2A',
+            surface3: '#1E2638',
+            borderHairline: 'rgba(255, 255, 255, 0.08)',
+            borderActive: 'rgba(255, 255, 255, 0.18)',
+            arrivaViolet: '#8B5CF6',
+            touristEmerald: '#10B981',
+            nexusCyan: '#06B6D4',
+            orvixLime: '#84CC16',
+            textPrimary: '#F8FAFC',
+            textSecondary: '#94A3B8',
+            textTertiary: '#64748B',
           },
           fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
             mono: ['"JetBrains Mono"', 'monospace'],
           },
         }
@@ -49,195 +50,200 @@
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.344.0/dist/umd/lucide.min.js"></script>
 
   <style>
-    ::-webkit-scrollbar { width: 7px; height: 7px; }
-    ::-webkit-scrollbar-track { background: #0A0D14; }
-    ::-webkit-scrollbar-thumb { background: #1E293B; border-radius: 4px; }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #080A0F; }
+    ::-webkit-scrollbar-thumb { background: #1E2638; border-radius: 3px; }
     ::-webkit-scrollbar-thumb:hover { background: #8B5CF6; }
 
-    .glass-card {
-      background: rgba(18, 22, 34, 0.85);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(255, 255, 255, 0.07);
-    }
-    .grid-lines {
-      background-size: 40px 40px;
+    .studio-grid {
+      background-size: 32px 32px;
       background-image: 
-        linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    }
+    .panel-glass {
+      background: rgba(15, 19, 29, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.07);
     }
   </style>
 </head>
 
-<body class="bg-canvas text-textMain font-sans antialiased selection:bg-accentViolet/30 selection:text-white min-h-screen relative flex flex-col overflow-x-hidden">
+<body class="bg-obsidian text-textPrimary font-sans antialiased selection:bg-arrivaViolet/30 selection:text-white min-h-screen relative flex flex-col overflow-x-hidden">
 
-  <div class="fixed inset-0 pointer-events-none z-0 grid-lines"></div>
+  <div class="fixed inset-0 pointer-events-none z-0 studio-grid"></div>
 
-  <header class="fixed top-0 left-0 right-0 z-50 bg-canvas/80 backdrop-blur-xl border-b border-borderSubtle">
+  <header class="fixed top-0 left-0 right-0 z-50 bg-obsidian/85 backdrop-blur-xl border-b border-borderHairline">
     <div class="max-w-7xl mx-auto px-6 h-18 flex items-center justify-between">
+      
       <a href="index.html" class="flex items-center gap-3 group">
-        <div class="w-10 h-10 rounded-xl bg-surface2 border border-borderSubtle flex items-center justify-center p-2 group-hover:border-accentViolet/50 transition-colors">
-          <img src="assets/favicon.svg" alt="Arriva Logo" class="w-6 h-6">
+        <div class="w-9 h-9 rounded-xl bg-surface2 border border-borderHairline flex items-center justify-center p-2 group-hover:border-arrivaViolet/60 transition-colors">
+          <img src="assets/favicon.svg" alt="ARRIVA Logo" class="w-5 h-5">
         </div>
-        <div class="flex flex-col">
-          <div class="flex items-center gap-2">
-            <span class="font-extrabold text-lg tracking-wider text-white">ARRIVA</span>
-            <span class="px-2 py-0.5 rounded-full text-[10px] font-mono font-medium bg-accentEmerald/10 text-accentEmerald border border-accentEmerald/20">Legal</span>
-          </div>
-          <span class="text-[11px] text-textDim tracking-tight">Privacy Policy</span>
+        <div class="flex items-center gap-2">
+          <span class="font-extrabold text-base tracking-widest text-white">ARRIVA</span>
+          <span class="text-[10px] font-mono font-medium px-2 py-0.5 rounded-full bg-surface2 border border-borderHairline text-textTertiary">LEGAL</span>
         </div>
       </a>
 
-      <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-textMuted">
-        <a href="index.html#features" class="hover:text-white transition-colors">Features</a>
-        <a href="index.html#planner" class="hover:text-white transition-colors">Trip Optimizer</a>
-        <a href="index.html#screens" class="hover:text-white transition-colors">App Screens</a>
-        <a href="index.html#faq" class="hover:text-white transition-colors">FAQ</a>
-        <a href="privacy.html" class="text-accentViolet font-semibold flex items-center gap-1.5">
-          <span>Privacy Policy</span>
-          <span class="w-1.5 h-1.5 rounded-full bg-accentEmerald"></span>
+      <nav class="hidden lg:flex items-center gap-6 text-xs font-mono text-textSecondary">
+        <a href="index.html#tourist-guide" class="hover:text-touristEmerald transition-colors flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-touristEmerald"></span>
+          <span>01 · Tourist Guide</span>
         </a>
+        <a href="index.html#nexus" class="hover:text-nexusCyan transition-colors flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-nexusCyan"></span>
+          <span>02 · NEXUS</span>
+        </a>
+        <a href="index.html#orvix" class="hover:text-orvixLime transition-colors flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-orvixLime"></span>
+          <span>03 · ORVIX</span>
+        </a>
+        <a href="index.html#faq" class="hover:text-white transition-colors">FAQ</a>
+        <a href="privacy.html" class="text-white font-bold transition-colors">Privacy Policy</a>
       </nav>
 
       <div class="flex items-center gap-3">
-        <a href="index.html" class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-surface2 border border-borderSubtle text-xs font-semibold text-textMuted hover:text-white hover:border-white/20 transition-all">
-          <i data-lucide="arrow-left" class="w-4 h-4"></i>
-          <span>Back to Home</span>
+        <a href="index.html" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface1 border border-borderHairline text-xs font-mono text-textSecondary hover:text-white transition-all">
+          <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+          <span>Return Home</span>
         </a>
-        <a href="https://github.com/Sachin85469/Tourist_Guide_App" target="_blank" rel="noopener noreferrer" class="hidden sm:flex items-center gap-2 px-3.5 py-2 rounded-xl bg-accentViolet hover:bg-violet-600 text-white text-xs font-bold transition-all shadow-lg shadow-accentViolet/20">
-          <i data-lucide="github" class="w-4 h-4"></i>
+        <a href="https://github.com/Sachin85469" target="_blank" rel="noopener noreferrer" class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface1 border border-borderHairline text-xs font-mono text-textSecondary hover:text-white transition-all">
+          <i data-lucide="github" class="w-3.5 h-3.5"></i>
           <span>GitHub</span>
         </a>
       </div>
+
     </div>
   </header>
 
   <main class="relative z-10 flex-1 pt-24 pb-20">
     <div class="max-w-4xl mx-auto px-6 pt-10">
 
-      <div class="flex flex-col gap-4 pb-10 border-b border-borderSubtle">
-        <div class="flex items-center gap-2 text-xs font-mono text-accentEmerald">
+      <div class="flex flex-col gap-4 pb-10 border-b border-borderHairline">
+        <div class="flex items-center gap-2 text-xs font-mono text-touristEmerald">
           <i data-lucide="shield-check" class="w-4 h-4"></i>
-          <span>GOOGLE PLAY DEVELOPER POLICY COMPLIANT &middot; NOVEMBER 2026</span>
+          <span>GOOGLE PLAY DEVELOPER POLICY COMPLIANT · NOVEMBER 2026</span>
         </div>
         <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
-          Privacy Policy for Arriva Travel Companion
+          Privacy Policy &amp; Data Safety Disclosures
         </h1>
-        <p class="text-sm sm:text-base text-textMuted leading-relaxed">
-          This document explains the technical justification, collection boundaries, local sandboxing, and data deletion procedures for the Arriva Android application (package: <code class="text-white font-mono bg-surface2 px-1.5 py-0.5 rounded text-xs">com.arriva.touristguide</code>).
+        <p class="text-sm sm:text-base text-textSecondary leading-relaxed">
+          Technical justification, data boundaries, local storage sandboxing, and account deletion procedures for ARRIVA Studio and the <strong>ARRIVA Tourist Guide</strong> application (package: <code class="text-white font-mono bg-surface2 px-1.5 py-0.5 rounded text-xs">com.arriva.touristguide</code>).
         </p>
 
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4">
-          <div class="p-3 rounded-xl bg-surface1 border border-borderSubtle">
-            <span class="text-[10px] font-mono text-textDim uppercase block">Commercial Data Sale</span>
-            <span class="text-xs font-bold text-accentEmerald font-mono">0% (Strictly Prohibited)</span>
+          <div class="p-3.5 rounded-xl bg-surface1 border border-borderHairline flex flex-col gap-0.5">
+            <span class="text-[10px] font-mono text-textTertiary uppercase">Commercial Data Sale</span>
+            <span class="text-xs font-bold text-touristEmerald font-mono">0% (Strictly Prohibited)</span>
           </div>
-          <div class="p-3 rounded-xl bg-surface1 border border-borderSubtle">
-            <span class="text-[10px] font-mono text-textDim uppercase block">Location Tracking</span>
-            <span class="text-xs font-bold text-accentEmerald font-mono">Foreground Only</span>
+          <div class="p-3.5 rounded-xl bg-surface1 border border-borderHairline flex flex-col gap-0.5">
+            <span class="text-[10px] font-mono text-textTertiary uppercase">Location Tracking</span>
+            <span class="text-xs font-bold text-touristEmerald font-mono">Foreground Only</span>
           </div>
-          <div class="p-3 rounded-xl bg-surface1 border border-borderSubtle">
-            <span class="text-[10px] font-mono text-textDim uppercase block">Sensitive Permissions</span>
-            <span class="text-xs font-bold text-accentViolet font-mono">0 SMS / Call Declarations</span>
+          <div class="p-3.5 rounded-xl bg-surface1 border border-borderHairline flex flex-col gap-0.5">
+            <span class="text-[10px] font-mono text-textTertiary uppercase">Dangerous Perms</span>
+            <span class="text-xs font-bold text-nexusCyan font-mono">0 Declared in Manifest</span>
           </div>
-          <div class="p-3 rounded-xl bg-surface1 border border-borderSubtle">
-            <span class="text-[10px] font-mono text-textDim uppercase block">Data Purge Window</span>
-            <span class="text-xs font-bold text-accentAmber font-mono">&le; 7 Business Days</span>
+          <div class="p-3.5 rounded-xl bg-surface1 border border-borderHairline flex flex-col gap-0.5">
+            <span class="text-[10px] font-mono text-textTertiary uppercase">Data Purge Window</span>
+            <span class="text-xs font-bold text-orvixLime font-mono">≤ 7 Business Days</span>
           </div>
         </div>
       </div>
 
-      <div class="flex flex-col gap-10 pt-10 text-sm leading-relaxed text-textMuted">
+      <div class="flex flex-col gap-12 pt-10 text-sm leading-relaxed text-textSecondary">
 
         <section class="flex flex-col gap-3">
-          <h2 class="text-xl font-bold text-white flex items-center gap-2">
-            <span class="text-accentViolet font-mono text-sm">01.</span>
-            Scope &amp; Core Architectural Guarantee
-          </h2>
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-mono font-bold text-touristEmerald">01 //</span>
+            <h2 class="text-lg font-bold text-white uppercase font-mono">Core Privacy Guarantee &amp; Architecture</h2>
+          </div>
           <p>
-            Arriva is engineered on an <strong class="text-white">Offline-First, Privacy-by-Design</strong> paradigm. The application operates primarily against a local Room SQLite database on your Android hardware. We do not maintain advertising identifiers, behavioral profile brokers, or biometric trackers. We categorically never sell, rent, monetize, or disclose user data to data brokers.
+            ARRIVA operates on a strict <strong class="text-white">Offline-First, Privacy-by-Design</strong> architecture. Our applications execute primarily against local sandboxed databases (Room SQLite on Android) and on-device machine learning models (Google ML Kit). We do not assign advertising identifiers, load marketing pixels, or broker behavioral data. We never sell, rent, monetize, or transfer your personal data to commercial data brokers.
           </p>
         </section>
 
         <section class="flex flex-col gap-4">
-          <h2 class="text-xl font-bold text-white flex items-center gap-2">
-            <span class="text-accentEmerald font-mono text-sm">02.</span>
-            Android Runtime Permissions &amp; Technical Justifications
-          </h2>
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-mono font-bold text-nexusCyan">02 //</span>
+            <h2 class="text-lg font-bold text-white uppercase font-mono">Android Runtime Permissions &amp; Disclosures</h2>
+          </div>
           <p>
-            In accordance with Google Play's Prominent Disclosure and Consent policies, below are the specific permissions requested by Arriva:
+            In compliance with Google Play's Prominent Disclosure and User Consent policies, below are the technical justifications for runtime permissions declared by the ARRIVA Tourist Guide application:
           </p>
 
           <div class="flex flex-col gap-3">
-            <div class="p-4 rounded-2xl bg-surface1 border border-borderSubtle">
-              <div class="flex items-center justify-between font-mono text-xs text-white pb-1.5 border-b border-borderSubtle">
-                <span class="font-bold text-accentViolet">ACCESS_FINE_LOCATION &amp; ACCESS_COARSE_LOCATION</span>
-                <span class="text-textDim">Runtime Permission</span>
+            <div class="p-4 rounded-2xl bg-surface1 border border-borderHairline">
+              <div class="flex items-center justify-between font-mono text-xs text-white pb-2 border-b border-borderHairline">
+                <span class="font-bold text-touristEmerald">ACCESS_FINE_LOCATION &amp; ACCESS_COARSE_LOCATION</span>
+                <span class="text-textTertiary">Runtime Permission</span>
               </div>
-              <p class="text-xs text-textMuted mt-2 leading-relaxed">
-                <strong class="text-white">Technical Justification:</strong> Required to position your marker on topographic hiking trails (osmdroid) and urban transit maps (Google Maps SDK). Coordinates are also used to compute distance vectors in the Simulated Annealing trip planner and to pre-fill coordinates into your SMS composer during an emergency distress action.<br>
-                <strong class="text-white">Boundary:</strong> Processed in memory while the app is active in the foreground. Never logged to external analytics servers or transmitted without user action. Arriva declares NO background location permission (<code class="font-mono text-white">ACCESS_BACKGROUND_LOCATION</code>).
+              <p class="text-xs text-textSecondary mt-2 leading-relaxed">
+                <strong class="text-white">Technical Purpose:</strong> Required to locate your position on topographic hiking trails (osmdroid) and urban transit maps (Google Maps SDK). Coordinates are also used to compute distance vectors in the Simulated Annealing trip planner and to prefill coordinates into your SMS composer during an emergency distress action.<br>
+                <strong class="text-white">Collection Boundary:</strong> Handled in volatile memory strictly while the app is active in the foreground. Never logged to external analytics servers or transmitted without explicit user action. Arriva declares NO background location permission (<code class="font-mono text-white">ACCESS_BACKGROUND_LOCATION</code>).
               </p>
             </div>
 
-            <div class="p-4 rounded-2xl bg-surface1 border border-borderSubtle">
-              <div class="flex items-center justify-between font-mono text-xs text-white pb-1.5 border-b border-borderSubtle">
-                <span class="font-bold text-accentEmerald">CAMERA &amp; READ_MEDIA_IMAGES (Optional)</span>
-                <span class="text-textDim">Runtime Permission</span>
+            <div class="p-4 rounded-2xl bg-surface1 border border-borderHairline">
+              <div class="flex items-center justify-between font-mono text-xs text-white pb-2 border-b border-borderHairline">
+                <span class="font-bold text-nexusCyan">CAMERA &amp; READ_MEDIA_IMAGES (Optional)</span>
+                <span class="text-textTertiary">Runtime Permission</span>
               </div>
-              <p class="text-xs text-textMuted mt-2 leading-relaxed">
-                <strong class="text-white">Technical Justification:</strong> Requested only when you intentionally upload a photographic review of a heritage spot or culinary destination.<br>
-                <strong class="text-white">Boundary:</strong> The camera and gallery picker are only invoked on explicit user touch. Arriva never scans your photo library in the background.
+              <p class="text-xs text-textSecondary mt-2 leading-relaxed">
+                <strong class="text-white">Technical Purpose:</strong> Requested only when you explicitly choose to capture or attach a photo to a regional landmark review.<br>
+                <strong class="text-white">Collection Boundary:</strong> Only triggered on direct user interaction. Arriva never scans, indexes, or accesses photos in the background.
               </p>
             </div>
 
-            <div class="p-4 rounded-2xl bg-surface1 border border-borderSubtle">
-              <div class="flex items-center justify-between font-mono text-xs text-white pb-1.5 border-b border-borderSubtle">
-                <span class="font-bold text-accentAmber">INTERNET &amp; ACCESS_NETWORK_STATE</span>
-                <span class="text-textDim">Install-Time Permission</span>
+            <div class="p-4 rounded-2xl bg-surface1 border border-borderHairline">
+              <div class="flex items-center justify-between font-mono text-xs text-white pb-2 border-b border-borderHairline">
+                <span class="font-bold text-orvixLime">INTERNET &amp; ACCESS_NETWORK_STATE</span>
+                <span class="text-textTertiary">Normal Permission</span>
               </div>
-              <p class="text-xs text-textMuted mt-2 leading-relaxed">
-                <strong class="text-white">Technical Justification:</strong> Used to download offline map tile packages during setup, authenticate optional user accounts via Supabase, and dispatch prompts to our secure backend proxy.<br>
-                <strong class="text-white">Boundary:</strong> Encrypted using TLS 1.3 across all network transactions.
+              <p class="text-xs text-textSecondary mt-2 leading-relaxed">
+                <strong class="text-white">Technical Purpose:</strong> Used to download offline map tile packages, authenticate optional accounts via Supabase, and dispatch prompts to our secure backend proxy.<br>
+                <strong class="text-white">Collection Boundary:</strong> Transmitted exclusively over TLS 1.3 encrypted sockets.
               </p>
             </div>
 
-            <div class="p-4 rounded-2xl bg-surface2 border border-borderSubtle">
-              <div class="flex items-center justify-between font-mono text-xs text-white pb-1.5 border-b border-borderSubtle">
-                <span class="font-bold text-rose-400">EXPLICIT EXCLUSION: SEND_SMS &amp; CALL_PHONE</span>
-                <span class="text-accentEmerald">Zero Dangerous Permissions</span>
+            <div class="p-4 rounded-2xl bg-surface2 border border-borderHairline">
+              <div class="flex items-center justify-between font-mono text-xs text-white pb-2 border-b border-borderHairline">
+                <span class="font-bold text-rose-400">EXPLICIT EXCLUSION: ZERO SEND_SMS &amp; CALL_PHONE</span>
+                <span class="text-touristEmerald font-bold">100% Intent-Based</span>
               </div>
-              <p class="text-xs text-textMuted mt-2 leading-relaxed">
-                To guarantee complete Play Store compliance, Arriva <strong class="text-white">does NOT declare</strong> <code class="text-white font-mono">SEND_SMS</code>, <code class="text-white font-mono">CALL_PHONE</code>, or <code class="text-white font-mono">BIND_ACCESSIBILITY_SERVICE</code>. All emergency actions utilize standard Android system Intents (<code class="text-white font-mono">Intent.ACTION_SENDTO</code> and <code class="text-white font-mono">Intent.ACTION_DIAL</code>). The user retains complete control before any message is sent or call is placed.
+              <p class="text-xs text-textSecondary mt-2 leading-relaxed">
+                To guarantee total Google Play policy compliance and eliminate background eavesdropping risks, ARRIVA <strong class="text-white">does NOT declare</strong> <code class="text-white font-mono">SEND_SMS</code>, <code class="text-white font-mono">CALL_PHONE</code>, or <code class="text-white font-mono">BIND_ACCESSIBILITY_SERVICE</code>. All emergency actions utilize standard Android system Intents (<code class="text-white font-mono">Intent.ACTION_SENDTO</code> and <code class="text-white font-mono">Intent.ACTION_DIAL</code>). You retain full tactile control before any message is sent or call is initiated.
               </p>
             </div>
           </div>
         </section>
 
         <section class="flex flex-col gap-3">
-          <h2 class="text-xl font-bold text-white flex items-center gap-2">
-            <span class="text-accentAmber font-mono text-sm">03.</span>
-            Third-Party Infrastructure &amp; Data Telemetry
-          </h2>
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-mono font-bold text-orvixLime">03 //</span>
+            <h2 class="text-lg font-bold text-white uppercase font-mono">Third-Party Infrastructure Boundary</h2>
+          </div>
           <p>
-            Arriva connects only to vetted infrastructure components required for core utility:
+            ARRIVA connects only to essential, vetted infrastructure components required for core utility:
           </p>
           <ul class="list-disc pl-5 flex flex-col gap-2">
-            <li><strong class="text-white">Supabase:</strong> Handles optional user authentication and public community reviews. Data stored in enterprise PostgreSQL with Row-Level Security (RLS).</li>
-            <li><strong class="text-white">Render Backend Proxy:</strong> Intermediates Claude AI requests and image uploads to prevent client-side token exposure. User IP addresses are not logged to disk.</li>
-            <li><strong class="text-white">Cloudinary:</strong> Stores user-submitted review imagery with optimized compression.</li>
-            <li><strong class="text-white">Google ML Kit:</strong> On-device model execution. English-to-Marathi neural translation is performed entirely on your CPU/NPU without cloud transmission.</li>
+            <li><strong class="text-white">Supabase:</strong> Manages optional user authentication and community place reviews. Protected by PostgreSQL Row-Level Security (RLS).</li>
+            <li><strong class="text-white">Render Backend Proxy:</strong> Intermediates Claude AI requests and image uploads to prevent client-side secret exposure. Client IP addresses are not stored to disk.</li>
+            <li><strong class="text-white">Cloudinary:</strong> Stores user-submitted place review imagery with automated compression.</li>
+            <li><strong class="text-white">Google ML Kit:</strong> On-device model execution. English-to-Marathi neural translation is performed locally on your device CPU/NPU without cloud transmission.</li>
           </ul>
         </section>
 
         <section class="flex flex-col gap-4">
-          <h2 class="text-xl font-bold text-white flex items-center gap-2">
-            <span class="text-accentViolet font-mono text-sm">04.</span>
-            Google Play Data Safety Declaration Matrix
-          </h2>
-          <div class="overflow-x-auto rounded-2xl border border-borderSubtle">
-            <table class="w-full text-left text-xs font-sans">
-              <thead class="bg-surface2 text-textDim font-mono uppercase text-[10px]">
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-mono font-bold text-arrivaViolet">04 //</span>
+            <h2 class="text-lg font-bold text-white uppercase font-mono">Google Play Data Safety Matrix</h2>
+          </div>
+          <div class="overflow-x-auto rounded-2xl border border-borderHairline">
+            <table class="w-full text-left text-xs font-mono">
+              <thead class="bg-surface2 text-textTertiary uppercase text-[10px]">
                 <tr>
                   <th class="p-3">Data Field</th>
                   <th class="p-3">Collected / Ephemeral</th>
@@ -245,30 +251,30 @@
                   <th class="p-3">Purpose</th>
                 </tr>
               </thead>
-              <tbody class="divide-y divide-borderSubtle bg-surface1">
+              <tbody class="divide-y divide-borderHairline bg-surface1">
                 <tr>
                   <td class="p-3 font-semibold text-white">Approximate &amp; Precise Location</td>
-                  <td class="p-3 text-accentEmerald">Ephemeral (In-Memory)</td>
-                  <td class="p-3 font-mono">N/A (Local Only)</td>
-                  <td class="p-3">Trail positioning &amp; route calculation</td>
+                  <td class="p-3 text-touristEmerald">Ephemeral (In-Memory)</td>
+                  <td class="p-3">N/A (Local Only)</td>
+                  <td class="p-3 font-sans">Trail positioning &amp; route calculation</td>
                 </tr>
                 <tr>
                   <td class="p-3 font-semibold text-white">Email Address (Optional)</td>
                   <td class="p-3 text-white">Collected upon sign-in</td>
-                  <td class="p-3 font-mono">TLS 1.3 / AES-256</td>
-                  <td class="p-3">Account recovery &amp; review authorship</td>
+                  <td class="p-3">TLS 1.3 / AES-256</td>
+                  <td class="p-3 font-sans">Account recovery &amp; review authorship</td>
                 </tr>
                 <tr>
                   <td class="p-3 font-semibold text-white">Photos (Optional)</td>
                   <td class="p-3 text-white">User-initiated reviews only</td>
-                  <td class="p-3 font-mono">TLS 1.3 / HTTPS</td>
-                  <td class="p-3">Spot review attachment</td>
+                  <td class="p-3">TLS 1.3 / HTTPS</td>
+                  <td class="p-3 font-sans">Spot review attachment</td>
                 </tr>
                 <tr>
                   <td class="p-3 font-semibold text-white">Advertising / Device ID</td>
                   <td class="p-3 text-rose-400 font-bold">NEVER COLLECTED</td>
-                  <td class="p-3 font-mono">-</td>
-                  <td class="p-3">Zero tracking policy</td>
+                  <td class="p-3">-</td>
+                  <td class="p-3 font-sans">Zero tracking policy</td>
                 </tr>
               </tbody>
             </table>
@@ -276,49 +282,49 @@
         </section>
 
         <section class="flex flex-col gap-3">
-          <h2 class="text-xl font-bold text-white flex items-center gap-2">
-            <span class="text-accentEmerald font-mono text-sm">05.</span>
-            Account &amp; Data Deletion (Google Play Mandate)
-          </h2>
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-mono font-bold text-touristEmerald">05 //</span>
+            <h2 class="text-lg font-bold text-white uppercase font-mono">Account &amp; Data Deletion (Google Play Mandate)</h2>
+          </div>
           <p>
-            Under Google Play Developer Policy, all users possess an unconditioned right to request total deletion of their account and all associated telemetry records.
+            Under Google Play Developer Policy, every user possesses an unconditioned right to request total deletion of their account and all associated telemetry records.
           </p>
-          <div class="p-4 rounded-2xl bg-surface2 border border-borderSubtle flex flex-col gap-3 text-xs leading-relaxed">
-            <h4 class="font-bold text-white">How to Delete Your Data:</h4>
-            <ol class="list-decimal pl-5 flex flex-col gap-1.5">
-              <li><strong class="text-white">In-App Immediate Purge:</strong> Open Arriva &gt; Navigate to <em>Settings &gt; Profile &gt; Delete Account</em>. All authentication credentials, local SQLite caches, and review associations will be instantly purged.</li>
-              <li><strong class="text-white">Direct Web / Email Request:</strong> Send an email to <a href="mailto:sachinbableshwar1828@gmail.com" class="text-accentViolet underline font-mono">sachinbableshwar1828@gmail.com</a> with the subject line <code class="text-white font-mono">ARRIVA: Account Deletion Request</code>. Specify your registered email address.</li>
+          <div class="p-4 rounded-2xl bg-surface2 border border-borderHairline flex flex-col gap-3 text-xs leading-relaxed">
+            <h4 class="font-bold text-white font-mono uppercase">Deletion Pathways:</h4>
+            <ol class="list-decimal pl-5 flex flex-col gap-1.5 font-sans">
+              <li><strong class="text-white">In-App Immediate Purge:</strong> Open Arriva &gt; Settings &gt; Profile &gt; Delete Account. All authentication tokens, local SQLite caches, and review associations will be instantly purged.</li>
+              <li><strong class="text-white">Direct Email Request:</strong> Send an email to <a href="mailto:sachinbableshwar1828@gmail.com" class="text-arrivaViolet underline font-mono">sachinbableshwar1828@gmail.com</a> with the subject line <code class="text-white font-mono">ARRIVA: Account Deletion Request</code>. Specify your registered email address.</li>
             </ol>
-            <p class="text-textDim text-[11px] pt-1">
-              Data deletion requests are confirmed and completed within <strong>7 business days</strong>. No backups or shadow records are retained.
+            <p class="text-textTertiary text-[11px] font-mono pt-1">
+              Data deletion requests are confirmed and completed within <strong>7 business days</strong>. No shadow backups are retained.
             </p>
           </div>
         </section>
 
         <section class="flex flex-col gap-3">
-          <h2 class="text-xl font-bold text-white flex items-center gap-2">
-            <span class="text-accentAmber font-mono text-sm">06.</span>
-            Children's Privacy Protection
-          </h2>
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-mono font-bold text-nexusCyan">06 //</span>
+            <h2 class="text-lg font-bold text-white uppercase font-mono">Children's Privacy Protection</h2>
+          </div>
           <p>
-            Arriva is a general-audience travel utility. We do not intentionally market to or collect personal information from children under the age of 13 (or under 18 under India's Digital Personal Data Protection Act, 2023). If we become aware that personal information has been collected from a child without verified parental consent, we will take immediate steps to delete that information from our servers.
+            ARRIVA is a general-audience digital utility. We do not knowingly market to or collect personal information from children under the age of 13 (or under 18 under India's Digital Personal Data Protection Act, 2023). If we become aware that personal information has been collected from a child without verified parental consent, we will take immediate steps to delete that information from our servers.
           </p>
         </section>
 
         <section class="flex flex-col gap-3">
-          <h2 class="text-xl font-bold text-white flex items-center gap-2">
-            <span class="text-accentViolet font-mono text-sm">07.</span>
-            Grievance Redressal &amp; Privacy Officer
-          </h2>
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-mono font-bold text-orvixLime">07 //</span>
+            <h2 class="text-lg font-bold text-white uppercase font-mono">Grievance Redressal &amp; Privacy Officer</h2>
+          </div>
           <p>
-            For any questions, clarifications, or audit inquiries regarding this Privacy Policy or Arriva's data handling practices, please contact our designated Privacy Officer:
+            For inquiries, audit questions, or rights requests regarding this Privacy Policy or ARRIVA's data practices, please contact our designated Privacy Officer:
           </p>
-          <div class="p-4 rounded-2xl bg-surface1 border border-borderSubtle flex flex-col gap-1.5 text-xs">
+          <div class="p-4 rounded-2xl bg-surface1 border border-borderHairline flex flex-col gap-1.5 text-xs font-mono">
             <span class="font-bold text-white">Sachin Bableshwar</span>
-            <span class="text-textDim">Lead Developer &amp; Grievance Officer, Arriva</span>
-            <span class="text-textMuted font-mono">Pune, Maharashtra, India</span>
-            <span class="text-textMuted">Email: <a href="mailto:sachinbableshwar1828@gmail.com" class="text-accentViolet underline">sachinbableshwar1828@gmail.com</a></span>
-            <span class="text-textMuted">Repository: <a href="https://github.com/Sachin85469/Tourist_Guide_App" target="_blank" rel="noopener noreferrer" class="text-accentViolet underline font-mono">github.com/Sachin85469/Tourist_Guide_App</a></span>
+            <span class="text-textTertiary">Lead Developer &amp; Grievance Officer, ARRIVA Studio</span>
+            <span class="text-textSecondary">Pune, Maharashtra, India</span>
+            <span class="text-textSecondary">Email: <a href="mailto:sachinbableshwar1828@gmail.com" class="text-arrivaViolet underline">sachinbableshwar1828@gmail.com</a></span>
+            <span class="text-textSecondary">Studio GitHub: <a href="https://github.com/Sachin85469" target="_blank" rel="noopener noreferrer" class="text-arrivaViolet underline">github.com/Sachin85469</a></span>
           </div>
         </section>
 
@@ -327,30 +333,29 @@
     </div>
   </main>
 
-  <footer class="border-t border-borderSubtle bg-canvas/90 py-10">
+  <footer class="border-t border-borderHairline bg-obsidian py-10">
     <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
       <div class="flex items-center gap-2.5">
-        <img src="assets/favicon.svg" alt="Arriva Logo" class="w-5 h-5">
-        <span class="font-extrabold text-sm tracking-wider text-white">ARRIVA</span>
-        <span class="text-xs text-textDim">&middot; Privacy Policy</span>
+        <img src="assets/favicon.svg" alt="ARRIVA Logo" class="w-5 h-5">
+        <span class="font-extrabold text-sm tracking-widest text-white">ARRIVA</span>
+        <span class="text-xs text-textTertiary font-mono">· Privacy &amp; Data Safety</span>
       </div>
-      <div class="flex items-center gap-6 text-xs text-textMuted">
+      <div class="flex items-center gap-6 text-xs font-mono text-textSecondary">
         <a href="index.html" class="hover:text-white transition-colors">Home</a>
-        <a href="index.html#features" class="hover:text-white transition-colors">Features</a>
-        <a href="index.html#faq" class="hover:text-white transition-colors">FAQ</a>
+        <a href="index.html#tourist-guide" class="hover:text-touristEmerald transition-colors">Tourist Guide</a>
+        <a href="index.html#nexus" class="hover:text-nexusCyan transition-colors">NEXUS</a>
+        <a href="index.html#orvix" class="hover:text-orvixLime transition-colors">ORVIX</a>
         <a href="https://github.com/Sachin85469/Tourist_Guide_App" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">GitHub</a>
       </div>
-      <div class="text-xs font-mono text-textDim">
-        &copy; 2026 Arriva. Open source under MIT.
+      <div class="text-xs font-mono text-textTertiary">
+        &copy; 2026 ARRIVA. Open source under MIT.
       </div>
     </div>
   </footer>
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      if (window.lucide) {
-        window.lucide.createIcons();
-      }
+      if (window.lucide) window.lucide.createIcons();
     });
   </script>
 </body>

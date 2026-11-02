@@ -1,43 +1,49 @@
-# ARRIVA — Official Brand & Web Portal
+# ARRIVA — Software Studio & Product Suite
 
-**ARRIVA** — *Intelligent Exploration for Maharashtra & Pune.*  
-Official brand portal and Google Play Store compliance suite for the **Arriva Android Travel Companion** (`com.arriva.touristguide`).
+**ARRIVA** — *Ideas Into Innovation.*  
+Independent software engineering studio based in Pune, India. We design and build focused digital products prioritizing on-device privacy, offline utility, and high-performance native architecture.
 
-Live Portal: [https://arrivaa.tech](https://arrivaa.tech)  
-Repository: [https://github.com/Sachin85469/arrivaa-demo](https://github.com/Sachin85469/arrivaa-demo)  
-Android App Source: [https://github.com/Sachin85469/Tourist_Guide_App](https://github.com/Sachin85469/Tourist_Guide_App)
-
----
-
-## Core Focus: ARRIVA Travel Companion
-
-Arriva is an autonomous Android travel companion built natively for Android 10+ (API 29–35) in Kotlin and Java. It provides:
-1. **Autonomous Simulated Annealing Trip Planner**: On-device TSP solver optimizing multi-stop Pune and Sahyadri itineraries, penalizing backtracking and traffic bottlenecks.
-2. **Offline Topographic Vector Contours**: 20-meter elevation contour maps powered by osmdroid and SQLite tile caching, operating in complete cellular dead zones.
-3. **On-Device Marathi Neural Translation**: Google ML Kit on-device model translating directional, culinary, and emergency phrases without network latency.
-4. **Zero-Permission Intent Emergency SOS**: Complete Google Play compliance using Android `ACTION_SENDTO` and `ACTION_DIAL` Intents to prefill coordinates without requesting invasive background SMS/Call permissions.
+- **Live Web Portal**: [https://arrivaa.tech](https://arrivaa.tech)
+- **Web Portal Repository**: [https://github.com/Sachin85469/arrivaa-demo](https://github.com/Sachin85469/arrivaa-demo)
+- **Flagship Android App**: [https://github.com/Sachin85469/Tourist_Guide_App](https://github.com/Sachin85469/Tourist_Guide_App)
 
 ---
 
-## Web Architecture & Directory Layout
+## The ARRIVA Fleet
 
-The web portal lives under `website/` and is deployed as a high-performance static experience:
+### 01 · ARRIVA Tourist Guide (Flagship Android App)
+- **Status**: Live / Version 1.0.4 (Target SDK 34 / Android 10+)
+- **Package**: `com.arriva.touristguide`
+- **Core Technology**: Kotlin & Java, Room SQLite DB, osmdroid 20m contour topography, Google ML Kit on-device Marathi translation, Simulated Annealing route optimizer.
+- **Safety**: 100% Intent-based emergency distress (`Intent.ACTION_SENDTO` and `Intent.ACTION_DIAL`) with zero dangerous background SMS or phone call permissions.
+
+### 02 · ARRIVA NEXUS (Private Messaging)
+- **Status**: In Active Development (Android Native)
+- **Core Philosophy**: Zero algorithmic feeds, zero timeline ads, on-device SQLite message storage, topic channels, and low background battery overhead (<2% per day).
+
+### 03 · ARRIVA ORVIX (Local AI Bridge)
+- **Status**: Developer System / Local Compute
+- **Core Technology**: Connects directly to local Ollama on `127.0.0.1:11434`. Streaming token inspection, raw REST API console, zero external cloud telemetry leaks.
+
+---
+
+## Directory Layout
 
 ```text
 ARRIVAA/
 ├── website/
 │   ├── assets/
-│   │   ├── fonts/               # Self-hosted typography
-│   │   ├── screens/             # App screenshots and vector device mockups
-│   │   ├── favicon.svg          # Official Arriva mark
-│   │   └── og-image.png         # Social graph preview card
-│   ├── 404.html                 # Custom dark fallback page
-│   ├── index.html               # Official Arriva product landing showcase
-│   ├── privacy.html             # Google Play compliant standalone privacy policy
-│   ├── robots.txt               # Search engine crawler directives
+│   │   ├── fonts/               # Self-hosted typography (Poppins, JetBrains Mono)
+│   │   ├── screens/             # SVG & image mockups (Tourist Guide, NEXUS, ORVIX)
+│   │   ├── favicon.svg          # Official ARRIVA studio mark
+│   │   └── og-image.png         # OpenGraph preview card
+│   ├── 404.html                 # Diagnostics & error page
+│   ├── index.html               # Official studio showcase & interactive fleet portal
+│   ├── privacy.html             # Standalone Google Play 2026 compliant privacy policy
+│   ├── robots.txt               # Crawler directives
 │   └── sitemap.xml              # XML Sitemap
 ├── brand/                       # Vector wordmarks and design guidelines
-├── dev/                         # Local development and verification scripts
+├── dev/                         # Local development test suites
 └── README.md                    # Project documentation
 ```
 
@@ -45,22 +51,12 @@ ARRIVAA/
 
 ## Google Play Developer Policy Compliance
 
-The portal hosts the official, standalone **Privacy Policy** required by Google Play Console:
-- Public URL: `https://arrivaa.tech/privacy.html`
-- Prominent runtime permission disclosures: `ACCESS_FINE_LOCATION`, `CAMERA`
-- Explicit declaration of zero sensitive SMS / Call permissions
-- Step-by-step account and telemetry deletion instructions
-- Grievance Redressal Officer contact: Sachin Bableshwar (`sachinbableshwar1828@gmail.com`)
-
----
-
-## Local Development
-
-Serve the static site locally with any static HTTP server:
-```bash
-python -m http.server 8000 --directory website
-```
-Open `http://localhost:8000` in your browser.
+The web portal hosts the standalone **Privacy Policy & Data Safety Disclosures** required by Google Play Console:
+- Direct URL: `https://arrivaa.tech/privacy.html`
+- Prominent runtime permission disclosures: `ACCESS_FINE_LOCATION`, `CAMERA`, `INTERNET`
+- Explicit zero-permission declaration: No `SEND_SMS` or `CALL_PHONE`
+- Self-serve account and telemetry deletion instructions
+- Grievance Redressal Officer: Sachin Bableshwar (`sachinbableshwar1828@gmail.com`)
 
 ---
 
