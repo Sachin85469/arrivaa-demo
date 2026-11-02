@@ -1,122 +1,757 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#F8F7FF">
-<meta name="description" content="ARRIVA builds digital products and shares practical technology, software engineering, and AI workflows. Ideas Into Innovation.">
-<link rel="canonical" href="https://arrivaa.tech/">
-<meta property="og:title" content="ARRIVA — Ideas Into Innovation">
-<meta property="og:description" content="ARRIVA builds focused digital products and shares practical technology, software engineering, and AI workflows. Ideas Into Innovation.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://arrivaa.tech/">
-<meta property="og:image" content="https://arrivaa.tech/assets/og-image.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="ARRIVA — Ideas Into Innovation">
-<meta name="twitter:description" content="ARRIVA builds focused digital products and shares practical technology, software engineering, and AI workflows. Ideas Into Innovation.">
-<meta name="twitter:image" content="https://arrivaa.tech/assets/og-image.png">
-<title>ARRIVA — Ideas Into Innovation</title>
-<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-<link rel="stylesheet" href="styles.css">
-</head>
-<body class="loading">
-<noscript>
-  <div style="padding: 16px 24px; background: #EDE9FE; border-bottom: 1px solid #CBD5E1; text-align: center; font-family: 'Poppins', sans-serif; font-size: 0.95rem;">
-    <strong>ARRIVA — Ideas Into Innovation.</strong> JavaScript is recommended for interactive 3D simulations and device walkthroughs.
-  </div>
-</noscript>
-<a class="skip" href="#main">Skip to content</a>
+<!DOCTYPE html>
 
-<!-- Preloader Orchestration -->
-<div class="preloader" id="pre" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-  <div>
-    <span class="hi" id="pre-hi"></span>
-    <b id="pct">0%</b>
-    <p id="pre-title"></p>
-    <i><u id="bar"></u></i>
-  </div>
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"on-secondary":"#003824","surface-container-highest":"#333539","surface-container":"#1e2024","secondary-fixed":"#6ffbbe","tertiary":"#ffb95f","outline":"#958ea0","secondary-fixed-dim":"#4edea3","primary-fixed-dim":"#d0bcff","on-primary-fixed":"#23005c","secondary":"#4edea3","on-tertiary-container":"#3e2400","primary-fixed":"#e9ddff","surface-tint":"#d0bcff","error-container":"#93000a","surface-container-low":"#1a1c20","inverse-primary":"#6d3bd7","on-secondary-container":"#00311f","on-surface":"#e2e2e8","primary-container":"#a078ff","on-primary":"#3c0091","on-tertiary":"#472a00","error":"#ffb4ab","surface-container-lowest":"#0c0e12","background":"#111318","on-primary-fixed-variant":"#5516be","inverse-surface":"#e2e2e8","on-background":"#e2e2e8","surface":"#111318","tertiary-container":"#ca8100","on-primary-container":"#340080","tertiary-fixed-dim":"#ffb95f","on-secondary-fixed-variant":"#005236","on-tertiary-fixed":"#2a1700","surface-variant":"#333539","inverse-on-surface":"#2f3035","outline-variant":"#494454","on-surface-variant":"#cbc3d7","on-error-container":"#ffdad6","surface-dim":"#111318","on-error":"#690005","on-secondary-fixed":"#002113","surface-container-high":"#282a2e","surface-bright":"#37393e","tertiary-fixed":"#ffddb8","secondary-container":"#00a572","primary":"#d0bcff","on-tertiary-fixed-variant":"#653e00"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"gutter-mobile":"0.75rem","space-sm":"0.5rem","gutter":"1rem","margin":"1.25rem","margin-desktop":"3rem","space-md":"1rem","margin-mobile":"1rem","space-2xl":"3.5rem","space-lg":"1.5rem","space-xs":"0.25rem","space-xl":"2.25rem","gutter-desktop":"1.5rem"},"fontFamily":{"label-caps":["Plus Jakarta Sans"],"display-hero":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"headline-sm":["Plus Jakarta Sans"],"label-lg":["Plus Jakarta Sans"],"label-md":["Plus Jakarta Sans"],"display-hero-mobile":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"]},"fontSize":{"label-caps":["10px",{"lineHeight":"14px","letterSpacing":"0.06em","fontWeight":"700"}],"display-hero":["56px",{"lineHeight":"64px","letterSpacing":"-0.03em","fontWeight":"800"}],"headline-lg":["32px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-lg-mobile":["26px",{"lineHeight":"34px","letterSpacing":"-0.015em","fontWeight":"700"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"headline-md":["22px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}],"headline-sm":["18px",{"lineHeight":"24px","fontWeight":"600"}],"label-lg":["14px",{"lineHeight":"18px","letterSpacing":"0.01em","fontWeight":"600"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"600"}],"display-hero-mobile":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"800"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}]}}}}</script></head><body class="bg-background font-body-md text-body-md text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container min-h-screen relative overflow-x-hidden"><div class="pointer-events-none fixed inset-0 z-0 overflow-hidden"><div class="absolute -top-40 right-1/4 h-[500px] w-[500px] rounded-full bg-primary/10 blur-[130px]"></div><div class="absolute top-1/3 -left-20 h-[450px] w-[450px] rounded-full bg-secondary/10 blur-[120px]"></div><div class="absolute bottom-10 right-10 h-[380px] w-[380px] rounded-full bg-tertiary-container/10 blur-[140px]"></div></div><header class="fixed top-0 left-0 right-0 z-50 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-20 max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md"><a class="flex items-center gap-space-sm group" data-path="overview" href="#"><img alt="Arriva Brand Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VPRabT7w1en1FmoQcwT2HQhIzJAGOWa-5SgaerRhd9wfFQTA46oZo1ngdNtur6kTwGOy6ShManznRl-ieEW2akdLW3-h_XJLPS1aa5SdRz3uBSm-jd3fNAH1_h0t3cRNjnXLQmwqx_a7N_2JM3HhF7aV56QJay7jURIF1P2dh0esg2NZJ9zr76Hn-xNTK4HCa_C7NS9OEk2vFcGbW3SZxuROtzPI4xd2zXLw9jAcd68Q"/><span class="font-headline-sm text-headline-sm font-bold tracking-tight text-on-surface group-hover:text-primary transition-colors">ARRIVA</span></a><div class="hidden sm:flex items-center gap-space-xs bg-surface-container px-space-sm py-1 rounded-full shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span></span><span class="font-label-caps text-label-caps text-secondary-fixed uppercase tracking-wider">v1.0 Live on Play Store</span></div></div><nav class="hidden xl:flex items-center gap-space-xs p-1" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-lg"><a class="px-3 py-2 rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="features" href="#">Features</a><a class="px-3 py-2 rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="trip-planner" href="#">Trip Planner</a><a class="px-3 py-2 rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="bento-grid" href="#">Bento Grid</a><a class="px-3 py-2 rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="app-screens" href="#">App Screens</a><a class="px-3 py-2 rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="architecture" href="#">Architecture</a><a class="px-3 py-2 rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="faq" href="#">FAQ</a></nav><div class="flex items-center gap-space-sm"><a class="hidden md:inline-flex items-center gap-space-xs px-space-md py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-lg text-label-lg transition-colors shadow-[0_1px_8px_rgba(0,0,0,0.04)]" href="https://github.com/Sachin85469/Tourist_Guide_App" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[18px]">code</span><span>GitHub</span></a><a class="inline-flex items-center gap-space-xs px-space-md py-2 rounded-lg bg-primary-container hover:bg-primary-fixed-dim text-on-primary-container font-label-lg text-label-lg font-bold transition-all shadow-[0_4px_20px_rgba(160,120,255,0.35)] hover:shadow-[0_6px_28px_rgba(160,120,255,0.5)]" data-path="download" href="#"><span class="material-symbols-outlined text-[20px]">android</span><span class="hidden sm:inline">Get on Google Play</span><span class="sm:hidden">Install</span></a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="relative z-10 w-full pt-20 bg-background"><div class="flex flex-col w-full">
+<!-- HERO SECTION -->
+<section class="relative w-full overflow-hidden px-6 lg:px-12 py-space-xl lg:py-space-2xl">
+<div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-space-xl lg:gap-space-2xl items-center">
+<!-- Left Column: Pitch & Action -->
+<div class="lg:col-span-7 flex flex-col gap-space-lg z-10">
+<div class="inline-flex items-center gap-space-xs self-start px-space-md py-1.5 rounded-full bg-surface-container-high shadow-md">
+<span class="material-symbols-outlined text-primary text-[18px]">bolt</span>
+<span class="font-label-md text-label-md text-primary tracking-wide">Powered by On-Device ML &amp; Claude AI</span>
 </div>
+<div class="flex flex-col gap-space-sm">
+<h1 class="font-display-hero text-display-hero text-on-surface tracking-tight">
+            Your Intelligent Travel Guide to <span class="text-primary">Maharashtra</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
+            Experience seamless AI trip planning, offline Sahyadri fort navigation with contour topography, instant Marathi-to-English neural translation, and local cultural lore—all built natively for Android.
+          </p>
+</div>
+<!-- Action CTAs -->
+<div class="flex flex-wrap items-center gap-space-md pt-space-xs">
+<a class="flex items-center gap-space-sm px-space-lg py-3.5 rounded-xl bg-primary-container text-on-primary-container font-headline-sm text-headline-sm font-bold shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all group" href="#download-section">
+<span class="material-symbols-outlined text-[26px]">android</span>
+<div class="flex flex-col text-left">
+<span class="font-label-caps text-label-caps tracking-widest uppercase opacity-80">Get It On</span>
+<span class="font-label-lg text-label-lg font-bold leading-none">Google Play</span>
+</div>
+<div class="ml-2 pl-3 bg-on-primary-container/10 py-1 px-2.5 rounded-lg flex items-center gap-1 font-label-md text-label-md">
+<span class="text-tertiary">★</span>
+<span>4.9 (1.2k+)</span>
+</div>
+</a>
+<button class="flex items-center gap-space-xs px-space-lg py-4 rounded-xl bg-surface-container-high text-on-surface font-label-lg text-label-lg shadow-md hover:bg-surface-container-highest transition-all" id="hero-video-trigger">
+<span class="material-symbols-outlined text-secondary text-[22px]" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+<span>Watch 60s Walkthrough</span>
+</button>
+</div>
+<!-- Trust micro-stats -->
+<div class="grid grid-cols-3 gap-space-sm pt-space-sm">
+<div class="flex flex-col gap-0.5 bg-surface-container-low p-space-sm rounded-xl">
+<span class="font-headline-sm text-headline-sm text-secondary font-bold">15,000+</span>
+<span class="font-body-sm text-body-sm text-outline">Trails Mapped</span>
+</div>
+<div class="flex flex-col gap-0.5 bg-surface-container-low p-space-sm rounded-xl">
+<span class="font-headline-sm text-headline-sm text-primary font-bold">0 MB</span>
+<span class="font-body-sm text-body-sm text-outline">Roaming Data Needed</span>
+</div>
+<div class="flex flex-col gap-0.5 bg-surface-container-low p-space-sm rounded-xl">
+<span class="font-headline-sm text-headline-sm text-tertiary font-bold">100%</span>
+<span class="font-body-sm text-body-sm text-outline">On-Device Privacy</span>
+</div>
+</div>
+</div>
+<!-- Right Column: 3D-angled Mobile Phone Mockup -->
+<div class="lg:col-span-5 relative flex justify-center items-center py-space-lg">
+<!-- Floating Stat Pills Hovering Over Mockup -->
+<div class="absolute -top-4 -left-6 z-20 flex items-center gap-space-xs bg-surface-container-highest/95 backdrop-blur-md px-3.5 py-2 rounded-full shadow-xl">
+<span class="material-symbols-outlined text-secondary text-[18px]">electric_bolt</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Saved 2.4h in Pune traffic</span>
+</div>
+<div class="absolute top-12 -right-6 z-20 flex items-center gap-space-xs bg-surface-container-highest/95 backdrop-blur-md px-3.5 py-2 rounded-full shadow-xl">
+<span class="material-symbols-outlined text-tertiary text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">4.8 Sinhagad (Kalyan Darwaja)</span>
+</div>
+<div class="absolute bottom-16 -left-8 z-20 flex items-center gap-space-xs bg-surface-container-highest/95 backdrop-blur-md px-3.5 py-2 rounded-full shadow-xl">
+<span class="material-symbols-outlined text-primary text-[18px]">offline_bolt</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">100% Offline Ready (Sahyadri)</span>
+</div>
+<div class="absolute -bottom-4 -right-4 z-20 flex items-center gap-space-xs bg-surface-container-highest/95 backdrop-blur-md px-3.5 py-2 rounded-full shadow-xl">
+<span class="material-symbols-outlined text-secondary text-[18px]">record_voice_over</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">"कसा काय?" ➔ "How are you?"</span>
+</div>
+<!-- Android Mockup Outer Shell -->
+<div class="relative w-[320px] sm:w-[350px] bg-surface-container-lowest rounded-[44px] p-3 shadow-2xl">
+<!-- Screen Frame -->
+<div class="w-full bg-surface-container-low rounded-[36px] overflow-hidden flex flex-col p-4 gap-space-sm">
+<!-- Android System Bar -->
+<div class="flex justify-between items-center px-2 pt-1 pb-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant">09:41</span>
+<div class="w-16 h-4 bg-surface-container-highest rounded-full"></div>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]">signal_cellular_4_bar</span>
+<span class="material-symbols-outlined text-[14px]">battery_full</span>
+</div>
+</div>
+<!-- App Bar Header -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined text-[18px]">explore</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Arriva Sahyadri</h3>
+<span class="font-body-sm text-body-sm text-secondary flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Live Expedition Mode
+                  </span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">bookmark</span>
+</div>
+<!-- Header Card: Expedition Target -->
+<div class="bg-surface-container p-3.5 rounded-2xl flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<div>
+<span class="font-label-caps text-label-caps uppercase text-tertiary">Active Itinerary</span>
+<p class="font-headline-sm text-headline-sm text-on-surface font-bold leading-snug">Pune to Sinhagad Fort</p>
+</div>
+<span class="px-2 py-0.5 rounded-md bg-secondary/15 text-secondary font-label-caps text-label-caps">OPTIMIZED</span>
+</div>
+<div class="grid grid-cols-2 gap-2 mt-1">
+<div class="flex items-center gap-2 bg-surface-container-high px-2.5 py-1.5 rounded-xl">
+<span class="material-symbols-outlined text-primary text-[18px]">cloud</span>
+<div>
+<span class="font-label-caps text-label-caps text-outline block">Weather</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">24°C, Foggy</span>
+</div>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-high px-2.5 py-1.5 rounded-xl">
+<span class="material-symbols-outlined text-secondary text-[18px]">landscape</span>
+<div>
+<span class="font-label-caps text-label-caps text-outline block">Elevation</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">1,312m AMSL</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Route Steps -->
+<div class="flex flex-col gap-2">
+<span class="font-label-caps text-label-caps text-outline uppercase tracking-wider">Upcoming Waypoints</span>
+<!-- Step 1 -->
+<div class="flex items-center gap-3 bg-surface-container-high p-2.5 rounded-xl">
+<div class="w-7 h-7 rounded-lg bg-secondary/20 flex items-center justify-center text-secondary font-label-md text-label-md font-bold">1</div>
+<div class="flex-1 min-w-0">
+<p class="font-label-md text-label-md text-on-surface font-semibold truncate">Golewadi Trek Base</p>
+<p class="font-body-sm text-body-sm text-outline">Trailhead • Pithla Bhakri Stalls</p>
+</div>
+<span class="font-label-caps text-label-caps text-secondary font-bold">08:15 AM</span>
+</div>
+<!-- Step 2 -->
+<div class="flex items-center gap-3 bg-surface-container p-2.5 rounded-xl">
+<div class="w-7 h-7 rounded-lg bg-primary/20 flex items-center justify-center text-primary font-label-md text-label-md font-bold">2</div>
+<div class="flex-1 min-w-0">
+<p class="font-label-md text-label-md text-on-surface font-semibold truncate">Pune Darwaja Ridge</p>
+<p class="font-body-sm text-body-sm text-outline">Contour Line 1,180m • Steep Rocks</p>
+</div>
+<span class="font-label-caps text-label-caps text-outline font-bold">09:30 AM</span>
+</div>
+<!-- Step 3 -->
+<div class="flex items-center gap-3 bg-surface-container-lowest p-2.5 rounded-xl opacity-70">
+<div class="w-7 h-7 rounded-lg bg-surface-container-highest flex items-center justify-center text-outline font-label-md text-label-md">3</div>
+<div class="flex-1 min-w-0">
+<p class="font-label-md text-label-md text-on-surface font-medium truncate">Tanaji Malusare Samadhi</p>
+<p class="font-body-sm text-body-sm text-outline">Citadel Peak • Historical Marker</p>
+</div>
+<span class="font-label-caps text-label-caps text-outline">10:45 AM</span>
+</div>
+</div>
+<!-- Floating Start HUD Bar -->
+<div class="mt-1 bg-primary text-on-primary rounded-xl py-2.5 px-4 flex items-center justify-between shadow-lg">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">navigation</span>
+<span class="font-label-md text-label-md font-bold">Start Offline Track</span>
+</div>
+<span class="font-label-caps text-label-caps font-bold">3.8 km Left</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CORE FEATURE BENTO GRID SECTION -->
+<section class="w-full px-6 lg:px-12 py-space-2xl bg-surface-container-lowest/50" id="features">
+<div class="max-w-7xl mx-auto flex flex-col gap-space-xl">
+<!-- Section Header -->
+<div class="flex flex-col gap-space-xs max-w-2xl">
+<span class="font-label-caps text-label-caps uppercase text-primary tracking-widest">Built for Maharashtra Expeditions</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-bold">Core Capabilities Architecture</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          Engineered natively to handle steep Sahyadri escarpments, historic Maratha fortresses, and vibrant coastal cities without requiring steady cell towers.
+        </p>
+</div>
+<!-- Bento Grid (3x2 Desktop Layout) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg">
+<!-- Bento Card 1: AI Itinerary Planner (2 Columns Wide on LG) -->
+<div class="lg:col-span-2 bg-surface-container p-space-lg rounded-2xl flex flex-col justify-between gap-space-md shadow-lg group hover:bg-surface-container-high transition-colors">
+<div class="flex flex-col sm:flex-row justify-between sm:items-center gap-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[24px]">route</span>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold">Smart Dynamic Itineraries</h3>
+</div>
+<span class="self-start sm:self-auto px-space-sm py-1 rounded-full bg-secondary/10 text-secondary font-label-caps text-label-caps uppercase">Traffic-Aware Logic</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            Intelligently aligns stops in Pune &amp; Mumbai to avoid notorious bottleneck peak hours. Never criss-cross through JM Road or Western Express Highway needlessly.
+          </p>
+<!-- Chronological Timeline Display -->
+<div class="bg-surface-container-low p-space-md rounded-xl flex flex-col gap-space-sm">
+<div class="flex items-center justify-between pb-2">
+<span class="font-label-md text-label-md text-on-surface font-semibold flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[16px]">check_circle</span>
+                1-Day Optimized Pune Heritage &amp; Heights
+              </span>
+<span class="font-body-sm text-body-sm text-outline">08:30 AM – 06:45 PM</span>
+</div>
+<!-- Steps Progress Line -->
+<div class="grid grid-cols-1 sm:grid-cols-4 gap-2 text-left">
+<div class="bg-surface-container p-2.5 rounded-lg flex flex-col gap-1">
+<span class="font-label-caps text-label-caps text-primary">08:30 AM</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">Shaniwar Wada</span>
+<span class="font-body-sm text-body-sm text-outline">Early entry, zero queues</span>
+</div>
+<div class="bg-surface-container p-2.5 rounded-lg flex flex-col gap-1">
+<span class="font-label-caps text-label-caps text-tertiary">10:15 AM</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">Vaishali (FC Rd)</span>
+<span class="font-body-sm text-body-sm text-outline">Misal &amp; South Indian Brew</span>
+</div>
+<div class="bg-surface-container p-2.5 rounded-lg flex flex-col gap-1">
+<span class="font-label-caps text-label-caps text-outline">12:30 PM</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">Kelkar Museum</span>
+<span class="font-body-sm text-body-sm text-outline">Mastani Mahal replica gallery</span>
+</div>
+<div class="bg-surface-container p-2.5 rounded-lg flex flex-col gap-1">
+<span class="font-label-caps text-label-caps text-secondary">04:30 PM</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">Sinhagad Trek</span>
+<span class="font-body-sm text-body-sm text-outline">Kalyan Darwaja sunset</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Bento Card 2: Offline Translation -->
+<div class="bg-surface-container p-space-lg rounded-2xl flex flex-col justify-between gap-space-md shadow-lg group hover:bg-surface-container-high transition-colors">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[24px]">translate</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">On-Device Marathi ML</h3>
+</div>
+<span class="font-label-caps text-label-caps text-outline">0ms Latency</span>
+</div>
+<!-- Interactive Chat Bubble Translation Snippet -->
+<div class="flex flex-col gap-space-xs">
+<!-- Marathi Input -->
+<div class="bg-surface-container-low p-3 rounded-xl flex flex-col gap-1 self-start max-w-[90%]">
+<span class="font-label-caps text-label-caps text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">mic</span> Local Marathi Prompt
+              </span>
+<p class="font-headline-sm text-headline-sm text-on-surface font-medium">
+                "इथून शनिवार वाड्याला जायला किती वेळ लागेल?"
+              </p>
+</div>
+<!-- Neural Translation Output -->
+<div class="bg-surface-container-highest p-3 rounded-xl flex flex-col gap-1 self-end max-w-[95%]">
+<span class="font-label-caps text-label-caps text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">auto_awesome</span> ML Kit Translation
+              </span>
+<p class="font-body-md text-body-md text-on-surface font-semibold">
+                "How long will it take to reach Shaniwar Wada from here?"
+              </p>
+</div>
+</div>
+<!-- Audio Waveform Graphic -->
+<div class="flex items-center gap-2 bg-surface-container-low px-3 py-2 rounded-xl">
+<button class="w-7 h-7 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-[16px]">volume_up</span>
+</button>
+<div class="flex-1 flex items-center gap-1 h-4">
+<span class="w-1 h-2 bg-secondary rounded-full"></span>
+<span class="w-1 h-4 bg-secondary rounded-full"></span>
+<span class="w-1 h-3 bg-secondary rounded-full"></span>
+<span class="w-1 h-1 bg-secondary rounded-full"></span>
+<span class="w-1 h-4 bg-secondary rounded-full"></span>
+<span class="w-1 h-2 bg-secondary rounded-full"></span>
+<span class="w-1 h-3 bg-secondary rounded-full"></span>
+</div>
+<span class="font-body-sm text-body-sm text-outline">Offline Voice</span>
+</div>
+</div>
+<!-- Bento Card 3: Dual Maps & Sahyadri Topography -->
+<div class="bg-surface-container p-space-lg rounded-2xl flex flex-col justify-between gap-space-md shadow-lg group hover:bg-surface-container-high transition-colors">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-tertiary text-[24px]">terrain</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Dual Contour Topography</h3>
+</div>
+<span class="px-2 py-0.5 rounded bg-tertiary/10 text-tertiary font-label-caps text-label-caps">SAHYADRI PACK</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            Full topographic contour maps for Harishchandragad, Rajgad, and Torna. Identify natural rock cut cisterns and ridge exposures.
+          </p>
+<!-- Split Visual Map Graphic -->
+<div class="bg-surface-container-low rounded-xl overflow-hidden p-3 flex flex-col gap-2">
+<div class="w-full h-28 bg-cover bg-center rounded-lg relative overflow-hidden" data-location="Rajgad Fort, Maharashtra" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD6fuz0-tWMTfoBNU0B7k8pqPSdJNY5IXZLLqIyboAGQfHlECnkdr1FIeuscNMVLut289eDTDoHAAcXq3PgUHBjyeMIqalzEh2jFebqCISjn4JYupquL0YIuRigL9u-ag9fzdypVfXBeChgHmbxquAMJbR5wEDeKPW2ZFl0-04arxgW_w6_uIAEAloIOYIdGV3lesjRPq3EEvvshm4--_ckAgesP4ZWxDgESpq2mWw6')">
+<div class="absolute inset-0 bg-surface-container-lowest/40 backdrop-blur-[1px] flex items-center justify-center">
+<span class="font-label-caps text-label-caps bg-surface-container-lowest/80 px-2 py-1 rounded text-on-surface">Rajgad Fort 1,375m</span>
+</div>
+</div>
+<div class="flex justify-between items-center text-body-sm">
+<span class="flex items-center gap-1 text-secondary font-label-md text-label-md">
+<span class="material-symbols-outlined text-[14px]">water_drop</span> 4 Potable Cisterns
+              </span>
+<span class="flex items-center gap-1 text-error font-label-md text-label-md">
+<span class="material-symbols-outlined text-[14px]">warning</span> Rock Scree Warning
+              </span>
+</div>
+</div>
+</div>
+<!-- Bento Card 4: Local AI Cultural Companion -->
+<div class="bg-surface-container p-space-lg rounded-2xl flex flex-col justify-between gap-space-md shadow-lg group hover:bg-surface-container-high transition-colors">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[24px]">psychology</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Arriva Lore &amp; Lore Agent</h3>
+</div>
+<span class="material-symbols-outlined text-outline">temple_hindu</span>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-xl flex flex-col gap-2">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold text-[10px]">A</div>
+<span class="font-label-caps text-label-caps text-primary">Cultural Field Guide</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface italic">
+              "Visiting Kolhapur? Skip generic tourist spots for lunch. Try authentic Tambda &amp; Pandhra Rassa at Dehati, and visit the Mahalaxmi temple sanctum before 11 AM to beat pilgrimage bus lines."
+            </p>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-1 rounded-md bg-surface-container-high text-on-surface-variant font-label-caps text-label-caps">Mutton Loncha</span>
+<span class="px-2 py-1 rounded-md bg-surface-container-high text-on-surface-variant font-label-caps text-label-caps">Chhatrapati Shahu Lore</span>
+<span class="px-2 py-1 rounded-md bg-surface-container-high text-on-surface-variant font-label-caps text-label-caps">Kolhapuri Chappal</span>
+</div>
+</div>
+<!-- Bento Card 5: Place Profiles & Verified Reviews -->
+<div class="bg-surface-container p-space-lg rounded-2xl flex flex-col justify-between gap-space-md shadow-lg group hover:bg-surface-container-high transition-colors">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[24px]">verified</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Verified Place Intel</h3>
+</div>
+<span class="text-tertiary font-label-md text-label-md font-bold">88% 5★</span>
+</div>
+<div class="flex flex-col gap-2 bg-surface-container-low p-3 rounded-xl">
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Shaniwar Wada Palace</span>
+<span class="px-2 py-0.5 rounded bg-secondary/10 text-secondary font-label-caps text-label-caps">Low Crowd Now</span>
+</div>
+<!-- Crowd density bar visual -->
+<div class="flex items-center gap-2">
+<span class="font-body-sm text-body-sm text-outline">Crowd:</span>
+<div class="flex-1 h-2 bg-surface-container-highest rounded-full overflow-hidden flex">
+<div class="w-1/4 bg-secondary h-full"></div>
+</div>
+<span class="font-label-caps text-label-caps text-secondary font-bold">22% Peak</span>
+</div>
+<div class="flex justify-between items-center text-body-sm text-outline pt-1">
+<span>Hours: 06:00 AM - 06:00 PM</span>
+<span>₹25 Entry Fee</span>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-2">
+<img class="w-full h-12 object-cover rounded-lg" data-alt="Stone ramparts and ancient gateway of Shaniwar Wada fort in Pune Maharashtra bathed in soft morning cinematic sunlight, architectural heritage photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA46cHAvCjCtaKG_9vRfoO0rdU9JeQxi6-3zRQTpQTWYVGYmttvPQIq1YqP-nrEVsVbg0fDa_bj9GdTg6vCiuRCxqf8ReGZZbXC88-aH2ltePLeUgjWFjndQYbf4xayU5ygnIgQKrZOTskZvfk8ZGUu2K649skuxVxwGclMy6G3A6kTLzCXDjZhGo5vBhbi95yBEdOWoj6n5uOfO1k35tNU1QzF9qdufWhxeYKdnXi6"/>
+<img class="w-full h-12 object-cover rounded-lg" data-alt="Deep green rugged cliffs of the Western Ghats Sahyadri mountain pass covered in lush monsoon mist and cascading waterfalls." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKW-2etd8e6XJOW7gpFzOQTXcQ4V2gIwz7xhH9aUtQZUDyNuFVqTpVdpL8rS46RiAXIg3_uYYGSFPbiPkl6IfScE7Adakcfo1FtvdmQ9e50rlesNyqpQu-WqOIU5ITK62Cwe0otS1pTBOTjB9dxVl3Tn_ovsPDDTLIPoCaf4CgvbR16OoALCnzR3W13WguP7Ian8ghva4mXs3v6_oKuz2phZ63zgVJ9oB2dm7dN31H"/>
+<img class="w-full h-12 object-cover rounded-lg" data-alt="Intricate carved stone pillars inside ancient rock-cut cave temple in Maharashtra with dramatic atmospheric lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaYTK3_8h6O0-zzzkxWjIh-Mrdv-Hg9aE2H9_tSPz3y96n9Fa5TdYMqD_jCbfHYdR2fyLWTgGYrxuq4R6XLRnEvHFofzymCeMwit7acjKtMqdghowcS-BFFShdh-mRymZwKAq29KYMX5O0pykVyyC2UMVHvvaUuYNIOs7DZ9akOjk8KCqE1SgDrIdNOigYm8ayW5vT91k9DUYP0KAy_wM-54Tb_alpZB37dz1ABQPc"/>
+</div>
+</div>
+</div>
+<!-- Bento Card 6: One-Tap Maharashtra Safety Card (Spanning Wide) -->
+<div class="bg-surface-container p-space-lg rounded-2xl flex flex-col md:flex-row items-center justify-between gap-space-md shadow-lg">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-2xl bg-error/15 flex items-center justify-center text-error shrink-0">
+<span class="material-symbols-outlined text-[28px]">emergency_share</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Sahyadri Safety &amp; SOS Dispatch</h3>
+<span class="px-2 py-0.5 rounded bg-error/20 text-error font-label-caps text-label-caps">ONE-TAP OFFLINE</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Instantly sends encoded coordinates (18.3664° N, 73.7559° E) via basic SMS to local Western Ghats search groups and Maharashtra 112 emergency services.
+            </p>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-space-xs self-stretch md:self-auto justify-end">
+<a class="px-space-md py-2.5 rounded-xl bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-md text-label-md flex items-center gap-1" href="tel:112">
+<span class="material-symbols-outlined text-[16px] text-error">call</span> 112 Police
+          </a>
+<a class="px-space-md py-2.5 rounded-xl bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-md text-label-md flex items-center gap-1" href="tel:108">
+<span class="material-symbols-outlined text-[16px] text-tertiary">ambulance</span> 108 Medical
+          </a>
+<button class="px-space-md py-2.5 rounded-xl bg-error text-on-error font-label-md text-label-md font-bold flex items-center gap-1 shadow-md hover:opacity-90">
+<span class="material-symbols-outlined text-[16px]">cell_tower</span> Dispatch GPS SOS
+          </button>
+</div>
+</div>
+</div>
+</section>
+<!-- NATIVE ANDROID APP SCREENSHOT SHOWCASE -->
+<section class="w-full px-6 lg:px-12 py-space-2xl" id="app-screens">
+<div class="max-w-7xl mx-auto flex flex-col gap-space-xl">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-space-sm">
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-caps text-label-caps uppercase text-secondary tracking-widest">Jetpack Compose Architecture</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-bold">Designed Natively for Android 14+</h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md">
+          Strictly adheres to Material Design 3 guidelines with adaptive dynamic colors, predictive back animations, and per-app language selection.
+        </p>
+</div>
+<!-- 4 Device Mockups Row -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Screen 1: Explore Feed -->
+<div class="bg-surface-container rounded-3xl p-4 flex flex-col gap-3 shadow-xl group hover:-translate-y-1 transition-transform">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-caps text-label-caps uppercase">Screen 01</span>
+<span class="material-symbols-outlined text-[18px]">explore</span>
+</div>
+<div class="bg-surface-container-low rounded-2xl p-3 flex flex-col gap-2 min-h-[360px]">
+<span class="font-label-md text-label-md text-on-surface font-bold">Curated Getaways</span>
+<!-- Chip Filters -->
+<div class="flex gap-1 overflow-x-auto pb-1">
+<span class="px-2 py-0.5 bg-primary text-on-primary rounded-full font-label-caps text-label-caps shrink-0">Monsoon Treks</span>
+<span class="px-2 py-0.5 bg-surface-container-high text-on-surface-variant rounded-full font-label-caps text-label-caps shrink-0">Konkan</span>
+<span class="px-2 py-0.5 bg-surface-container-high text-on-surface-variant rounded-full font-label-caps text-label-caps shrink-0">Caves</span>
+</div>
+<!-- Destination Card 1 -->
+<div class="bg-surface-container rounded-xl overflow-hidden flex flex-col">
+<div class="h-28 bg-surface-container-highest relative">
+<img class="w-full h-full object-cover" data-alt="Dense cascading monsoon waterfall along Tamhini Ghat highway in Maharashtra during rainy season with misty green cliffs." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2N05bWclhFg1hOZZz-DQlWy2wwy2CEZzv-8E9GqPsXTqRMcT8lGMhnW3utgvzZYcY_TkePcEUcB_i3mBqjhsDf9bLhn4SIWLHipavmCK2aqOYpVNiY_fCvtkhuOTBhkTeqq-CSbrq3F7PoA8hjJNEQ5Eytz5hqGmgkdskXlhmFoQJ2DLoeLOmBKCoCftwRUGmH5fF2VvgwxTGVFx_9dTmX8DhwcPmTty6dUKJa9Qp"/>
+<span class="absolute bottom-2 left-2 bg-surface-container-lowest/80 px-2 py-0.5 rounded text-on-surface font-label-caps text-label-caps">Tamhini Ghat</span>
+</div>
+<div class="p-2 flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-outline">120 km from Pune</span>
+<span class="font-label-caps text-label-caps text-secondary">Peak Lushness</span>
+</div>
+</div>
+<!-- Destination Card 2 -->
+<div class="bg-surface-container rounded-xl p-2.5 flex items-center justify-between">
+<div>
+<span class="font-label-md text-label-md text-on-surface block font-semibold">Tarkarli Coral Reef</span>
+<span class="font-body-sm text-body-sm text-outline">Sindhudurg • Scuba Diving</span>
+</div>
+<span class="text-tertiary font-label-md text-label-md">★ 4.9</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold">Curated Maharashtra Feed</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Real-time seasonal filters and crowd indicators.</p>
+</div>
+</div>
+<!-- Screen 2: Live Fort Compass -->
+<div class="bg-surface-container rounded-3xl p-4 flex flex-col gap-3 shadow-xl group hover:-translate-y-1 transition-transform">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-caps text-label-caps uppercase">Screen 02</span>
+<span class="material-symbols-outlined text-[18px]">explore_nearby</span>
+</div>
+<div class="bg-surface-container-low rounded-2xl p-3 flex flex-col items-center justify-between min-h-[360px] text-center">
+<div class="w-full text-left">
+<span class="font-label-md text-label-md text-on-surface font-bold">Sinhagad HUD</span>
+<p class="font-body-sm text-body-sm text-outline">Heading 314° NW</p>
+</div>
+<!-- Compass SVG Graphic -->
+<div class="relative w-36 h-36 flex items-center justify-center my-4">
+<svg class="w-full h-full text-surface-container-highest animate-spin" style="animation-duration: 40s;" viewbox="0 0 100 100">
+<circle cx="50" cy="50" fill="none" r="45" stroke="currentColor" stroke-dasharray="4 4" stroke-width="2"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center flex-col">
+<span class="material-symbols-outlined text-secondary text-[36px]">navigation</span>
+<span class="font-label-caps text-label-caps text-secondary font-bold">Zunjar Buruj</span>
+<span class="font-body-sm text-body-sm text-outline">240m Ahead</span>
+</div>
+</div>
+<div class="w-full bg-surface-container p-2.5 rounded-xl text-left">
+<span class="font-label-caps text-label-caps text-tertiary">Historical Marker</span>
+<p class="font-body-sm text-body-sm text-on-surface font-medium">Tanaji Malusare Memorial Site</p>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold">Augmented Fort Compass</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Bearing indicators for obscure bastions &amp; gates.</p>
+</div>
+</div>
+<!-- Screen 3: Offline Pack Downloader -->
+<div class="bg-surface-container rounded-3xl p-4 flex flex-col gap-3 shadow-xl group hover:-translate-y-1 transition-transform">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-caps text-label-caps uppercase">Screen 03</span>
+<span class="material-symbols-outlined text-[18px]">download_for_offline</span>
+</div>
+<div class="bg-surface-container-low rounded-2xl p-3 flex flex-col gap-2.5 min-h-[360px]">
+<span class="font-label-md text-label-md text-on-surface font-bold">Offline Regions</span>
+<!-- Pack 1 -->
+<div class="bg-surface-container p-3 rounded-xl flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Western Ghats</span>
+<span class="font-body-sm text-body-sm text-outline">48 MB • 120 Forts</span>
+</div>
+<span class="material-symbols-outlined text-secondary text-[22px]">check_circle</span>
+</div>
+<!-- Pack 2 -->
+<div class="bg-surface-container p-3 rounded-xl flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Konkan Coast</span>
+<span class="font-body-sm text-body-sm text-outline">62 MB • Beaches &amp; Forts</span>
+</div>
+<span class="material-symbols-outlined text-primary text-[22px]">downloading</span>
+</div>
+<!-- Pack 3 -->
+<div class="bg-surface-container p-3 rounded-xl flex items-center justify-between opacity-75">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Vidarbha Tigers</span>
+<span class="font-body-sm text-body-sm text-outline">35 MB • Tadoba Safaris</span>
+</div>
+<span class="material-symbols-outlined text-outline text-[22px]">download</span>
+</div>
+<!-- Storage indicator -->
+<div class="mt-auto bg-surface-container-highest p-2 rounded-lg">
+<div class="flex justify-between font-label-caps text-label-caps text-outline mb-1">
+<span>Phone Storage Used</span>
+<span>110 MB / 128 GB</span>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary w-1/12 h-full"></div>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold">Offline Vector Packs</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Store gigabytes of contour topology in under 60MB.</p>
+</div>
+</div>
+<!-- Screen 4: Trip Budget & Splitter -->
+<div class="bg-surface-container rounded-3xl p-4 flex flex-col gap-3 shadow-xl group hover:-translate-y-1 transition-transform">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-caps text-label-caps uppercase">Screen 04</span>
+<span class="material-symbols-outlined text-[18px]">currency_rupee</span>
+</div>
+<div class="bg-surface-container-low rounded-2xl p-3 flex flex-col gap-2 min-h-[360px]">
+<span class="font-label-md text-label-md text-on-surface font-bold">Group Expense Split</span>
+<div class="bg-surface-container p-3 rounded-xl text-center flex flex-col">
+<span class="font-body-sm text-body-sm text-outline">Total Pune-Mahabaleshwar Roadtrip</span>
+<span class="font-headline-lg text-headline-lg text-primary font-bold">₹ 8,450</span>
+<span class="font-label-caps text-label-caps text-secondary font-semibold">₹ 2,112.50 per person (4 Pax)</span>
+</div>
+<div class="flex flex-col gap-1.5 pt-1">
+<div class="flex justify-between items-center bg-surface-container px-2.5 py-1.5 rounded-lg text-body-sm">
+<span class="text-on-surface">Highway Toll (Khed Shivapur)</span>
+<span class="font-semibold text-on-surface">₹ 115</span>
+</div>
+<div class="flex justify-between items-center bg-surface-container px-2.5 py-1.5 rounded-lg text-body-sm">
+<span class="text-on-surface">Farmhouse Stay &amp; Lunch</span>
+<span class="font-semibold text-on-surface">₹ 4,800</span>
+</div>
+<div class="flex justify-between items-center bg-surface-container px-2.5 py-1.5 rounded-lg text-body-sm">
+<span class="text-on-surface">Petrol Refill (Shell)</span>
+<span class="font-semibold text-on-surface">₹ 3,535</span>
+</div>
+</div>
+<button class="mt-auto w-full py-2 bg-secondary text-on-secondary rounded-xl font-label-md text-label-md font-bold flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[16px]">qr_code_2</span> Instant UPI Split Intent
+            </button>
+</div>
+<div class="flex flex-col gap-1">
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold">INR Auto-UPI Splitter</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Calculates shares and fires Google Pay / PhonePe deep-links.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- TRUST & ENGINE ARCHITECTURE TECH BAR -->
+<section class="w-full px-6 lg:px-12 py-space-xl bg-surface-container-low" id="architecture">
+<div class="max-w-7xl mx-auto flex flex-col gap-space-lg">
+<div class="flex flex-col items-center text-center gap-space-xs max-w-xl mx-auto">
+<span class="font-label-caps text-label-caps uppercase text-tertiary tracking-widest">Engineering Resilience</span>
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold">
+          Engineered for Extreme Reliability in Remote Terrains
+        </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Battle-tested tech components delivering zero cold-start delay even without mobile reception.
+        </p>
+</div>
+<!-- Tech Stack Badges Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-space-sm">
+<div class="bg-surface-container p-4 rounded-xl flex flex-col gap-2 shadow-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">layers</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">Jetpack Compose</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline">Modern declarative UI with smooth 120Hz micro-interactions.</p>
+</div>
+<div class="bg-surface-container p-4 rounded-xl flex flex-col gap-2 shadow-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">database</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">Room SQLite</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline">Local SQLite caching for instant offline fort database lookups.</p>
+</div>
+<div class="bg-surface-container p-4 rounded-xl flex flex-col gap-2 shadow-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary text-[20px]">memory</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">Google ML Kit</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline">Quantized neural model executing on Snapdragon &amp; Dimensity NPU.</p>
+</div>
+<div class="bg-surface-container p-4 rounded-xl flex flex-col gap-2 shadow-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary-fixed-dim text-[20px]">sync</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">Supabase</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline">End-to-end encrypted sync for community weather &amp; trail reports.</p>
+</div>
+<div class="bg-surface-container p-4 rounded-xl flex flex-col gap-2 shadow-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-fixed-dim text-[20px]">smart_toy</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">Claude 3.5</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline">State-of-the-art reasoning for historical context &amp; route planning.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- FAQ INTERACTIVE ACCORDION SECTION -->
+<section class="w-full px-6 lg:px-12 py-space-2xl" id="faq">
+<div class="max-w-4xl mx-auto flex flex-col gap-space-xl">
+<div class="flex flex-col items-center text-center gap-space-xs">
+<span class="font-label-caps text-label-caps uppercase text-primary tracking-widest">Frequently Asked Questions</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-bold">Everything You Need to Know</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-lg">
+          Answers regarding offline reliability, battery consumption, translation accuracy, and privacy.
+        </p>
+</div>
+<!-- FAQ List with Vanilla JS Accordion -->
+<div class="flex flex-col gap-space-sm" id="faq-container">
+<!-- FAQ 1 -->
+<div class="bg-surface-container rounded-2xl overflow-hidden shadow-sm">
+<button class="faq-btn w-full p-space-md text-left flex justify-between items-center gap-4 hover:bg-surface-container-high transition-colors">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">
+              Does Arriva work when there is zero mobile signal in deep Sahyadri valleys?
+            </span>
+<span class="material-symbols-outlined text-outline transition-transform duration-200">expand_more</span>
+</button>
+<div class="faq-content hidden px-space-md pb-space-md text-body-md text-on-surface-variant">
+            Yes, absolutely. You can pre-download regional offline packs (e.g., Western Ghats, Konkan, or Pune District) over Wi-Fi. These packs include complete vector contour lines, GPS waypoints for rock cisterns, mountain rescue checkpoints, and fort gates that run 100% disconnected from cellular networks.
+          </div>
+</div>
+<!-- FAQ 2 -->
+<div class="bg-surface-container rounded-2xl overflow-hidden shadow-sm">
+<button class="faq-btn w-full p-space-md text-left flex justify-between items-center gap-4 hover:bg-surface-container-high transition-colors">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">
+              How accurate is the Marathi-to-English translation without internet?
+            </span>
+<span class="material-symbols-outlined text-outline transition-transform duration-200">expand_more</span>
+</button>
+<div class="faq-content hidden px-space-md pb-space-md text-body-md text-on-surface-variant">
+            We utilize a tailored Google ML Kit quantization model compressed directly onto your device. It understands conversational Marathi colloquialisms, local transit directions (rickshaw routes, ST bus queries), and food menu terms with near-zero latency and high contextual accuracy.
+          </div>
+</div>
+<!-- FAQ 3 -->
+<div class="bg-surface-container rounded-2xl overflow-hidden shadow-sm">
+<button class="faq-btn w-full p-space-md text-left flex justify-between items-center gap-4 hover:bg-surface-container-high transition-colors">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">
+              What data does Arriva collect about my trips?
+            </span>
+<span class="material-symbols-outlined text-outline transition-transform duration-200">expand_more</span>
+</button>
+<div class="faq-content hidden px-space-md pb-space-md text-body-md text-on-surface-variant">
+            We adhere to a strict zero-telemetry privacy policy. Your travel itineraries, expense splits, GPS route logs, and translation audio never leave your local Room SQLite database unless you explicitly tap "Cloud Backup" or choose to share a route with your travel companions.
+          </div>
+</div>
+<!-- FAQ 4 -->
+<div class="bg-surface-container rounded-2xl overflow-hidden shadow-sm">
+<button class="faq-btn w-full p-space-md text-left flex justify-between items-center gap-4 hover:bg-surface-container-high transition-colors">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">
+              Is Arriva battery-efficient during day-long fort treks?
+            </span>
+<span class="material-symbols-outlined text-outline transition-transform duration-200">expand_more</span>
+</button>
+<div class="faq-content hidden px-space-md pb-space-md text-body-md text-on-surface-variant">
+            Arriva employs geofenced, low-frequency fused location provider algorithms that update altitude and bearings only when significant motion is detected. Paired with our default true-black AMOLED theme, users routinely see battery drain drop by over 40% compared to typical streaming map clients.
+          </div>
+</div>
+</div>
+</div>
+</section>
+<!-- FINAL CALL-TO-ACTION BANNER -->
+<section class="w-full px-6 lg:px-12 py-space-xl" id="download-section">
+<div class="max-w-7xl mx-auto bg-surface-container rounded-3xl p-space-lg lg:p-space-2xl relative overflow-hidden shadow-2xl">
+<!-- Decorative radial glows inside container -->
+<div class="absolute -top-24 -right-24 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute -bottom-24 -left-24 w-96 h-96 bg-secondary/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+<div class="lg:col-span-8 flex flex-col gap-space-md">
+<div class="inline-flex items-center gap-space-xs self-start px-space-sm py-1 rounded-full bg-secondary/15 font-label-caps text-label-caps text-secondary font-bold">
+<span class="material-symbols-outlined text-[14px]">local_activity</span> Free To Use • No Ads
+          </div>
+<h2 class="font-display-hero text-display-hero text-on-surface font-bold leading-tight">
+            Ready to Explore Maharashtra Like a Local?
+          </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+            Join over 25,000+ trekkers, backpackers, and heritage enthusiasts discovering the hidden heart of the Western Ghats and historical Maharashtra.
+          </p>
+<div class="flex flex-wrap items-center gap-space-md pt-2">
+<a class="px-space-lg py-3.5 rounded-xl bg-primary-container text-on-primary-container font-headline-sm text-headline-sm font-bold flex items-center gap-space-xs shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all" href="#">
+<span class="material-symbols-outlined text-[24px]">android</span>
+<span>Google Play Store</span>
+</a>
+<a class="px-space-lg py-3.5 rounded-xl bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-headline-sm text-headline-sm font-semibold flex items-center gap-space-xs shadow-md transition-all" href="#">
+<span class="material-symbols-outlined text-[22px]">download</span>
+<span>Direct APK (v1.0.4)</span>
+</a>
+</div>
+</div>
+<!-- QR Code Mockup for Quick Scan -->
+<div class="lg:col-span-4 flex flex-col items-center justify-center">
+<div class="bg-surface-container-lowest p-6 rounded-2xl flex flex-col items-center gap-3 shadow-xl">
+<!-- Simulated QR Pattern with SVG -->
+<div class="w-40 h-40 bg-on-surface p-2 rounded-xl flex items-center justify-center">
+<svg class="w-full h-full text-surface-container-lowest" fill="currentColor" viewbox="0 0 100 100">
+<path d="M0,0 h30 v30 h-30 z M10,10 h10 v10 h-10 z M70,0 h30 v30 h-30 z M80,10 h10 v10 h-10 z M0,70 h30 v30 h-30 z M10,80 h10 v10 h-10 z M40,10 h10 v10 h-10 z M50,40 h20 v10 h-20 z M10,40 h20 v20 h-20 z M40,60 h10 v30 h-10 z M60,70 h30 v10 h-30 z M70,80 h10 v20 h-10 z"></path>
+</svg>
+</div>
+<span class="font-label-md text-label-md text-on-surface font-semibold text-center">
+              Scan with Android Phone
+            </span>
+<span class="font-body-sm text-body-sm text-outline text-center">
+              Requires Android 10.0+ (API 29+)
+            </span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive JavaScript for FAQs and Hero Video Modal -->
+<script>
+    document.querySelectorAll('.faq-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const icon = btn.querySelector('.material-symbols-outlined');
+        const isHidden = content.classList.contains('hidden');
+        
+        // Close other FAQs
+        document.querySelectorAll('.faq-content').forEach(c => c.classList.add('hidden'));
+        document.querySelectorAll('.faq-btn .material-symbols-outlined').forEach(i => i.style.transform = 'rotate(0deg)');
 
-<!-- High-Contrast 3D background canvas, subtle cursor glow & scroll progress bar -->
-<canvas id="world" aria-hidden="true"></canvas>
-<div class="bar" aria-hidden="true"><u id="prog"></u></div>
+        if (isHidden) {
+          content.classList.remove('hidden');
+          icon.style.transform = 'rotate(180deg)';
+        }
+      });
+    });
 
-<!-- Site Header -->
-<header class="head" id="header">
-  <a class="mark" href="#top" aria-label="ARRIVA home" id="brand-logo"></a>
-  <nav id="nav" aria-label="Primary navigation"></nav>
-  <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-label="Toggle navigation menu" aria-controls="nav">
-    <span></span><span></span><span></span>
-  </button>
-</header>
-<div class="nav-backdrop" id="nav-backdrop" aria-hidden="true"></div>
-
-<!-- Main Journey Landmark -->
-<main id="main">
-  <!-- Chapter 00: Hero -->
-  <section class="hero" id="top" data-scene="0">
-    <div class="wrap">
-      <p class="label" id="hero-label"><span class="chapter-mono">00 / THE ARRIVAL</span><span class="hi">आगमन</span></p>
-      <h1 id="h1">Ideas into innovation.</h1>
-      <p class="lead" id="lead">ARRIVA builds focused digital products and shares practical technology, software engineering, and AI workflows, one durable idea at a time.</p>
-      <div class="row" id="hero-cta"></div>
-    </div>
-    <p class="scroll" id="hero-scroll">Scroll to arrive</p>
-  </section>
-
-  <!-- Chapters 01, 02, 03: Product Chapters -->
-  <div id="chapters">
-    <section class="chapter" id="tourist-guide-fallback" style="display:none;" aria-hidden="true">
-      <h2>ARRIVA Tourist Guide</h2>
-      <p>A travel companion designed to help people discover regional landmarks, read cultural context in their preferred language, and plan a custom day sequence.</p>
-    </section>
-    <section class="chapter" id="nexus-fallback" style="display:none;" aria-hidden="true">
-      <h2>ARRIVA NEXUS</h2>
-      <p>A communication tool focused on straightforward messaging: quick chats, topic-focused channels, and a clean interface without algorithmic feeds.</p>
-    </section>
-    <section class="chapter" id="orvix-fallback" style="display:none;" aria-hidden="true">
-      <h2>ARRIVA ORVIX</h2>
-      <p>A developer utility that connects to an Ollama daemon running on your local machine, exposing a clean API workflow for building and testing AI ideas.</p>
-    </section>
-  </div>
-
-  <!-- Chapter 04: Screens Gallery (Pinned Horizontal Walk) -->
-  <section class="sec-gallery" id="screens-gallery" data-scene="3.0"></section>
-
-  <!-- Chapter 05: ORVIX Live Demo (Interactive Terminal Simulation) -->
-  <section class="sec-demo" id="orvix-demo" data-scene="3.1"></section>
-
-  <!-- Chapter 06: How It Works (3-step sequences) -->
-  <section class="sec-how" id="how-it-works" data-scene="3.3"></section>
-
-  <!-- Chapter 07: About & Team (Consolidated Philosophy, Principles, Stats, Timeline, and Team Cards) -->
-  <section class="about" id="about" data-scene="3.6"></section>
-
-  <!-- Chapter 08: Updates & Build Notes (Field Notes) -->
-  <section class="sec-updates" id="updates" data-scene="3.8"></section>
-
-  <!-- Chapter 09: FAQ (Accessible Accordions) -->
-  <section class="sec-faq" id="faq" data-scene="3.9"></section>
-
-  <!-- Outro: Community / Afterlight -->
-  <section class="community" id="community" data-scene="4.0"></section>
-</main>
-
-<!-- Footer: Consistent Chapters Directory & Legal -->
-<footer class="foot" id="foot"></footer>
-
-<!-- Interactive UI Layers -->
-<div class="chapter-rail" id="chapter-rail" aria-label="Chapter progression" role="navigation"></div>
-<div class="lightbox-modal" id="gallery-lightbox" role="dialog" aria-modal="true" aria-hidden="true" tabindex="-1"></div>
-<div class="toast-msg" id="toast-msg" role="status" aria-live="polite"></div>
-<button class="back-to-top-btn" id="back-to-top-btn" aria-label="Return to top" data-magnet>&uarr;</button>
-<div id="cursor-glow" aria-hidden="true"></div>
-
-<!-- Local Vendor Scripts (Zero CDN) -->
-<script src="vendor/lenis.min.js"></script>
-<script src="vendor/three.min.js"></script>
-<script src="content.js"></script>
-<script src="scene.js"></script>
-<script src="main.js"></script>
-</body>
-</html>
+    const videoTrigger = document.getElementById('hero-video-trigger');
+    if (videoTrigger) {
+      videoTrigger.addEventListener('click', () => {
+        alert('Launching Arriva 60s Product Showcase in native Android player simulation.');
+      });
+    }
+  </script>
+</div></main><footer class="relative z-10 w-full bg-surface-container-lowest mt-space-2xl shadow-[0_-1px_8px_rgba(0,0,0,0.04)]"><div class="max-w-7xl mx-auto px-6 lg:px-12 py-space-2xl"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-space-xl mb-space-2xl"><div class="lg:col-span-5 flex flex-col gap-space-md"><div class="flex items-center gap-space-sm"><img alt="Arriva Brand Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VPRabT7w1en1FmoQcwT2HQhIzJAGOWa-5SgaerRhd9wfFQTA46oZo1ngdNtur6kTwGOy6ShManznRl-ieEW2akdLW3-h_XJLPS1aa5SdRz3uBSm-jd3fNAH1_h0t3cRNjnXLQmwqx_a7N_2JM3HhF7aV56QJay7jURIF1P2dh0esg2NZJ9zr76Hn-xNTK4HCa_C7NS9OEk2vFcGbW3SZxuROtzPI4xd2zXLw9jAcd68Q"/><span class="font-headline-sm text-headline-sm font-bold tracking-tight text-on-surface">ARRIVA</span></div><p class="font-body-md text-body-md text-on-surface-variant max-w-md">Intelligent Android Travel Companion for Maharashtra — AI itineraries, Sahyadri offline trail maps, Marathi ML translation, and local cultural lore.</p><div class="flex flex-wrap items-center gap-space-sm pt-space-xs"><div class="inline-flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-surface-container font-label-caps text-label-caps text-secondary shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><span class="material-symbols-outlined text-[14px]">verified_user</span><span>100% On-Device Privacy</span></div><div class="inline-flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-surface-container font-label-caps text-label-caps text-tertiary shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><span class="material-symbols-outlined text-[14px]">terrain</span><span>Western Ghats Verified</span></div></div></div><div class="lg:col-span-3 flex flex-col gap-space-sm"><span class="font-label-caps text-label-caps text-primary uppercase tracking-widest">Navigation</span><nav class="flex flex-col gap-space-xs" data-active-classes="text-primary font-semibold"><a aria-current="page" class="transition-colors text-primary font-semibold" data-path="overview" href="#">Overview</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="features" href="#">Key Features</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="trip-planner" href="#">Sahyadri Trip Planner</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="bento-grid" href="#">Capabilities Grid</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="architecture" href="#">Engine Architecture</a></nav></div><div class="lg:col-span-4 flex flex-col gap-space-sm"><span class="font-label-caps text-label-caps text-primary uppercase tracking-widest">Legal &amp; Resources</span><nav class="flex flex-col gap-space-xs" data-active-classes="text-primary font-semibold"><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="privacy-policy" href="privacy.html">Privacy Policy</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="terms-of-service" href="#">Terms of Service</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="documentation" href="#">Documentation</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="release-notes" href="#">Release Notes v1.0</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors inline-flex items-center gap-1" href="https://github.com/Sachin85469/Tourist_Guide_App" rel="noopener noreferrer" target="_blank"><span>Open Source Repository</span><span class="material-symbols-outlined text-[14px]">north_east</span></a></nav></div></div><div class="pt-space-lg flex flex-col sm:flex-row items-center justify-between gap-space-md"><p class="font-body-sm text-body-sm text-outline">Crafted by Sachin for Maharashtra Explorers © 2025 Arriva Project.</p><p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-space-xs"><span class="material-symbols-outlined text-[16px] text-secondary">bolt</span><span>Powered by Kotlin &amp; On-Device ML</span></p></div></div></footer></body></html>
