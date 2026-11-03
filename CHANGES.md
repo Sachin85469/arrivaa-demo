@@ -80,3 +80,14 @@ This update audits, cleans up, and redesigns the official web portal for ARRIVA,
 1. **Self-Contained Offline Architecture**: Eliminating third-party CDNs prevents FOUC, network timeouts, and external privacy tracking. Self-hosting WOFF2 fonts and using inline SVGs guarantees fast first-contentful paint (FCP).
 2. **Directory-Based Routing**: Adopting directory folders with `index.html` files ensures clean URLs ending in a slash (e.g., `/tourist-guide/`), fully aligning with Firebase Hosting's `trailingSlash: true` configuration and preventing 301 redirect loops.
 3. **Data Safety Compliance for Google Play**: Splitting the privacy documentation into product-specific policies and bracketing unverified items prevents misleading representations in Google Play Data Safety forms.
+
+### 2.4 Contributors Section
+- Added responsive editorial **Contributors** section to website/tourist-guide/index.html featuring:
+  1. **Sachin Bableshwar**: Android Architecture & Room Database
+  2. **Srushti Bagad**: UI/UX Design, Route Algorithm & Translation Models
+  3. **Atharva Surange**: Offline Topographic Maps & osmdroid
+  4. **Atharva Jaju**: Destination Research & Marathi Curation
+  5. **Atharva Bodke**: QA Testing & Closed Beta Coordination
+- Added **App Contributors** sub-section to the Studio About section in website/index.html.
+- Added self-contained editorial grid styles (.contributors-grid, .contributor-card, etc.) to website/styles.css adhering to WCAG AA contrast rules and mobile responsiveness.
+- Updated README.md documenting team contributions and profile links.

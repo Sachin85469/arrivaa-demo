@@ -88,6 +88,28 @@ ARRIVAA/
 
 ---
 
+## Contributors
+
+Tourist Guide is built collaboratively with independent makers, designers, and researchers in Pune:
+
+1. **Sachin Bableshwar** (Lead Developer)
+   - **Contribution:** Android Architecture, Room Database, API integration & core system engineering.
+   - **Profiles:** [GitHub](https://github.com/Sachin85469) &middot; [LinkedIn](https://www.linkedin.com/in/sachin-bableshwar-657853392/)
+2. **Srushti Bagad** (Co-Founder & UI/UX Contributor)
+   - **Contribution:** UI/UX Design, Route Algorithm flows, on-device Google ML Kit translation & phrasebook.
+   - **Profiles:** [GitHub](https://github.com/bagadsrushti) &middot; [LinkedIn](https://www.linkedin.com/in/srushti-bagad/)
+3. **Atharva Surange** (Contributor)
+   - **Contribution:** Offline Topographic Maps, osmdroid integration & Sahyadri mountain trail caching.
+   - **Profile:** [GitHub](https://github.com/atharvasur-hub)
+4. **Atharva Jaju** (Contributor)
+   - **Contribution:** Destination Research, Maharashtra fort & heritage metadata & Marathi curation.
+   - **Profile:** [LinkedIn](https://www.linkedin.com/search/results/all/?keywords=Atharva%20Jaju)
+5. **Atharva Bodke** (Contributor)
+   - **Contribution:** QA Testing, cross-device Android compatibility verification & closed beta coordination.
+   - **Location:** Pune, Maharashtra, India
+
+---
+
 ## Contact & Grievance Redressal
 
 **Sachin Bableshwar**  
