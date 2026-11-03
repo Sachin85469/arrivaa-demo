@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ORVIX — ARRIVA</title>
+  <meta name="description" content="ARRIVA ORVIX: a developer bridge for local Ollama instances on your own hardware without external cloud telemetry. In active development.">
+  <link rel="canonical" href="https://arrivaa.tech/orvix/">
+  <meta property="og:title" content="ORVIX — ARRIVA">
+  <meta property="og:description" content="ARRIVA ORVIX: a developer bridge for local Ollama instances on your own hardware without external cloud telemetry. In active development.">
+  <meta property="og:url" content="https://arrivaa.tech/orvix/">
+  <meta property="og:image" content="https://arrivaa.tech/assets/og-image.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ORVIX — ARRIVA">
+  <meta name="twitter:description" content="ARRIVA ORVIX: a developer bridge for local Ollama instances on your own hardware without external cloud telemetry. In active development.">
+  <meta name="twitter:image" content="https://arrivaa.tech/assets/og-image.png">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/fonts/fonts.css">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="wordmark">ARRIVA</a>
+      <nav class="main-nav" id="main-nav">
+        <a href="/#products">What we make</a>
+        <a href="/#spotlight">Tourist Guide</a>
+        <a href="/#about">About</a>
+        <a href="/contact/">Contact</a>
+      </nav>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+  <main>
+    <section class="product-hero">
+      <div class="container">
+        <h1 class="product-name">ORVIX</h1>
+        <div style="margin-bottom: 0.85rem;">
+          <span class="status-label status-development">In development</span>
+        </div>
+        <p class="product-tagline">A native developer interface for inspecting and interacting with local Ollama language models without cloud dependencies.</p>
+        <div class="btn-group">
+          <span class="btn btn-secondary" style="cursor: default; opacity: 0.9;">In development &middot; Source coming soon</span>
+          <a href="/orvix/privacy/" class="btn btn-secondary">Privacy Notice</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 style="margin-bottom: 2rem;">Interface preview</h2>
+        <div class="screenshots-grid">
+          <div class="phone-frame">
+            <img src="/assets/screens/orvix-1.svg" alt="ORVIX model library interface preview" loading="lazy">
+          </div>
+          <div class="phone-frame">
+            <img src="/assets/screens/orvix-2.svg" alt="ORVIX local API console preview" loading="lazy">
+          </div>
+          <div class="phone-frame">
+            <img src="/assets/screens/orvix-3.svg" alt="ORVIX token stream preview" loading="lazy">
+          </div>
+          <div class="phone-frame">
+            <img src="/assets/screens/orvix-4.svg" alt="ORVIX pipeline config preview" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container">
+        <h2>What it is</h2>
+        <p>ORVIX is a developer tool designed to bridge workflows with local Ollama runtime instances. Developers experimenting with local open-weights models often face fragmented terminal scripts or bloated web frontends. ORVIX provides a focused interface for prompt testing, parameter tuning, and streaming token verification.</p>
+        <p>All inference requests connect directly to your local loopback address (e.g. <code>127.0.0.1:11434</code>). Model weights, prompts, and completions remain entirely on your physical machine.</p>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container">
+        <h2>Core technical goals</h2>
+        <ul>
+          <li><strong>Local loopback communication:</strong> Connects directly to local Ollama daemon without intermediary cloud servers.</li>
+          <li><strong>Zero prompt exfiltration:</strong> Prompts and generated text are never transmitted to external analytics or training pipelines.</li>
+          <li><strong>Streaming telemetry:</strong> Real-time tokens-per-second, context window utilization, and memory metrics inspection.</li>
+          <li><strong>Lightweight native build:</strong> Engineered for minimal memory footprint and fast startup.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container">
+        <div class="privacy-data-block">
+          <h2>Privacy disclosure</h2>
+          <p>ORVIX is in active development. As a local-only developer utility, its architecture is built around local-compute execution with zero telemetry.</p>
+          <p style="margin-top: 1rem;">
+            <a href="/orvix/privacy/">Read the ORVIX Privacy Notice &rarr;</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col footer-brand">
+        <a href="/" class="wordmark">ARRIVA</a>
+        <p>Independent software studio in Pune, India. Building thoughtful, offline-capable digital tools.</p>
+      </div>
+      <div class="footer-col">
+        <p class="footer-heading">Tourist Guide</p>
+        <ul>
+          <li><a href="/tourist-guide/">Product Overview</a></li>
+          <li><a href="/tourist-guide/privacy/">Privacy Policy</a></li>
+          <li><a href="/tourist-guide/delete-account/">Account Deletion</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-heading">NEXUS</p>
+        <ul>
+          <li><a href="/nexus/">Product Overview</a></li>
+          <li><a href="/nexus/privacy/">Privacy Notice</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-heading">ORVIX</p>
+        <ul>
+          <li><a href="/orvix/">Product Overview</a></li>
+          <li><a href="/orvix/privacy/">Privacy Notice</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-heading">Studio</p>
+        <ul>
+          <li><a href="/privacy/">Studio Privacy</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="https://github.com/Sachin85469" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>&copy; 2026 ARRIVA. All rights reserved.</p>
+    </div>
+  </footer>
+  <script src="/main.js"></script>
+</body>
+</html>\n

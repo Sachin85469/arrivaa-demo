@@ -1,1037 +1,203 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ARRIVA — Ideas Into Innovation | Software Studio & Product Suite</title>
-  <meta name="description" content="ARRIVA is an independent software studio from Pune, India. Building focused digital instruments: Tourist Guide (Android), NEXUS (Private Messaging), and ORVIX (Local AI Bridge).">
-  <meta name="author" content="Sachin Bableshwar">
-  
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://arrivaa.tech/">
+  <title>ARRIVA — Ideas Into Innovation</title>
+  <meta name="description" content="ARRIVA is an independent software studio in Pune, India, building focused digital products: Tourist Guide, NEXUS and ORVIX.">
+  <link rel="canonical" href="https://arrivaa.tech/">
   <meta property="og:title" content="ARRIVA — Ideas Into Innovation">
-  <meta property="og:description" content="Software studio building focused digital products: Tourist Guide, NEXUS, and ORVIX. Zero algorithmic clutter, on-device privacy, pure utility.">
-  <meta property="og:image" content="assets/og-image.png">
-
+  <meta property="og:description" content="ARRIVA is an independent software studio in Pune, India, building focused digital products: Tourist Guide, NEXUS and ORVIX.">
+  <meta property="og:url" content="https://arrivaa.tech/">
+  <meta property="og:image" content="https://arrivaa.tech/assets/og-image.png">
+  <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="ARRIVA — Ideas Into Innovation">
-  <meta name="twitter:description" content="Software studio building focused digital products: Tourist Guide, NEXUS, and ORVIX.">
-  <meta name="twitter:image" content="assets/og-image.png">
-
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            obsidian: '#080A0F',
-            surface1: '#0F131D',
-            surface2: '#161C2A',
-            surface3: '#1E2638',
-            borderHairline: 'rgba(255, 255, 255, 0.08)',
-            borderActive: 'rgba(255, 255, 255, 0.18)',
-            arrivaViolet: '#8B5CF6',
-            touristEmerald: '#10B981',
-            nexusCyan: '#06B6D4',
-            orvixLime: '#84CC16',
-            textPrimary: '#F8FAFC',
-            textSecondary: '#94A3B8',
-            textTertiary: '#64748B',
-          },
-          fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
-            mono: ['"JetBrains Mono"', 'monospace'],
-          },
-        }
-      }
-    }
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/lucide@0.344.0/dist/umd/lucide.min.js"></script>
-
-  <style>
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: #080A0F; }
-    ::-webkit-scrollbar-thumb { background: #1E2638; border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: #8B5CF6; }
-
-    .studio-grid {
-      background-size: 32px 32px;
-      background-image: 
-        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-    }
-    .panel-glass {
-      background: rgba(15, 19, 29, 0.85);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.07);
-    }
-    .panel-glass-elevated {
-      background: rgba(22, 28, 42, 0.9);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-  </style>
+  <meta name="twitter:description" content="ARRIVA is an independent software studio in Pune, India, building focused digital products: Tourist Guide, NEXUS and ORVIX.">
+  <meta name="twitter:image" content="https://arrivaa.tech/assets/og-image.png">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/fonts/fonts.css">
+  <link rel="stylesheet" href="/styles.css">
 </head>
-
-<body class="bg-obsidian text-textPrimary font-sans antialiased selection:bg-arrivaViolet/30 selection:text-white min-h-screen relative flex flex-col overflow-x-hidden">
-
-  <div class="fixed inset-0 pointer-events-none z-0 studio-grid"></div>
-
-  <header class="fixed top-0 left-0 right-0 z-50 bg-obsidian/85 backdrop-blur-xl border-b border-borderHairline">
-    <div class="max-w-7xl mx-auto px-6 h-18 flex items-center justify-between">
-      
-      <a href="index.html" class="flex items-center gap-3 group">
-        <div class="w-9 h-9 rounded-xl bg-surface2 border border-borderHairline flex items-center justify-center p-2 group-hover:border-arrivaViolet/60 transition-colors">
-          <img src="assets/favicon.svg" alt="ARRIVA Logo" class="w-5 h-5">
-        </div>
-        <div class="flex items-center gap-2">
-          <span class="font-extrabold text-base tracking-widest text-white">ARRIVA</span>
-          <span class="text-[10px] font-mono font-medium px-2 py-0.5 rounded-full bg-surface2 border border-borderHairline text-textTertiary">STUDIO</span>
-        </div>
-      </a>
-
-      <nav class="hidden lg:flex items-center gap-6 text-xs font-mono text-textSecondary">
-        <a href="#tourist-guide" class="hover:text-touristEmerald transition-colors flex items-center gap-1.5">
-          <span class="w-1.5 h-1.5 rounded-full bg-touristEmerald"></span>
-          <span>01 · Tourist Guide</span>
-        </a>
-        <a href="#nexus" class="hover:text-nexusCyan transition-colors flex items-center gap-1.5">
-          <span class="w-1.5 h-1.5 rounded-full bg-nexusCyan"></span>
-          <span>02 · NEXUS</span>
-        </a>
-        <a href="#orvix" class="hover:text-orvixLime transition-colors flex items-center gap-1.5">
-          <span class="w-1.5 h-1.5 rounded-full bg-orvixLime"></span>
-          <span>03 · ORVIX</span>
-        </a>
-        <a href="#screens" class="hover:text-white transition-colors">Screenshots</a>
-        <a href="#philosophy" class="hover:text-white transition-colors">Philosophy</a>
-        <a href="#faq" class="hover:text-white transition-colors">FAQ</a>
-        <a href="privacy.html" class="hover:text-white transition-colors text-textTertiary">Privacy</a>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="wordmark">ARRIVA</a>
+      <nav class="main-nav" id="main-nav">
+        <a href="/#products">What we make</a>
+        <a href="/#spotlight">Tourist Guide</a>
+        <a href="/#about">About</a>
+        <a href="/contact/">Contact</a>
       </nav>
-
-      <div class="flex items-center gap-3">
-        <a href="https://github.com/Sachin85469" target="_blank" rel="noopener noreferrer" class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface1 border border-borderHairline text-xs font-mono text-textSecondary hover:text-white hover:border-borderActive transition-all">
-          <i data-lucide="github" class="w-3.5 h-3.5"></i>
-          <span>Sachin85469</span>
-        </a>
-        <a href="#fleet" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-white text-obsidian text-xs font-bold font-mono hover:bg-slate-200 transition-all">
-          <span>Explore Fleet</span>
-          <i data-lucide="arrow-down" class="w-3.5 h-3.5"></i>
-        </a>
-        <button id="mobile-toggle" class="lg:hidden p-2 rounded-lg bg-surface1 border border-borderHairline text-textSecondary hover:text-white">
-          <i data-lucide="menu" class="w-4 h-4"></i>
-        </button>
-      </div>
-
-    </div>
-
-    <div id="mobile-nav" class="hidden lg:hidden border-t border-borderHairline bg-surface1/95 px-6 py-4 flex flex-col gap-3 text-xs font-mono">
-      <a href="#tourist-guide" class="mobile-link text-textSecondary hover:text-touristEmerald py-1 flex items-center gap-2">
-        <span class="w-2 h-2 rounded-full bg-touristEmerald"></span>
-        <span>01 · Tourist Guide (Android App)</span>
-      </a>
-      <a href="#nexus" class="mobile-link text-textSecondary hover:text-nexusCyan py-1 flex items-center gap-2">
-        <span class="w-2 h-2 rounded-full bg-nexusCyan"></span>
-        <span>02 · NEXUS (Private Messaging)</span>
-      </a>
-      <a href="#orvix" class="mobile-link text-textSecondary hover:text-orvixLime py-1 flex items-center gap-2">
-        <span class="w-2 h-2 rounded-full bg-orvixLime"></span>
-        <span>03 · ORVIX (Local AI Bridge)</span>
-      </a>
-      <a href="#screens" class="mobile-link text-textSecondary hover:text-white py-1">Screenshots Gallery</a>
-      <a href="#philosophy" class="mobile-link text-textSecondary hover:text-white py-1">Studio Philosophy</a>
-      <a href="#faq" class="mobile-link text-textSecondary hover:text-white py-1">Frequently Asked Questions</a>
-      <a href="privacy.html" class="mobile-link text-arrivaViolet hover:text-white py-1">Privacy Policy & Google Play Compliance</a>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
     </div>
   </header>
-
-  <main class="relative z-10 flex-1 pt-24">
-
-    <section class="max-w-7xl mx-auto px-6 pt-16 pb-20 lg:pt-28 lg:pb-32 border-b border-borderHairline">
-      <div class="flex flex-col gap-6 max-w-4xl">
-        
-        <div class="flex items-center gap-3">
-          <span class="px-2.5 py-1 rounded text-[11px] font-mono uppercase tracking-wider bg-surface2 border border-borderHairline text-textSecondary">
-            ARRIVA STUDIO // PUNE, INDIA
-          </span>
-          <span class="text-xs font-mono text-textTertiary">EST. 2026</span>
-        </div>
-
-        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.08]">
-          Ideas Into Innovation.<br>
-          <span class="text-textSecondary font-medium">Software Crafted with Substance.</span>
-        </h1>
-
-        <p class="text-base sm:text-xl text-textSecondary max-w-2xl leading-relaxed">
-          ARRIVA is an independent software studio building focused digital instruments. We reject algorithmic feeds, invasive ad trackers, and cloud dependency. Every product is engineered for durability, battery efficiency, and human autonomy.
-        </p>
-
-        <div class="flex flex-wrap items-center gap-4 pt-4">
-          <a href="#fleet" class="px-5 py-3 rounded-xl bg-white hover:bg-slate-200 text-obsidian text-xs font-mono font-bold transition-all flex items-center gap-2">
-            <span>Explore The Active Fleet</span>
-            <i data-lucide="arrow-down" class="w-3.5 h-3.5"></i>
-          </a>
-          <a href="https://github.com/Sachin85469" target="_blank" rel="noopener noreferrer" class="px-5 py-3 rounded-xl bg-surface1 hover:bg-surface2 border border-borderHairline text-white text-xs font-mono font-semibold transition-all flex items-center gap-2">
-            <i data-lucide="git-branch" class="w-3.5 h-3.5 text-arrivaViolet"></i>
-            <span>GitHub Repositories</span>
-          </a>
-        </div>
-
-      </div>
-
-      <div id="fleet" class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-16 pt-8 border-t border-borderHairline">
-        <div class="p-4 rounded-2xl bg-surface1/60 border border-borderHairline flex flex-col gap-1">
-          <span class="text-[10px] font-mono text-textTertiary uppercase">Active Fleet</span>
-          <span class="text-2xl font-bold font-mono text-white">03</span>
-          <span class="text-xs text-textSecondary">Focused Products</span>
-        </div>
-        <div class="p-4 rounded-2xl bg-surface1/60 border border-borderHairline flex flex-col gap-1">
-          <span class="text-[10px] font-mono text-textTertiary uppercase">Privacy Model</span>
-          <span class="text-2xl font-bold font-mono text-touristEmerald">100%</span>
-          <span class="text-xs text-textSecondary">On-Device Local Data</span>
-        </div>
-        <div class="p-4 rounded-2xl bg-surface1/60 border border-borderHairline flex flex-col gap-1">
-          <span class="text-[10px] font-mono text-textTertiary uppercase">Ad Tracking</span>
-          <span class="text-2xl font-bold font-mono text-nexusCyan">0 KB</span>
-          <span class="text-xs text-textSecondary">Zero Telemetry Brokering</span>
-        </div>
-        <div class="p-4 rounded-2xl bg-surface1/60 border border-borderHairline flex flex-col gap-1">
-          <span class="text-[10px] font-mono text-textTertiary uppercase">Core Architecture</span>
-          <span class="text-2xl font-bold font-mono text-orvixLime">Native</span>
-          <span class="text-xs text-textSecondary">Kotlin, Java, Node, Rust</span>
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>We build focused software for real problems.</h1>
+        <p class="hero-sub">ARRIVA is an independent software studio based in Pune, India, run by developer Sachin Bableshwar. We craft native Android apps and developer tools that work offline and respect your privacy.</p>
+        <div class="btn-group">
+          <a href="/tourist-guide/" class="btn btn-primary">See Tourist Guide</a>
+          <a href="/#products" class="btn btn-secondary">Explore products</a>
         </div>
       </div>
     </section>
 
-    <section id="tourist-guide" class="max-w-7xl mx-auto px-6 py-24 border-b border-borderHairline">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-        
-        <div class="lg:col-span-6 flex flex-col gap-6">
-          <div class="flex items-center gap-2">
-            <span class="w-2.5 h-2.5 rounded-full bg-touristEmerald"></span>
-            <span class="text-xs font-mono font-bold uppercase tracking-wider text-touristEmerald">PRODUCT 01 · TRAVEL & HERITAGE</span>
-            <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-touristEmerald/10 text-touristEmerald border border-touristEmerald/20">v1.0.4 Android</span>
-          </div>
+    <section class="products" id="products">
+      <div class="container">
+        <h2>What we make</h2>
 
-          <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
-            ARRIVA Tourist Guide.<br>
-            <span class="text-textSecondary font-semibold">Maharashtra & Sahyadri Companion.</span>
-          </h2>
-
-          <p class="text-sm sm:text-base text-textSecondary leading-relaxed">
-            Built natively in Kotlin and Java for independent travelers traversing remote forts and historical landmarks. When cellular reception drops along Sinhagad or Torna ridges, Arriva keeps working with 100% offline 20m topographic contours, an on-device Simulated Annealing route optimizer, and Google ML Kit Marathi translation.
-          </p>
-
-          <div class="grid grid-cols-2 gap-3 text-xs font-mono">
-            <div class="p-3 rounded-xl bg-surface1 border border-borderHairline">
-              <span class="text-textTertiary block">OFFLINE MAP ENGINE</span>
-              <span class="text-white font-bold">osmdroid SQLite Vector Tiles</span>
-            </div>
-            <div class="p-3 rounded-xl bg-surface1 border border-borderHairline">
-              <span class="text-textTertiary block">NEURAL TRANSLATION</span>
-              <span class="text-white font-bold">ML Kit On-Device Model</span>
-            </div>
-            <div class="p-3 rounded-xl bg-surface1 border border-borderHairline">
-              <span class="text-textTertiary block">ROUTE OPTIMIZER</span>
-              <span class="text-white font-bold">Simulated Annealing in Kotlin</span>
-            </div>
-            <div class="p-3 rounded-xl bg-surface1 border border-borderHairline">
-              <span class="text-textTertiary block">EMERGENCY SAFETY</span>
-              <span class="text-white font-bold">0-Permission Intent SOS (112)</span>
+        <div class="product-row">
+          <div class="product-info">
+            <h3>Tourist Guide</h3>
+            <span class="status-label status-testing">In testing</span>
+            <p>An Android travel companion for Maharashtra. Browse curated heritage sites and nature spots, generate route-optimised itineraries, translate on-device between English, Hindi and Marathi, and navigate Sahyadri trails with offline topographic maps.</p>
+            <div class="product-links">
+              <a href="/tourist-guide/">Learn more <span class="sr-only">about Tourist Guide</span> &rarr;</a>
+              <a href="/tourist-guide/privacy/">Privacy Policy <span class="sr-only">for Tourist Guide</span></a>
             </div>
           </div>
+          <div class="product-screen">
+            <img src="/assets/screens/tourist-guide-1.svg" alt="Tourist Guide place discovery interface preview" loading="lazy">
+          </div>
+        </div>
 
-          <div class="flex flex-wrap items-center gap-3 pt-2">
-            <a href="https://github.com/Sachin85469/Tourist_Guide_App/releases" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-touristEmerald hover:bg-emerald-600 text-obsidian text-xs font-mono font-bold transition-all flex items-center gap-2">
-              <i data-lucide="download" class="w-4 h-4"></i>
-              <span>Download Release APK</span>
+        <div class="product-row">
+          <div class="product-info">
+            <h3>NEXUS</h3>
+            <span class="status-label status-development">In development</span>
+            <p>A private messaging application structured around direct 1:1 chats and topic-focused channels. Message histories are stored locally on your device with zero algorithmic timelines, zero tracking scripts, and no advertising networks.</p>
+            <div class="product-links">
+              <a href="/nexus/">Learn more <span class="sr-only">about NEXUS</span> &rarr;</a>
+              <a href="/nexus/privacy/">Privacy Notice <span class="sr-only">for NEXUS</span></a>
+            </div>
+          </div>
+          <div class="product-screen">
+            <img src="/assets/screens/nexus-1.svg" alt="NEXUS private messaging interface preview" loading="lazy">
+          </div>
+        </div>
+
+        <div class="product-row">
+          <div class="product-info">
+            <h3>ORVIX</h3>
+            <span class="status-label status-development">In development</span>
+            <p>A native developer bridge connecting local workflows directly to Ollama instances on your own workstation. Run prompts, inspect streaming token telemetry, and test local models without routing requests to external cloud servers.</p>
+            <div class="product-links">
+              <a href="/orvix/">Learn more <span class="sr-only">about ORVIX</span> &rarr;</a>
+              <a href="/orvix/privacy/">Privacy Notice <span class="sr-only">for ORVIX</span></a>
+            </div>
+          </div>
+          <div class="product-screen">
+            <img src="/assets/screens/orvix-1.svg" alt="ORVIX local model bridge interface preview" loading="lazy">
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="spotlight-section" id="spotlight">
+      <div class="container">
+        <div class="spotlight-card">
+          <div>
+            <span class="status-label status-testing">Flagship Spotlight</span>
+            <h2 style="margin-top: 0.75rem;">Tourist Guide for Android</h2>
+            <p>Tourist Guide is our primary focus, preparing for closed testing on Google Play. Built specifically for travelers exploring Maharashtra's historic hill forts, cave temples, Western Ghats trails, and coastal towns.</p>
+            <ul class="spotlight-features">
+              <li><strong>Curated destinations:</strong> Heritage sites, viewpoints, and cultural landmarks across Pune, Mumbai, and regional districts.</li>
+              <li><strong>On-device translation:</strong> Machine translation between Marathi, Hindi, and English powered locally by Google ML Kit models without data connectivity.</li>
+              <li><strong>Offline contour maps:</strong> 20m topographic trail lines rendered with osmdroid for navigation in remote Sahyadri areas lacking cellular reception.</li>
+              <li><strong>Intent-based safety:</strong> Emergency assistance triggers standard Android dialer or SMS apps with pre-filled GPS coordinates, keeping you in complete control.</li>
+            </ul>
+            <div class="btn-group">
+              <a href="/tourist-guide/" class="btn btn-primary">Explore Tourist Guide</a>
+              <a href="/tourist-guide/privacy/" class="btn btn-secondary">Privacy Policy</a>
+            </div>
+          </div>
+          <div class="phone-frame">
+            <img src="/assets/screens/tourist-guide-2.svg" alt="Tourist Guide route optimiser interface preview" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="container">
+        <h2>About ARRIVA</h2>
+        <p>ARRIVA is an independent software studio founded and operated by Sachin Bableshwar in Pune, Maharashtra, India. The studio specializes in native Android development, backend architecture, and developer utilities designed for privacy and resilience.</p>
+        <p style="margin-top: 1rem;">We believe software should solve genuine daily problems, function reliably offline, avoid unnecessary telemetry, and communicate clearly about its architecture and data practices. All public projects are maintained openly on GitHub.</p>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container">
+        <h2>Get in touch</h2>
+        <p>For questions about Tourist Guide, closed testing participation, feedback, or privacy matters:</p>
+        <ul class="contact-links">
+          <li>
+            <a href="mailto:sachinbableshwar1828@gmail.com">sachinbableshwar1828@gmail.com</a>
+          </li>
+          <li>
+            <a href="https://github.com/Sachin85469" target="_blank" rel="noopener noreferrer">
+              github.com/Sachin85469
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align: -1px; margin-left: 4px;">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                <polyline points="15 3 21 3 21 9"/>
+                <line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
             </a>
-            <a href="https://github.com/Sachin85469/Tourist_Guide_App" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-surface1 hover:bg-surface2 border border-borderHairline text-white text-xs font-mono font-medium transition-all flex items-center gap-2">
-              <i data-lucide="code" class="w-4 h-4"></i>
-              <span>View Android Source</span>
-            </a>
-            <a href="privacy.html" class="px-3 py-2.5 text-xs font-mono text-textSecondary hover:text-white transition-colors">
-              Data Safety & Policy →
-            </a>
-          </div>
-        </div>
-
-        <div class="lg:col-span-6 flex flex-col gap-6">
-          
-          <div class="panel-glass rounded-3xl p-6 flex flex-col gap-5 border border-borderHairline">
-            <div class="flex items-center justify-between pb-3 border-b border-borderHairline">
-              <div class="flex items-center gap-2">
-                <i data-lucide="activity" class="w-4 h-4 text-touristEmerald"></i>
-                <span class="text-xs font-mono font-bold text-white uppercase">Interactive Route Scrubber</span>
-              </div>
-              <div class="flex items-center gap-1 rounded-lg bg-surface2 p-0.5 border border-borderHairline text-[11px] font-mono">
-                <button data-tour="sinhagad" class="tour-btn px-2.5 py-1 rounded bg-touristEmerald text-obsidian font-bold">Sinhagad Ridge</button>
-                <button data-tour="pune" class="tour-btn px-2.5 py-1 rounded text-textSecondary hover:text-white">Pune Heritage</button>
-              </div>
-            </div>
-
-            <div class="p-4 rounded-2xl bg-surface1 border border-borderHairline flex flex-col gap-3">
-              <div class="flex items-center justify-between text-xs font-mono">
-                <span id="tour-name" class="font-bold text-white">Sinhagad Fort Ridge (सिंहगड)</span>
-                <span id="tour-elev" class="text-touristEmerald font-bold">1,312m ELEV</span>
-              </div>
-              <p id="tour-desc" class="text-xs text-textSecondary leading-relaxed">
-                Historic Maratha hill bastion with windward parapets, stone gateways, and cliffside trail ascent from Atkarwadi.
-              </p>
-              <div class="flex items-center justify-between text-[11px] font-mono pt-2 border-t border-white/5 text-textTertiary">
-                <span id="tour-stat1">Distance: 4.8 km trek</span>
-                <span id="tour-stat2">Ascent time: ~50 mins</span>
-              </div>
-            </div>
-
-            <div class="p-4 rounded-2xl bg-surface1 border border-borderHairline flex flex-col gap-2.5">
-              <div class="flex items-center justify-between text-[11px] font-mono">
-                <span class="text-textTertiary">ON-DEVICE MARATHI AUDIO ENGINE</span>
-                <button id="speak-marathi-btn" class="flex items-center gap-1 text-touristEmerald hover:text-emerald-300 font-semibold">
-                  <i data-lucide="volume-2" class="w-3.5 h-3.5"></i>
-                  <span>Pronounce</span>
-                </button>
-              </div>
-              <div class="text-sm font-bold text-white" id="marathi-phrase">"गडाच्या माथ्याकडे जाणारा रस्ता कोणता?"</div>
-              <div class="text-xs text-textSecondary italic" id="marathi-phonetic">Gadachya mathyakade janara rasta konta?</div>
-              <div class="text-xs text-textTertiary" id="marathi-english">"Which path leads to the fort summit?"</div>
-            </div>
-          </div>
-
-          <div class="grid grid-cols-2 gap-4">
-            <div class="panel-glass rounded-2xl p-3 border border-borderHairline overflow-hidden">
-              <span class="text-[10px] font-mono text-textTertiary block mb-2">SCREEN 01 · CURATED MATRIX</span>
-              <img src="assets/screens/tourist-guide-1.svg" alt="Curated Places" class="w-full rounded-xl border border-white/5">
-            </div>
-            <div class="panel-glass rounded-2xl p-3 border border-borderHairline overflow-hidden">
-              <span class="text-[10px] font-mono text-textTertiary block mb-2">SCREEN 02 · TRIP OPTIMIZER</span>
-              <img src="assets/screens/tourist-guide-2.svg" alt="Trip Optimizer" class="w-full rounded-xl border border-white/5">
-            </div>
-          </div>
-
-        </div>
-
+          </li>
+        </ul>
       </div>
     </section>
-
-    <section id="nexus" class="max-w-7xl mx-auto px-6 py-24 border-b border-borderHairline">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-        
-        <div class="lg:col-span-6 flex flex-col gap-6">
-          <div class="flex items-center gap-2">
-            <span class="w-2.5 h-2.5 rounded-full bg-nexusCyan"></span>
-            <span class="text-xs font-mono font-bold uppercase tracking-wider text-nexusCyan">PRODUCT 02 · COMMUNICATION</span>
-            <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-nexusCyan/10 text-nexusCyan border border-nexusCyan/20">Android Native</span>
-          </div>
-
-          <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
-            ARRIVA NEXUS.<br>
-            <span class="text-textSecondary font-semibold">Zero Feeds. Distraction-Free Messaging.</span>
-          </h2>
-
-          <p class="text-sm sm:text-base text-textSecondary leading-relaxed">
-            Modern chat apps are cluttered with social stories, engagement algorithms, and surveillance telemetry. NEXUS is a pure, high-performance messaging client designed around topic channels, direct one-to-one chats, and on-device SQLite message storage.
-          </p>
-
-          <div class="flex flex-col gap-3">
-            <div class="p-3.5 rounded-xl bg-surface1 border border-borderHairline flex items-start gap-3">
-              <div class="w-6 h-6 rounded-lg bg-nexusCyan/15 text-nexusCyan flex items-center justify-center shrink-0 mt-0.5">
-                <i data-lucide="shield" class="w-3.5 h-3.5"></i>
-              </div>
-              <div class="flex flex-col">
-                <span class="text-xs font-bold text-white font-mono">No Algorithmic Feeds or Stories</span>
-                <span class="text-xs text-textSecondary">Your attention belongs to you. Only the messages you sent and received appear.</span>
-              </div>
-            </div>
-
-            <div class="p-3.5 rounded-xl bg-surface1 border border-borderHairline flex items-start gap-3">
-              <div class="w-6 h-6 rounded-lg bg-nexusCyan/15 text-nexusCyan flex items-center justify-center shrink-0 mt-0.5">
-                <i data-lucide="database" class="w-3.5 h-3.5"></i>
-              </div>
-              <div class="flex flex-col">
-                <span class="text-xs font-bold text-white font-mono">On-Device SQLite Storage</span>
-                <span class="text-xs text-textSecondary">Messages reside securely on your device sandbox with simple self-serve clearing.</span>
-              </div>
-            </div>
-
-            <div class="p-3.5 rounded-xl bg-surface1 border border-borderHairline flex items-start gap-3">
-              <div class="w-6 h-6 rounded-lg bg-nexusCyan/15 text-nexusCyan flex items-center justify-center shrink-0 mt-0.5">
-                <i data-lucide="battery-charging" class="w-3.5 h-3.5"></i>
-              </div>
-              <div class="flex flex-col">
-                <span class="text-xs font-bold text-white font-mono">Minimal Background Overhead</span>
-                <span class="text-xs text-textSecondary">Zero constant analytics pinging. Tested under 2% background battery consumption per day.</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="lg:col-span-6 flex flex-col gap-6">
-          
-          <div class="panel-glass rounded-3xl p-6 flex flex-col gap-4 border border-borderHairline">
-            <div class="flex items-center justify-between pb-3 border-b border-borderHairline">
-              <div class="flex items-center gap-2 font-mono text-xs text-white">
-                <i data-lucide="message-square" class="w-4 h-4 text-nexusCyan"></i>
-                <span class="font-bold">NEXUS STREAM SIMULATOR</span>
-              </div>
-              <div class="flex items-center gap-1.5 text-[11px] font-mono">
-                <button data-channel="general" class="nexus-chan-btn px-2 py-0.5 rounded bg-nexusCyan text-obsidian font-bold">#general</button>
-                <button data-channel="sahyadri" class="nexus-chan-btn px-2 py-0.5 rounded text-textSecondary hover:text-white">#sahyadri-hike</button>
-                <button data-channel="dev" class="nexus-chan-btn px-2 py-0.5 rounded text-textSecondary hover:text-white">#dev-build</button>
-              </div>
-            </div>
-
-            <div id="nexus-chat-container" class="h-56 overflow-y-auto flex flex-col gap-3 p-3 rounded-2xl bg-surface1 border border-borderHairline text-xs font-sans">
-              <div class="flex flex-col gap-1 items-start">
-                <div class="flex items-center gap-2">
-                  <span class="font-bold text-white font-mono text-[11px]">Sachin</span>
-                  <span class="text-[10px] text-textTertiary font-mono">08:14 AM</span>
-                </div>
-                <div class="p-2.5 rounded-2xl rounded-tl-sm bg-surface2 text-textSecondary border border-borderHairline max-w-[85%]">
-                  Arriva Tourist Guide v1.0.4 build is verified. Ready for the Sinhagad field test.
-                </div>
-              </div>
-
-              <div class="flex flex-col gap-1 items-start">
-                <div class="flex items-center gap-2">
-                  <span class="font-bold text-nexusCyan font-mono text-[11px]">Nexus Node</span>
-                  <span class="text-[10px] text-textTertiary font-mono">08:15 AM</span>
-                </div>
-                <div class="p-2.5 rounded-2xl rounded-tl-sm bg-surface2 text-textSecondary border border-borderHairline max-w-[85%]">
-                  Offline SQLite cache ready. Zero network packets dispatched to external servers.
-                </div>
-              </div>
-            </div>
-
-            <div class="flex items-center gap-2 pt-1">
-              <input type="text" id="nexus-input" placeholder="Type a message in #general..." class="flex-1 bg-surface1 border border-borderHairline rounded-xl px-3.5 py-2 text-xs text-white placeholder-textTertiary focus:outline-none focus:border-nexusCyan font-mono">
-              <button id="nexus-send-btn" class="px-3.5 py-2 rounded-xl bg-nexusCyan hover:bg-cyan-500 text-obsidian text-xs font-mono font-bold transition-all">
-                Send
-              </button>
-            </div>
-          </div>
-
-          <div class="grid grid-cols-2 gap-4">
-            <div class="panel-glass rounded-2xl p-3 border border-borderHairline overflow-hidden">
-              <span class="text-[10px] font-mono text-textTertiary block mb-2">SCREEN 01 · ACTIVE CHATS</span>
-              <img src="assets/screens/nexus-1.svg" alt="NEXUS Chats" class="w-full rounded-xl border border-white/5">
-            </div>
-            <div class="panel-glass rounded-2xl p-3 border border-borderHairline overflow-hidden">
-              <span class="text-[10px] font-mono text-textTertiary block mb-2">SCREEN 03 · TOPIC CHANNELS</span>
-              <img src="assets/screens/nexus-3.svg" alt="NEXUS Channels" class="w-full rounded-xl border border-white/5">
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <section id="orvix" class="max-w-7xl mx-auto px-6 py-24 border-b border-borderHairline">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-        
-        <div class="lg:col-span-6 flex flex-col gap-6">
-          <div class="flex items-center gap-2">
-            <span class="w-2.5 h-2.5 rounded-full bg-orvixLime"></span>
-            <span class="text-xs font-mono font-bold uppercase tracking-wider text-orvixLime">PRODUCT 03 · LOCAL AI SYSTEMS</span>
-            <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-orvixLime/10 text-orvixLime border border-orvixLime/20">Local Inference</span>
-          </div>
-
-          <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
-            ARRIVA ORVIX.<br>
-            <span class="text-textSecondary font-semibold">Local AI Engine &amp; Ollama Bridge.</span>
-          </h2>
-
-          <p class="text-sm sm:text-base text-textSecondary leading-relaxed">
-            Sending proprietary source code, internal documents, and personal queries to centralized cloud LLMs introduces telemetry risks and recurring token bills. ORVIX bridges your local developer workflow directly to on-device Ollama sockets (<code class="font-mono text-white bg-surface2 px-1.5 py-0.5 rounded text-xs">127.0.0.1:11434</code>), providing streaming tokens with zero external leaks.
-          </p>
-
-          <div class="grid grid-cols-2 gap-3 text-xs font-mono">
-            <div class="p-3 rounded-xl bg-surface1 border border-borderHairline">
-              <span class="text-textTertiary block">LOCAL ENDPOINT</span>
-              <span class="text-white font-bold">127.0.0.1:11434 / REST</span>
-            </div>
-            <div class="p-3 rounded-xl bg-surface1 border border-borderHairline">
-              <span class="text-textTertiary block">MODEL SUPPORT</span>
-              <span class="text-white font-bold">Llama 3, Mistral, DeepSeek</span>
-            </div>
-            <div class="p-3 rounded-xl bg-surface1 border border-borderHairline">
-              <span class="text-textTertiary block">TELEMETRY LEAKAGE</span>
-              <span class="text-orvixLime font-bold">0 Bytes (Strict Localhost)</span>
-            </div>
-            <div class="p-3 rounded-xl bg-surface1 border border-borderHairline">
-              <span class="text-textTertiary block">HARDWARE TARGET</span>
-              <span class="text-white font-bold">Apple Silicon, NVIDIA, x86 CPU</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="lg:col-span-6 flex flex-col gap-6">
-          
-          <div class="panel-glass rounded-3xl p-6 flex flex-col gap-4 border border-borderHairline">
-            <div class="flex items-center justify-between pb-3 border-b border-borderHairline">
-              <div class="flex items-center gap-2 font-mono text-xs text-white">
-                <i data-lucide="terminal" class="w-4 h-4 text-orvixLime"></i>
-                <span class="font-bold">ORVIX TERMINAL CONSOLE</span>
-              </div>
-              <span class="text-[10px] font-mono text-orvixLime bg-orvixLime/10 px-2 py-0.5 rounded border border-orvixLime/20">SOCKET ACTIVE</span>
-            </div>
-
-            <div class="flex items-center gap-2 flex-wrap text-xs font-mono">
-              <button id="cmd-list" class="px-2.5 py-1 rounded bg-surface2 hover:bg-surface3 border border-borderHairline text-white">ollama list</button>
-              <button id="cmd-run" class="px-2.5 py-1 rounded bg-surface2 hover:bg-surface3 border border-borderHairline text-white">run llama3 "Explain TSP"</button>
-              <button id="cmd-clear" class="px-2.5 py-1 rounded bg-surface2 hover:bg-surface3 border border-borderHairline text-textTertiary">clear</button>
-            </div>
-
-            <div id="terminal-output" class="h-48 overflow-y-auto bg-black/90 p-3.5 rounded-2xl font-mono text-xs text-slate-300 leading-relaxed border border-borderHairline">
-              <div class="text-textTertiary">ARRIVA ORVIX v1.0 · Localhost Bridge Ready</div>
-              <div class="text-orvixLime mt-1">sachin@arriva:~$ ollama list</div>
-              <div class="text-slate-400 mt-0.5">NAME              ID           SIZE      MODIFIED</div>
-              <div class="text-white">llama3:8b         a6990fa61020 4.7 GB    2 hours ago</div>
-              <div class="text-white">mistral:7b        61e88e884507 4.1 GB    1 day ago</div>
-              <div class="text-white">nomic-embed-text  0a109f422b47 274 MB    3 days ago</div>
-            </div>
-          </div>
-
-          <div class="grid grid-cols-2 gap-4">
-            <div class="panel-glass rounded-2xl p-3 border border-borderHairline overflow-hidden">
-              <span class="text-[10px] font-mono text-textTertiary block mb-2">SCREEN 02 · LOCAL API CONSOLE</span>
-              <img src="assets/screens/orvix-2.svg" alt="ORVIX API Console" class="w-full rounded-xl border border-white/5">
-            </div>
-            <div class="panel-glass rounded-2xl p-3 border border-borderHairline overflow-hidden">
-              <span class="text-[10px] font-mono text-textTertiary block mb-2">SCREEN 03 · TOKEN STREAM</span>
-              <img src="assets/screens/orvix-3.svg" alt="ORVIX Stream" class="w-full rounded-xl border border-white/5">
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <section id="screens" class="max-w-7xl mx-auto px-6 py-24 border-b border-borderHairline">
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
-        <div class="flex flex-col gap-2">
-          <span class="text-xs font-mono font-bold uppercase tracking-wider text-textTertiary">MULTI-PRODUCT LIGHTBOX</span>
-          <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
-            Screenshots &amp; Device Architecture.
-          </h2>
-        </div>
-
-        <div class="flex items-center gap-2">
-          <button id="filter-all" class="filter-tab px-3 py-1.5 rounded-lg text-xs font-mono bg-white text-obsidian font-bold">All (12)</button>
-          <button data-filter="tourist" class="filter-tab px-3 py-1.5 rounded-lg text-xs font-mono bg-surface1 text-textSecondary hover:text-white border border-borderHairline">Tourist Guide</button>
-          <button data-filter="nexus" class="filter-tab px-3 py-1.5 rounded-lg text-xs font-mono bg-surface1 text-textSecondary hover:text-white border border-borderHairline">NEXUS</button>
-          <button data-filter="orvix" class="filter-tab px-3 py-1.5 rounded-lg text-xs font-mono bg-surface1 text-textSecondary hover:text-white border border-borderHairline">ORVIX</button>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="gallery-grid">
-        
-        <div class="gallery-item tourist panel-glass rounded-3xl p-4 flex flex-col gap-3 border border-borderHairline">
-          <img src="assets/screens/tourist-guide-1.svg" alt="Tourist Guide Places" class="w-full rounded-2xl border border-white/5">
-          <div class="flex flex-col">
-            <span class="text-[10px] font-mono text-touristEmerald font-bold uppercase">Tourist Guide · Screen 01</span>
-            <span class="text-xs font-bold text-white">Curated Maharashtra Heritage</span>
-          </div>
-        </div>
-
-        <div class="gallery-item tourist panel-glass rounded-3xl p-4 flex flex-col gap-3 border border-borderHairline">
-          <img src="assets/screens/tourist-guide-2.svg" alt="Tourist Guide Planner" class="w-full rounded-2xl border border-white/5">
-          <div class="flex flex-col">
-            <span class="text-[10px] font-mono text-touristEmerald font-bold uppercase">Tourist Guide · Screen 02</span>
-            <span class="text-xs font-bold text-white">Day Route Optimizer</span>
-          </div>
-        </div>
-
-        <div class="gallery-item tourist panel-glass rounded-3xl p-4 flex flex-col gap-3 border border-borderHairline">
-          <img src="assets/screens/tourist-guide-3.svg" alt="Tourist Guide Map" class="w-full rounded-2xl border border-white/5">
-          <div class="flex flex-col">
-            <span class="text-[10px] font-mono text-touristEmerald font-bold uppercase">Tourist Guide · Screen 03</span>
-            <span class="text-xs font-bold text-white">Offline Topographic Vector</span>
-          </div>
-        </div>
-
-        <div class="gallery-item tourist panel-glass rounded-3xl p-4 flex flex-col gap-3 border border-borderHairline">
-          <img src="assets/screens/tourist-guide-4.svg" alt="Tourist Guide Companion" class="w-full rounded-2xl border border-white/5">
-          <div class="flex flex-col">
-            <span class="text-[10px] font-mono text-touristEmerald font-bold uppercase">Tourist Guide · Screen 04</span>
-            <span class="text-xs font-bold text-white">Cultural Lore &amp; Marathi</span>
-          </div>
-        </div>
-
-        <div class="gallery-item nexus panel-glass rounded-3xl p-4 flex flex-col gap-3 border border-borderHairline">
-          <img src="assets/screens/nexus-1.svg" alt="NEXUS Chats" class="w-full rounded-2xl border border-white/5">
-          <div class="flex flex-col">
-            <span class="text-[10px] font-mono text-nexusCyan font-bold uppercase">NEXUS · Screen 01</span>
-            <span class="text-xs font-bold text-white">Active Direct Chats</span>
-          </div>
-        </div>
-
-        <div class="gallery-item nexus panel-glass rounded-3xl p-4 flex flex-col gap-3 border border-borderHairline">
-          <img src="assets/screens/nexus-2.svg" alt="NEXUS Stream" class="w-full rounded-2xl border border-white/5">
-          <div class="flex flex-col">
-            <span class="text-[10px] font-mono text-nexusCyan font-bold uppercase">NEXUS · Screen 02</span>
-            <span class="text-xs font-bold text-white">Conversation Feed</span>
-          </div>
-        </div>
-
-        <div class="gallery-item nexus panel-glass rounded-3xl p-4 flex flex-col gap-3 border border-borderHairline">
-          <img src="assets/screens/nexus-3.svg" alt="NEXUS Channels" class="w-full rounded-2xl border border-white/5">
-          <div class="flex flex-col">
-            <span class="text-[10px] font-mono text-nexusCyan font-bold uppercase">NEXUS · Screen 03</span>
-            <span class="text-xs font-bold text-white">Topic-Oriented Channels</span>
-          </div>
-        </div>
-
-        <div class="gallery-item nexus panel-glass rounded-3xl p-4 flex flex-col gap-3 border border-borderHairline">
-          <img src="assets/screens/nexus-4.svg" alt="NEXUS Settings" class="w-full rounded-2xl border border-white/5">
-          <div class="flex flex-col">
-            <span class="text-[10px] font-mono text-nexusCyan font-bold uppercase">NEXUS · Screen 04</span>
-            <span class="text-xs font-bold text-white">Local Privacy &amp; Sandbox</span>
-          </div>
-        </div>
-
-        <div class="gallery-item orvix panel-glass rounded-3xl p-4 flex flex-col gap-3 border border-borderHairline">
-          <img src="assets/screens/orvix-1.svg" alt="ORVIX Library" class="w-full rounded-2xl border border-white/5">
-          <div class="flex flex-col">
-            <span class="text-[10px] font-mono text-orvixLime font-bold uppercase">ORVIX · Screen 01</span>
-            <span class="text-xs font-bold text-white">Local Model Library</span>
-          </div>
-        </div>
-
-        <div class="gallery-item orvix panel-glass rounded-3xl p-4 flex flex-col gap-3 border border-borderHairline">
-          <img src="assets/screens/orvix-2.svg" alt="ORVIX API Console" class="w-full rounded-2xl border border-white/5">
-          <div class="flex flex-col">
-            <span class="text-[10px] font-mono text-orvixLime font-bold uppercase">ORVIX · Screen 02</span>
-            <span class="text-xs font-bold text-white">Rest API Console</span>
-          </div>
-        </div>
-
-        <div class="gallery-item orvix panel-glass rounded-3xl p-4 flex flex-col gap-3 border border-borderHairline">
-          <img src="assets/screens/orvix-3.svg" alt="ORVIX Request Stream" class="w-full rounded-2xl border border-white/5">
-          <div class="flex flex-col">
-            <span class="text-[10px] font-mono text-orvixLime font-bold uppercase">ORVIX · Screen 03</span>
-            <span class="text-xs font-bold text-white">Token Streaming Inspector</span>
-          </div>
-        </div>
-
-        <div class="gallery-item orvix panel-glass rounded-3xl p-4 flex flex-col gap-3 border border-borderHairline">
-          <img src="assets/screens/orvix-4.svg" alt="ORVIX Config" class="w-full rounded-2xl border border-white/5">
-          <div class="flex flex-col">
-            <span class="text-[10px] font-mono text-orvixLime font-bold uppercase">ORVIX · Screen 04</span>
-            <span class="text-xs font-bold text-white">Socket &amp; Hardware Topology</span>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <section id="philosophy" class="max-w-7xl mx-auto px-6 py-24 border-b border-borderHairline">
-      <div class="flex flex-col gap-3 mb-12">
-        <span class="text-xs font-mono font-bold uppercase tracking-wider text-textTertiary">STUDIO FOUNDATIONS</span>
-        <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
-          The Four Architectural Principles.
-        </h2>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-
-        <div class="panel-glass rounded-2xl p-6 flex flex-col gap-3 border border-borderHairline">
-          <span class="text-xs font-mono font-bold text-touristEmerald">01 · OFFLINE SOVEREIGNTY</span>
-          <h3 class="text-base font-bold text-white">Works in Dead Zones</h3>
-          <p class="text-xs text-textSecondary leading-relaxed">
-            Essential software must work when connectivity is severed. Mountain ridges, underground metros, or rural highways—our core tools never demand an active cloud connection.
-          </p>
-        </div>
-
-        <div class="panel-glass rounded-2xl p-6 flex flex-col gap-3 border border-borderHairline">
-          <span class="text-xs font-mono font-bold text-nexusCyan">02 · ZERO AD SURVEILLANCE</span>
-          <h3 class="text-base font-bold text-white">No Brokers. No Trackers.</h3>
-          <p class="text-xs text-textSecondary leading-relaxed">
-            We do not embed Facebook SDKs, Google Analytics beacons, or third-party behavioral pixels. Your device sandbox is sacred.
-          </p>
-        </div>
-
-        <div class="panel-glass rounded-2xl p-6 flex flex-col gap-3 border border-borderHairline">
-          <span class="text-xs font-mono font-bold text-orvixLime">03 · LOCAL METAL COMPUTE</span>
-          <h3 class="text-base font-bold text-white">On-Device Intelligence</h3>
-          <p class="text-xs text-textSecondary leading-relaxed">
-            From Google ML Kit translation running on phone NPUs to Ollama LLMs running on your local Apple Silicon or NVIDIA GPU, intelligence runs where you are.
-          </p>
-        </div>
-
-        <div class="panel-glass rounded-2xl p-6 flex flex-col gap-3 border border-borderHairline">
-          <span class="text-xs font-mono font-bold text-arrivaViolet">04 · OPEN ARCHITECTURE</span>
-          <h3 class="text-base font-bold text-white">Inspectable Source</h3>
-          <p class="text-xs text-textSecondary leading-relaxed">
-            Our projects are developed in the open on GitHub under the MIT License. Anyone can audit our permission manifests, Gradle builds, and networking code.
-          </p>
-        </div>
-
-      </div>
-    </section>
-
-    <section id="faq" class="max-w-4xl mx-auto px-6 py-24 border-b border-borderHairline">
-      <div class="flex flex-col gap-3 mb-10 text-center items-center">
-        <span class="text-xs font-mono font-bold uppercase tracking-wider text-textTertiary">INQUIRIES</span>
-        <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
-          Frequently Asked Questions.
-        </h2>
-      </div>
-
-      <div class="flex flex-col gap-3">
-        
-        <div class="faq-card panel-glass rounded-2xl border border-borderHairline overflow-hidden">
-          <button class="faq-btn w-full p-5 text-left flex items-center justify-between gap-4">
-            <span class="text-sm font-bold text-white">What is ARRIVA?</span>
-            <i data-lucide="chevron-down" class="faq-icon w-4 h-4 text-textTertiary transition-transform"></i>
-          </button>
-          <div class="faq-body hidden px-5 pb-5 text-xs text-textSecondary leading-relaxed border-t border-white/5 pt-3">
-            ARRIVA is an independent software studio founded by Sachin Bableshwar in Pune, Maharashtra. We design and engineer focused digital products prioritizing privacy, offline utility, and high-performance native architecture.
-          </div>
-        </div>
-
-        <div class="faq-card panel-glass rounded-2xl border border-borderHairline overflow-hidden">
-          <button class="faq-btn w-full p-5 text-left flex items-center justify-between gap-4">
-            <span class="text-sm font-bold text-white">Which product is currently available to download?</span>
-            <i data-lucide="chevron-down" class="faq-icon w-4 h-4 text-textTertiary transition-transform"></i>
-          </button>
-          <div class="faq-body hidden px-5 pb-5 text-xs text-textSecondary leading-relaxed border-t border-white/5 pt-3">
-            The flagship <strong>ARRIVA Tourist Guide (v1.0.4)</strong> is our live Android release, available via direct signed APK on GitHub Releases and currently entering Google Play Console closed testing. NEXUS and ORVIX are under active development.
-          </div>
-        </div>
-
-        <div class="faq-card panel-glass rounded-2xl border border-borderHairline overflow-hidden">
-          <button class="faq-btn w-full p-5 text-left flex items-center justify-between gap-4">
-            <span class="text-sm font-bold text-white">Where is the official Google Play Privacy Policy for Tourist Guide?</span>
-            <i data-lucide="chevron-down" class="faq-icon w-4 h-4 text-textTertiary transition-transform"></i>
-          </button>
-          <div class="faq-body hidden px-5 pb-5 text-xs text-textSecondary leading-relaxed border-t border-white/5 pt-3">
-            Our comprehensive, Google Play 2026 Developer Policy-compliant Privacy Policy is hosted at <a href="privacy.html" class="text-arrivaViolet underline">arrivaa.tech/privacy.html</a>. It details all runtime permissions, zero-tracking guarantees, and account deletion procedures.
-          </div>
-        </div>
-
-        <div class="faq-card panel-glass rounded-2xl border border-borderHairline overflow-hidden">
-          <button class="faq-btn w-full p-5 text-left flex items-center justify-between gap-4">
-            <span class="text-sm font-bold text-white">How does ORVIX connect to local Ollama?</span>
-            <i data-lucide="chevron-down" class="faq-icon w-4 h-4 text-textTertiary transition-transform"></i>
-          </button>
-          <div class="faq-body hidden px-5 pb-5 text-xs text-textSecondary leading-relaxed border-t border-white/5 pt-3">
-            ORVIX connects over a standard local HTTP socket to <code>127.0.0.1:11434</code>. It allows you to inspect raw streaming REST tokens, switch models, and test prompts without exposing your internal network or code to external cloud APIs.
-          </div>
-        </div>
-
-      </div>
-    </section>
-
   </main>
-
-  <footer class="border-t border-borderHairline bg-obsidian py-14">
-    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-start justify-between gap-10">
-      
-      <div class="flex flex-col gap-2 max-w-sm">
-        <div class="flex items-center gap-2.5">
-          <img src="assets/favicon.svg" alt="ARRIVA Logo" class="w-5 h-5">
-          <span class="font-extrabold text-sm tracking-widest text-white">ARRIVA</span>
-          <span class="text-[10px] font-mono text-textTertiary">IDEAS INTO INNOVATION</span>
-        </div>
-        <p class="text-xs text-textSecondary mt-1 leading-relaxed">
-          Independent software engineering studio based in Pune, Maharashtra. Building focused, durable, and privacy-respecting technology.
-        </p>
-        <span class="text-[11px] font-mono text-textTertiary mt-2">
-          Crafted by <a href="https://github.com/Sachin85469" target="_blank" rel="noopener noreferrer" class="text-white hover:underline">Sachin Bableshwar</a>
-        </span>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col footer-brand">
+        <a href="/" class="wordmark">ARRIVA</a>
+        <p>Independent software studio in Pune, India. Building thoughtful, offline-capable digital tools.</p>
       </div>
-
-      <div class="grid grid-cols-2 sm:grid-cols-3 gap-8 text-xs font-mono">
-        <div class="flex flex-col gap-2.5">
-          <span class="text-white font-bold uppercase text-[10px] tracking-wider">Active Fleet</span>
-          <a href="#tourist-guide" class="text-textSecondary hover:text-white transition-colors">Tourist Guide (Android)</a>
-          <a href="#nexus" class="text-textSecondary hover:text-white transition-colors">NEXUS (Messaging)</a>
-          <a href="#orvix" class="text-textSecondary hover:text-white transition-colors">ORVIX (Local AI)</a>
-          <a href="#screens" class="text-textSecondary hover:text-white transition-colors">Screens Gallery</a>
-        </div>
-
-        <div class="flex flex-col gap-2.5">
-          <span class="text-white font-bold uppercase text-[10px] tracking-wider">Studio &amp; Code</span>
-          <a href="https://github.com/Sachin85469/Tourist_Guide_App" target="_blank" rel="noopener noreferrer" class="text-textSecondary hover:text-white transition-colors">Tourist Guide Repo</a>
-          <a href="https://github.com/Sachin85469/arrivaa-demo" target="_blank" rel="noopener noreferrer" class="text-textSecondary hover:text-white transition-colors">Web Portal Repo</a>
-          <a href="privacy.html" class="text-textSecondary hover:text-white transition-colors">Privacy Policy</a>
-          <a href="404.html" class="text-textSecondary hover:text-white transition-colors">404 Diagnostics</a>
-        </div>
-
-        <div class="flex flex-col gap-2.5">
-          <span class="text-white font-bold uppercase text-[10px] tracking-wider">Elsewhere</span>
-          <a href="https://github.com/Sachin85469" target="_blank" rel="noopener noreferrer" class="text-textSecondary hover:text-white transition-colors">GitHub</a>
-          <a href="mailto:sachinbableshwar1828@gmail.com" class="text-textSecondary hover:text-white transition-colors">Contact Lead</a>
-        </div>
+      <div class="footer-col">
+        <p class="footer-heading">Tourist Guide</p>
+        <ul>
+          <li><a href="/tourist-guide/">Product Overview</a></li>
+          <li><a href="/tourist-guide/privacy/">Privacy Policy</a></li>
+          <li><a href="/tourist-guide/delete-account/">Account Deletion</a></li>
+        </ul>
       </div>
-
+      <div class="footer-col">
+        <p class="footer-heading">NEXUS</p>
+        <ul>
+          <li><a href="/nexus/">Product Overview</a></li>
+          <li><a href="/nexus/privacy/">Privacy Notice</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-heading">ORVIX</p>
+        <ul>
+          <li><a href="/orvix/">Product Overview</a></li>
+          <li><a href="/orvix/privacy/">Privacy Notice</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-heading">Studio</p>
+        <ul>
+          <li><a href="/privacy/">Studio Privacy</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="https://github.com/Sachin85469" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        </ul>
+      </div>
     </div>
-
-    <div class="max-w-7xl mx-auto px-6 pt-10 mt-10 border-t border-borderHairline flex flex-col sm:flex-row items-center justify-between text-[11px] font-mono text-textTertiary gap-3">
-      <span>&copy; 2026 ARRIVA. Open source under MIT. No tracking cookies loaded.</span>
-      <span>Pune, Maharashtra, India</span>
+    <div class="container footer-bottom">
+      <p>&copy; 2026 ARRIVA. All rights reserved.</p>
     </div>
   </footer>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      if (window.lucide) window.lucide.createIcons();
-      initTouristScrubber();
-      initMarathiSpeech();
-      initNexusChat();
-      initOrvixTerminal();
-      initGalleryFilter();
-      initFaqAccordion();
-      initMobileMenu();
-    });
-
-    const tours = {
-      sinhagad: {
-        name: "Sinhagad Fort Ridge (सिंहगड)",
-        elev: "1,312m ELEV",
-        desc: "Historic Maratha hill bastion with windward parapets, stone gateways, and cliffside trail ascent from Atkarwadi.",
-        stat1: "Distance: 4.8 km trek",
-        stat2: "Ascent time: ~50 mins"
-      },
-      pune: {
-        name: "Pune Cultural Day (शनिवार वाडा & पाताळेश्वर)",
-        elev: "560m ELEV",
-        desc: "Heritage walking circuit through 18th-century Peshwa seat Delhi Darwaza and 8th-century monolithic rock-cut cave temple.",
-        stat1: "Distance: 6.2 km circuit",
-        stat2: "Pacing: Balanced cultural walk"
-      }
-    };
-
-    function initTouristScrubber() {
-      const btns = document.querySelectorAll('.tour-btn');
-      const name = document.getElementById('tour-name');
-      const elev = document.getElementById('tour-elev');
-      const desc = document.getElementById('tour-desc');
-      const stat1 = document.getElementById('tour-stat1');
-      const stat2 = document.getElementById('tour-stat2');
-
-      btns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          btns.forEach(b => {
-            b.className = 'tour-btn px-2.5 py-1 rounded text-textSecondary hover:text-white';
-          });
-          btn.className = 'tour-btn px-2.5 py-1 rounded bg-touristEmerald text-obsidian font-bold';
-          
-          const key = btn.getAttribute('data-tour');
-          const d = tours[key];
-          if (d && name && elev && desc && stat1 && stat2) {
-            name.textContent = d.name;
-            elev.textContent = d.elev;
-            desc.textContent = d.desc;
-            stat1.textContent = d.stat1;
-            stat2.textContent = d.stat2;
-          }
-        });
-      });
-    }
-
-    function initMarathiSpeech() {
-      const btn = document.getElementById('speak-marathi-btn');
-      const phrase = document.getElementById('marathi-phrase');
-      if (btn && phrase) {
-        btn.addEventListener('click', () => {
-          try {
-            if ('speechSynthesis' in window) {
-              const text = phrase.textContent.replace(/"/g, '');
-              const utter = new SpeechSynthesisUtterance(text);
-              utter.lang = 'mr-IN';
-              utter.rate = 0.85;
-              window.speechSynthesis.speak(utter);
-            }
-          } catch (e) {}
-        });
-      }
-    }
-
-    const channelChats = {
-      general: [
-        { sender: "Sachin", time: "08:14 AM", text: "Arriva Tourist Guide v1.0.4 build is verified. Ready for the Sinhagad field test." },
-        { sender: "Nexus Node", time: "08:15 AM", text: "Offline SQLite cache ready. Zero network packets dispatched to external servers." }
-      ],
-      sahyadri: [
-        { sender: "Hiker_84", time: "06:30 AM", text: "Heavy fog at Kalyan Darwaza, wind speed ~35 km/h. Beautiful conditions." },
-        { sender: "Sachin", time: "06:45 AM", text: "The 20m contour tiles cached nicely in osmdroid. Battery dropped only 3% in 2 hours." }
-      ],
-      dev: [
-        { sender: "Sachin", time: "Yesterday", text: "Removed dangerous SEND_SMS permissions. All SOS alerts use Intent.ACTION_SENDTO." },
-        { sender: "Auditor", time: "Yesterday", text: "Google Play declaration requirement avoided. Zero policy violations." }
-      ]
-    };
-
-    let currentChan = 'general';
-
-    function initNexusChat() {
-      const container = document.getElementById('nexus-chat-container');
-      const input = document.getElementById('nexus-input');
-      const send = document.getElementById('nexus-send-btn');
-      const chanBtns = document.querySelectorAll('.nexus-chan-btn');
-
-      function render(chan) {
-        if (!container) return;
-        container.innerHTML = '';
-        const msgs = channelChats[chan] || [];
-        msgs.forEach(m => {
-          const div = document.createElement('div');
-          div.className = 'flex flex-col gap-1 items-start';
-          const isMe = m.sender === 'Sachin';
-          div.innerHTML = `
-            <div class="flex items-center gap-2">
-              <span class="font-bold ${isMe ? 'text-white' : 'text-nexusCyan'} font-mono text-[11px]">${m.sender}</span>
-              <span class="text-[10px] text-textTertiary font-mono">${m.time}</span>
-            </div>
-            <div class="p-2.5 rounded-2xl rounded-tl-sm bg-surface2 text-textSecondary border border-borderHairline max-w-[85%]">
-              ${m.text}
-            </div>
-          `;
-          container.appendChild(div);
-        });
-        container.scrollTop = container.scrollHeight;
-      }
-
-      chanBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          chanBtns.forEach(b => {
-            b.className = 'nexus-chan-btn px-2 py-0.5 rounded text-textSecondary hover:text-white';
-          });
-          btn.className = 'nexus-chan-btn px-2 py-0.5 rounded bg-nexusCyan text-obsidian font-bold';
-          currentChan = btn.getAttribute('data-channel');
-          if (input) input.placeholder = 'Type a message in #' + currentChan + '...';
-          render(currentChan);
-        });
-      });
-
-      function addMsg() {
-        if (!input || !input.value.trim()) return;
-        const text = input.value.trim();
-        input.value = '';
-        if (!channelChats[currentChan]) channelChats[currentChan] = [];
-        channelChats[currentChan].push({ sender: 'You', time: 'Just now', text: text });
-        render(currentChan);
-      }
-
-      if (send) send.addEventListener('click', addMsg);
-      if (input) {
-        input.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter') addMsg();
-        });
-      }
-    }
-
-    function initOrvixTerminal() {
-      const out = document.getElementById('terminal-output');
-      const bList = document.getElementById('cmd-list');
-      const bRun = document.getElementById('cmd-run');
-      const bClear = document.getElementById('cmd-clear');
-
-      if (!out) return;
-
-      if (bList) {
-        bList.addEventListener('click', () => {
-          out.innerHTML += `
-            <div class="text-orvixLime mt-2">sachin@arriva:~$ ollama list</div>
-            <div class="text-slate-400 mt-0.5">NAME              ID           SIZE      MODIFIED</div>
-            <div class="text-white">llama3:8b         a6990fa61020 4.7 GB    2 hours ago</div>
-            <div class="text-white">mistral:7b        61e88e884507 4.1 GB    1 day ago</div>
-            <div class="text-white">deepseek-coder    3b129a00fb21 1.8 GB    5 days ago</div>
-          `;
-          out.scrollTop = out.scrollHeight;
-        });
-      }
-
-      if (bRun) {
-        bRun.addEventListener('click', () => {
-          out.innerHTML += `
-            <div class="text-orvixLime mt-2">sachin@arriva:~$ ollama run llama3 "Explain TSP"</div>
-            <div class="text-textTertiary">Connecting to 127.0.0.1:11434 socket...</div>
-            <div class="text-emerald-400 mt-1">[Stream 42 tokens/s · Local M3 GPU]</div>
-            <div class="text-slate-300 mt-1 leading-relaxed">The Traveling Salesperson Problem seeks the shortest route visiting N locations exactly once. In Arriva, we solve this on Android via Simulated Annealing cooling cycles.</div>
-          `;
-          out.scrollTop = out.scrollHeight;
-        });
-      }
-
-      if (bClear) {
-        bClear.addEventListener('click', () => {
-          out.innerHTML = '<div class="text-textTertiary">ARRIVA ORVIX v1.0 · Terminal cleared</div>';
-        });
-      }
-    }
-
-    function initGalleryFilter() {
-      const tabs = document.querySelectorAll('.filter-tab');
-      const items = document.querySelectorAll('.gallery-item');
-
-      tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-          tabs.forEach(t => {
-            t.className = 'filter-tab px-3 py-1.5 rounded-lg text-xs font-mono bg-surface1 text-textSecondary hover:text-white border border-borderHairline';
-          });
-          tab.className = 'filter-tab px-3 py-1.5 rounded-lg text-xs font-mono bg-white text-obsidian font-bold';
-
-          const f = tab.getAttribute('data-filter');
-          items.forEach(it => {
-            if (!f || it.classList.contains(f)) {
-              it.style.display = 'flex';
-            } else {
-              it.style.display = 'none';
-            }
-          });
-        });
-      });
-    }
-
-    function initFaqAccordion() {
-      document.querySelectorAll('.faq-card').forEach(c => {
-        const btn = c.querySelector('.faq-btn');
-        const body = c.querySelector('.faq-body');
-        const icon = c.querySelector('.faq-icon');
-
-        if (btn && body) {
-          btn.addEventListener('click', () => {
-            const isOpen = !body.classList.contains('hidden');
-            document.querySelectorAll('.faq-body').forEach(b => b.classList.add('hidden'));
-            document.querySelectorAll('.faq-icon').forEach(i => i.classList.remove('rotate-180'));
-
-            if (!isOpen) {
-              body.classList.remove('hidden');
-              if (icon) icon.classList.add('rotate-180');
-            }
-          });
-        }
-      });
-    }
-
-    function initMobileMenu() {
-      const toggle = document.getElementById('mobile-toggle');
-      const nav = document.getElementById('mobile-nav');
-
-      if (toggle && nav) {
-        toggle.addEventListener('click', () => {
-          nav.classList.toggle('hidden');
-        });
-        document.querySelectorAll('.mobile-link').forEach(l => {
-          l.addEventListener('click', () => {
-            nav.classList.add('hidden');
-          });
-        });
-      }
-    }
-  </script>
+  <script src="/main.js"></script>
 </body>
-</html>
+</html>\n

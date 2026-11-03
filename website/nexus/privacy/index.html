@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Notice — NEXUS — ARRIVA</title>
+  <meta name="description" content="Privacy notice and architectural principles for ARRIVA NEXUS messaging application. Currently in active development.">
+  <link rel="canonical" href="https://arrivaa.tech/nexus/privacy/">
+  <meta property="og:title" content="Privacy Notice — NEXUS — ARRIVA">
+  <meta property="og:description" content="Privacy notice and architectural principles for ARRIVA NEXUS messaging application. Currently in active development.">
+  <meta property="og:url" content="https://arrivaa.tech/nexus/privacy/">
+  <meta property="og:image" content="https://arrivaa.tech/assets/og-image.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Privacy Notice — NEXUS — ARRIVA">
+  <meta name="twitter:description" content="Privacy notice and architectural principles for ARRIVA NEXUS messaging application. Currently in active development.">
+  <meta name="twitter:image" content="https://arrivaa.tech/assets/og-image.png">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/fonts/fonts.css">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="wordmark">ARRIVA</a>
+      <nav class="main-nav" id="main-nav">
+        <a href="/#products">What we make</a>
+        <a href="/#spotlight">Tourist Guide</a>
+        <a href="/#about">About</a>
+        <a href="/contact/">Contact</a>
+      </nav>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+  <main class="privacy-layout">
+    <h1>Privacy Notice</h1>
+    <p class="privacy-subtitle">ARRIVA NEXUS &middot; Android Application</p>
+    <p class="effective-date">Effective date: November 3, 2026</p>
+
+    <div class="sand-panel">
+      <span class="status-label status-development">In development</span>
+      <p style="margin-top: 0.85rem;">NEXUS is currently in software development and has not been published to app marketplaces or open beta distribution. This document outlines the architectural commitments that will govern the application when released.</p>
+    </div>
+
+    <section class="privacy-section">
+      <h2>Architectural Privacy Commitments</h2>
+      <ul>
+        <li><strong>Local-first storage:</strong> Direct conversations and topic channels will be persisted in an on-device SQLite database within the app's protected sandbox.</li>
+        <li><strong>No advertising trackers:</strong> The codebase will contain zero third-party advertising SDKs, demographic profiling beacons, or behavioral tracking libraries.</li>
+        <li><strong>Chronological order:</strong> Message streams will follow strict chronological sequencing without engagement ranking algorithms.</li>
+        <li><strong>Full data deletion:</strong> Users will have complete control to wipe conversation histories and purge local caches directly within the app interface.</li>
+      </ul>
+    </section>
+
+    <section class="privacy-section">
+      <h2>Full Policy Publication</h2>
+      <p>A comprehensive, production-grade privacy policy detailing cryptographic implementations, network protocols, and data safety points will be published on this page before the first public test build is released.</p>
+      <p style="margin-top: 1rem;"><a href="/nexus/">&larr; Return to NEXUS Overview</a></p>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col footer-brand">
+        <a href="/" class="wordmark">ARRIVA</a>
+        <p>Independent software studio in Pune, India. Building thoughtful, offline-capable digital tools.</p>
+      </div>
+      <div class="footer-col">
+        <p class="footer-heading">Tourist Guide</p>
+        <ul>
+          <li><a href="/tourist-guide/">Product Overview</a></li>
+          <li><a href="/tourist-guide/privacy/">Privacy Policy</a></li>
+          <li><a href="/tourist-guide/delete-account/">Account Deletion</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-heading">NEXUS</p>
+        <ul>
+          <li><a href="/nexus/">Product Overview</a></li>
+          <li><a href="/nexus/privacy/">Privacy Notice</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-heading">ORVIX</p>
+        <ul>
+          <li><a href="/orvix/">Product Overview</a></li>
+          <li><a href="/orvix/privacy/">Privacy Notice</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-heading">Studio</p>
+        <ul>
+          <li><a href="/privacy/">Studio Privacy</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="https://github.com/Sachin85469" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>&copy; 2026 ARRIVA. All rights reserved.</p>
+    </div>
+  </footer>
+  <script src="/main.js"></script>
+</body>
+</html>\n

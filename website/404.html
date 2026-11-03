@@ -1,60 +1,90 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>404 — Page Not Found | ARRIVA</title>
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            canvas: '#0A0D14',
-            surface1: '#121622',
-            surface2: '#181E2E',
-            borderSubtle: 'rgba(255, 255, 255, 0.08)',
-            accentViolet: '#8B5CF6',
-            accentEmerald: '#10B981',
-            textMain: '#F8FAFC',
-            textMuted: '#94A3B8',
-            textDim: '#64748B',
-          },
-          fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-            mono: ['"JetBrains Mono"', 'monospace'],
-          }
-        }
-      }
-    }
-  </script>
+  <title>Page Not Found — ARRIVA</title>
+  <meta name="description" content="The page you are looking for does not exist or has been moved.">
+  <link rel="canonical" href="https://arrivaa.tech/404.html">
+  <meta property="og:title" content="Page Not Found — ARRIVA">
+  <meta property="og:description" content="The page you are looking for does not exist or has been moved.">
+  <meta property="og:url" content="https://arrivaa.tech/404.html">
+  <meta property="og:image" content="https://arrivaa.tech/assets/og-image.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Page Not Found — ARRIVA">
+  <meta name="twitter:description" content="The page you are looking for does not exist or has been moved.">
+  <meta name="twitter:image" content="https://arrivaa.tech/assets/og-image.png">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/fonts/fonts.css">
+  <link rel="stylesheet" href="/styles.css">
 </head>
-<body class="bg-canvas text-textMain font-sans min-h-screen flex items-center justify-center p-6">
-  <div class="max-w-md w-full p-8 rounded-3xl bg-surface1 border border-borderSubtle text-center flex flex-col items-center gap-5 shadow-2xl">
-    <div class="w-12 h-12 rounded-2xl bg-surface2 border border-borderSubtle flex items-center justify-center p-2.5">
-      <img src="assets/favicon.svg" alt="Arriva Logo" class="w-7 h-7">
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="wordmark">ARRIVA</a>
+      <nav class="main-nav" id="main-nav">
+        <a href="/#products">What we make</a>
+        <a href="/#spotlight">Tourist Guide</a>
+        <a href="/#about">About</a>
+        <a href="/contact/">Contact</a>
+      </nav>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
     </div>
-    <div class="flex flex-col gap-1">
-      <span class="text-xs font-mono text-accentViolet font-semibold uppercase tracking-wider">Error 404</span>
-      <h1 class="text-2xl font-bold text-white">Route Not Found</h1>
-      <p class="text-xs text-textMuted mt-1 leading-relaxed">
-        The trail or screen you are looking for has shifted coordinates or does not exist on this waypoint.
-      </p>
+  </header>
+  <main class="error-page">
+    <h1>404</h1>
+    <h2 style="font-size: 1.5rem; margin-bottom: 0.75rem;">Page not found</h2>
+    <p>This page does not exist. It may have moved or been updated during our website redesign.</p>
+    <a href="/" class="btn btn-primary">Return to home page</a>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col footer-brand">
+        <a href="/" class="wordmark">ARRIVA</a>
+        <p>Independent software studio in Pune, India. Building thoughtful, offline-capable digital tools.</p>
+      </div>
+      <div class="footer-col">
+        <p class="footer-heading">Tourist Guide</p>
+        <ul>
+          <li><a href="/tourist-guide/">Product Overview</a></li>
+          <li><a href="/tourist-guide/privacy/">Privacy Policy</a></li>
+          <li><a href="/tourist-guide/delete-account/">Account Deletion</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-heading">NEXUS</p>
+        <ul>
+          <li><a href="/nexus/">Product Overview</a></li>
+          <li><a href="/nexus/privacy/">Privacy Notice</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-heading">ORVIX</p>
+        <ul>
+          <li><a href="/orvix/">Product Overview</a></li>
+          <li><a href="/orvix/privacy/">Privacy Notice</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-heading">Studio</p>
+        <ul>
+          <li><a href="/privacy/">Studio Privacy</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="https://github.com/Sachin85469" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="pt-2 flex items-center gap-3 w-full">
-      <a href="index.html" class="flex-1 py-3 rounded-xl bg-accentViolet hover:bg-violet-600 text-white font-bold text-xs transition-all shadow-lg shadow-accentViolet/20">
-        Return to Home
-      </a>
-      <a href="privacy.html" class="py-3 px-4 rounded-xl bg-surface2 hover:bg-surface1 border border-borderSubtle text-textMuted hover:text-white font-semibold text-xs transition-colors">
-        Privacy Policy
-      </a>
+    <div class="container footer-bottom">
+      <p>&copy; 2026 ARRIVA. All rights reserved.</p>
     </div>
-    <span class="text-[10px] font-mono text-textDim">&copy; 2026 Arriva Travel Companion</span>
-  </div>
+  </footer>
+  <script src="/main.js"></script>
 </body>
-</html>
+</html>\n

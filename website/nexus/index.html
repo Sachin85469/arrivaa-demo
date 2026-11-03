@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXUS — ARRIVA</title>
+  <meta name="description" content="ARRIVA NEXUS: a private messaging app with on-device storage, topic channels and no algorithmic feeds. In active development.">
+  <link rel="canonical" href="https://arrivaa.tech/nexus/">
+  <meta property="og:title" content="NEXUS — ARRIVA">
+  <meta property="og:description" content="ARRIVA NEXUS: a private messaging app with on-device storage, topic channels and no algorithmic feeds. In active development.">
+  <meta property="og:url" content="https://arrivaa.tech/nexus/">
+  <meta property="og:image" content="https://arrivaa.tech/assets/og-image.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="NEXUS — ARRIVA">
+  <meta name="twitter:description" content="ARRIVA NEXUS: a private messaging app with on-device storage, topic channels and no algorithmic feeds. In active development.">
+  <meta name="twitter:image" content="https://arrivaa.tech/assets/og-image.png">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/fonts/fonts.css">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="wordmark">ARRIVA</a>
+      <nav class="main-nav" id="main-nav">
+        <a href="/#products">What we make</a>
+        <a href="/#spotlight">Tourist Guide</a>
+        <a href="/#about">About</a>
+        <a href="/contact/">Contact</a>
+      </nav>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+  <main>
+    <section class="product-hero">
+      <div class="container">
+        <h1 class="product-name">NEXUS</h1>
+        <div style="margin-bottom: 0.85rem;">
+          <span class="status-label status-development">In development</span>
+        </div>
+        <p class="product-tagline">A private messaging tool designed for direct communication and focused topic channels without algorithmic interference.</p>
+        <div class="btn-group">
+          <span class="btn btn-secondary" style="cursor: default; opacity: 0.9;">In development &middot; Source coming soon</span>
+          <a href="/nexus/privacy/" class="btn btn-secondary">Privacy Notice</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 style="margin-bottom: 2rem;">Interface preview</h2>
+        <div class="screenshots-grid">
+          <div class="phone-frame">
+            <img src="/assets/screens/nexus-1.svg" alt="NEXUS direct chats interface preview" loading="lazy">
+          </div>
+          <div class="phone-frame">
+            <img src="/assets/screens/nexus-2.svg" alt="NEXUS conversation view interface preview" loading="lazy">
+          </div>
+          <div class="phone-frame">
+            <img src="/assets/screens/nexus-3.svg" alt="NEXUS topic channels interface preview" loading="lazy">
+          </div>
+          <div class="phone-frame">
+            <img src="/assets/screens/nexus-4.svg" alt="NEXUS local data controls preview" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container">
+        <h2>What it is</h2>
+        <p>NEXUS is an early-stage project exploring lightweight, privacy-centered messaging. Modern communication platforms have evolved into engagement-driven networks dominated by algorithmic feeds, status updates, and advertising beacons. NEXUS returns to pure messaging utility.</p>
+        <p>Conversations are organized into direct chats and focused topic spaces. Message logs are stored in a local SQLite database on your device sandbox, avoiding centralized message mining.</p>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container">
+        <h2>Architectural commitments</h2>
+        <ul>
+          <li><strong>Local data ownership:</strong> Messages and cached media are stored in device storage, purgeable with a single tap.</li>
+          <li><strong>No algorithmic ranking:</strong> Messages appear strictly in chronological order without engagement filtering or suggestions.</li>
+          <li><strong>Zero tracking SDKs:</strong> No third-party behavioral analytics or advertising beacons embedded in the codebase.</li>
+          <li><strong>Open development:</strong> When test builds are ready, source code will be published on GitHub under open-source licensing.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container">
+        <div class="privacy-data-block">
+          <h2>Privacy disclosure</h2>
+          <p>NEXUS is currently in active development and has not yet been released for public testing. Read our preliminary architectural privacy notice for further details.</p>
+          <p style="margin-top: 1rem;">
+            <a href="/nexus/privacy/">Read the NEXUS Privacy Notice &rarr;</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col footer-brand">
+        <a href="/" class="wordmark">ARRIVA</a>
+        <p>Independent software studio in Pune, India. Building thoughtful, offline-capable digital tools.</p>
+      </div>
+      <div class="footer-col">
+        <p class="footer-heading">Tourist Guide</p>
+        <ul>
+          <li><a href="/tourist-guide/">Product Overview</a></li>
+          <li><a href="/tourist-guide/privacy/">Privacy Policy</a></li>
+          <li><a href="/tourist-guide/delete-account/">Account Deletion</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-heading">NEXUS</p>
+        <ul>
+          <li><a href="/nexus/">Product Overview</a></li>
+          <li><a href="/nexus/privacy/">Privacy Notice</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-heading">ORVIX</p>
+        <ul>
+          <li><a href="/orvix/">Product Overview</a></li>
+          <li><a href="/orvix/privacy/">Privacy Notice</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-heading">Studio</p>
+        <ul>
+          <li><a href="/privacy/">Studio Privacy</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="https://github.com/Sachin85469" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>&copy; 2026 ARRIVA. All rights reserved.</p>
+    </div>
+  </footer>
+  <script src="/main.js"></script>
+</body>
+</html>\n
