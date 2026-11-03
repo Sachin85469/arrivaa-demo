@@ -1,33 +1,36 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy Policy — ORVIX — ARRIVA</title>
-  <meta name="description" content="Privacy notice for ARRIVA ORVIX. ORVIX is currently in active development.">
+  <title>Privacy Notice — ORVIX — ARRIVA</title>
+  <meta name="description" content="Privacy notice for ARRIVA ORVIX local AI developer utility. Currently in active development.">
   <link rel="canonical" href="https://arrivaa.tech/orvix/privacy/">
-  <meta property="og:title" content="Privacy Policy — ORVIX — ARRIVA">
-  <meta property="og:description" content="Privacy notice for ARRIVA ORVIX. ORVIX is currently in active development.">
+  <meta property="og:title" content="Privacy Notice — ORVIX — ARRIVA">
+  <meta property="og:description" content="Privacy notice for ARRIVA ORVIX local AI developer utility. Currently in active development.">
   <meta property="og:url" content="https://arrivaa.tech/orvix/privacy/">
-  <meta property="og:image" content="/assets/og-image.png">
+  <meta property="og:image" content="https://arrivaa.tech/assets/og-image.png">
   <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Privacy Notice — ORVIX — ARRIVA">
+  <meta name="twitter:description" content="Privacy notice for ARRIVA ORVIX local AI developer utility. Currently in active development.">
+  <meta name="twitter:image" content="https://arrivaa.tech/assets/og-image.png">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/assets/fonts/fonts.css">
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-
-  <!-- HEADER -->
   <header class="site-header">
-    <div class="header-inner">
+    <div class="container header-inner">
       <a href="/" class="wordmark">ARRIVA</a>
       <nav class="main-nav" id="main-nav">
-        <a href="/#products">Products</a>
+        <a href="/#products">What we make</a>
+        <a href="/#spotlight">Tourist Guide</a>
         <a href="/#about">About</a>
         <a href="/contact/">Contact</a>
       </nav>
       <button class="menu-toggle" id="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <line x1="3" y1="6" x2="21" y2="6"/>
           <line x1="3" y1="12" x2="21" y2="12"/>
           <line x1="3" y1="18" x2="21" y2="18"/>
@@ -35,77 +38,58 @@
       </button>
     </div>
   </header>
-
   <main class="privacy-layout">
-    <h1>ORVIX Privacy Policy</h1>
-    <p class="privacy-subtitle">ARRIVA ORVIX — Local AI Bridge Interface</p>
+    <h1>Privacy Notice</h1>
+    <p class="privacy-subtitle">ARRIVA ORVIX &middot; Developer Utility</p>
     <p class="effective-date">Effective date: November 3, 2026</p>
 
-    <div class="privacy-section">
-      <div style="margin-bottom: 1.5rem;">
-        <span class="status-label status-development">In development</span>
-      </div>
-      <p>ORVIX is currently in active developer prototyping and has not yet been released or distributed to the public.</p>
-      <p>By architectural definition, ORVIX is designed to execute exclusively on your local machine, connecting to an Ollama server running on loopback IP <code>127.0.0.1:11434</code>. It does not transmit prompt texts, code, model responses, or machine telemetry to external cloud servers.</p>
+    <div class="sand-panel">
+      <span class="status-label status-development">In development</span>
+      <p style="margin-top: 0.85rem;">ORVIX is currently in development and not yet publicly distributed. This notice defines our architectural privacy standards for the tool.</p>
     </div>
 
     <section class="privacy-section">
-      <h2>Architectural Privacy Guarantees</h2>
-      <p>When ORVIX is published, its design guarantees the following data safety boundaries:</p>
+      <h2>Local Execution Standards</h2>
       <ul>
-        <li><strong>Strict local loopback:</strong> Communication is restricted to localhost sockets. No telemetry is phoned home to ARRIVA or third-party brokers.</li>
-        <li><strong>No cloud logging:</strong> Prompts, context documents, and generated tokens remain in volatile local memory or local developer project files chosen by the user.</li>
-        <li><strong>No behavioral analytics:</strong> The software contains no user tracking beacons, demographic collectors, or diagnostic telemetry reporting.</li>
+        <li><strong>On-device processing:</strong> All model requests are directed to local endpoints on your machine (e.g., <code>http://127.0.0.1:11434</code>).</li>
+        <li><strong>Zero telemetry:</strong> No tracking beacons, analytics scripts, or automated error reporting services are integrated into the application binary.</li>
+        <li><strong>No training usage:</strong> Your prompt text, system messages, and model completions are never collected, logged, or shared.</li>
+        <li><strong>Transparent configuration:</strong> Network configurations and local API keys remain stored exclusively in local plaintext configurations under your control.</li>
       </ul>
-      <p>A comprehensive privacy specification will be finalized and published here prior to general software distribution.</p>
     </section>
 
     <section class="privacy-section">
-      <h2>Studio Privacy Coverage</h2>
-      <p>While ORVIX is in active development, your interaction with this website is governed by our studio website privacy policy:</p>
-      <p><a href="/privacy/">Read the ARRIVA Studio Website Privacy Policy &rarr;</a></p>
+      <h2>Full Policy Publication</h2>
+      <p>A finalized technical privacy declaration will accompany the initial source release on GitHub.</p>
+      <p style="margin-top: 1rem;"><a href="/orvix/">&larr; Return to ORVIX Overview</a></p>
     </section>
-
-    <section class="privacy-section">
-      <h2>Contact</h2>
-      <p>For questions regarding ORVIX architecture or privacy standards, please reach out:</p>
-      <p>
-        <strong>Sachin Bableshwar</strong><br>
-        Lead Developer, ARRIVA Studio<br>
-        Pune, Maharashtra, India<br>
-        Email: <a href="mailto:sachinbableshwar1828@gmail.com">sachinbableshwar1828@gmail.com</a><br>
-        GitHub: <a href="https://github.com/Sachin85469" target="_blank" rel="noopener noreferrer">github.com/Sachin85469</a>
-      </p>
-    </section>
-
   </main>
-
-  <!-- FOOTER -->
   <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-col footer-brand">
         <a href="/" class="wordmark">ARRIVA</a>
-        <p>Ideas into innovation.</p>
+        <p>Independent software studio in Pune, India. Building thoughtful, offline-capable digital tools.</p>
       </div>
       <div class="footer-col">
         <p class="footer-heading">Tourist Guide</p>
         <ul>
-          <li><a href="/tourist-guide/">Product</a></li>
-          <li><a href="/tourist-guide/privacy/">Privacy</a></li>
+          <li><a href="/tourist-guide/">Product Overview</a></li>
+          <li><a href="/tourist-guide/privacy/">Privacy Policy</a></li>
+          <li><a href="/tourist-guide/delete-account/">Account Deletion</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <p class="footer-heading">NEXUS</p>
         <ul>
-          <li><a href="/nexus/">Product</a></li>
-          <li><a href="/nexus/privacy/">Privacy</a></li>
+          <li><a href="/nexus/">Product Overview</a></li>
+          <li><a href="/nexus/privacy/">Privacy Notice</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <p class="footer-heading">ORVIX</p>
         <ul>
-          <li><a href="/orvix/">Product</a></li>
-          <li><a href="/orvix/privacy/">Privacy</a></li>
+          <li><a href="/orvix/">Product Overview</a></li>
+          <li><a href="/orvix/privacy/">Privacy Notice</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -121,8 +105,6 @@
       <p>&copy; 2026 ARRIVA. All rights reserved.</p>
     </div>
   </footer>
-
   <script src="/main.js"></script>
 </body>
-</html>
-
+</html>\n

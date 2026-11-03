@@ -4,30 +4,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ARRIVA — Ideas Into Innovation</title>
-  <meta name="description" content="ARRIVA is an independent software studio from Pune, India, building focused digital products: Tourist Guide, NEXUS and ORVIX.">
+  <meta name="description" content="ARRIVA is an independent software studio in Pune, India, building focused digital products: Tourist Guide, NEXUS and ORVIX.">
   <link rel="canonical" href="https://arrivaa.tech/">
   <meta property="og:title" content="ARRIVA — Ideas Into Innovation">
-  <meta property="og:description" content="ARRIVA is an independent software studio from Pune, India, building focused digital products: Tourist Guide, NEXUS and ORVIX.">
+  <meta property="og:description" content="ARRIVA is an independent software studio in Pune, India, building focused digital products: Tourist Guide, NEXUS and ORVIX.">
   <meta property="og:url" content="https://arrivaa.tech/">
-  <meta property="og:image" content="/assets/og-image.png">
+  <meta property="og:image" content="https://arrivaa.tech/assets/og-image.png">
   <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ARRIVA — Ideas Into Innovation">
+  <meta name="twitter:description" content="ARRIVA is an independent software studio in Pune, India, building focused digital products: Tourist Guide, NEXUS and ORVIX.">
+  <meta name="twitter:image" content="https://arrivaa.tech/assets/og-image.png">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/assets/fonts/fonts.css">
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-
-  <!-- HEADER -->
   <header class="site-header">
-    <div class="header-inner">
+    <div class="container header-inner">
       <a href="/" class="wordmark">ARRIVA</a>
       <nav class="main-nav" id="main-nav">
-        <a href="/#products">Products</a>
+        <a href="/#products">What we make</a>
+        <a href="/#spotlight">Tourist Guide</a>
         <a href="/#about">About</a>
         <a href="/contact/">Contact</a>
       </nav>
       <button class="menu-toggle" id="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <line x1="3" y1="6" x2="21" y2="6"/>
           <line x1="3" y1="12" x2="21" y2="12"/>
           <line x1="3" y1="18" x2="21" y2="18"/>
@@ -35,129 +38,151 @@
       </button>
     </div>
   </header>
-
   <main>
-
-    <!-- HERO -->
     <section class="hero">
       <div class="container">
         <h1>We build focused software for real problems.</h1>
-        <p class="hero-sub">ARRIVA is an independent studio from Pune, India. We design Android apps, messaging tools and developer utilities that work offline and respect your privacy.</p>
-        <a href="/tourist-guide/" class="btn">See Tourist Guide</a>
+        <p class="hero-sub">ARRIVA is an independent software studio based in Pune, India, run by developer Sachin Bableshwar. We craft native Android apps and developer tools that work offline and respect your privacy.</p>
+        <div class="btn-group">
+          <a href="/tourist-guide/" class="btn btn-primary">See Tourist Guide</a>
+          <a href="/#products" class="btn btn-secondary">Explore products</a>
+        </div>
       </div>
     </section>
 
-    <!-- PRODUCTS -->
     <section class="products" id="products">
       <div class="container">
-        <h2>Products</h2>
+        <h2>What we make</h2>
 
-        <!-- Tourist Guide -->
         <div class="product-row">
           <div class="product-info">
             <h3>Tourist Guide</h3>
             <span class="status-label status-testing">In testing</span>
-            <p>A travel companion for Maharashtra. Browse places by category, plan optimised multi-stop trips, translate between English, Hindi and Marathi on-device, and navigate fort trails with offline topographic maps.</p>
+            <p>An Android travel companion for Maharashtra. Browse curated heritage sites and nature spots, generate route-optimised itineraries, translate on-device between English, Hindi and Marathi, and navigate Sahyadri trails with offline topographic maps.</p>
             <div class="product-links">
-              <a href="/tourist-guide/">Learn more <span class="sr-only">about Tourist Guide</span></a>
-              <a href="/tourist-guide/privacy/">Privacy <span class="sr-only">Policy for Tourist Guide</span></a>
+              <a href="/tourist-guide/">Learn more <span class="sr-only">about Tourist Guide</span> &rarr;</a>
+              <a href="/tourist-guide/privacy/">Privacy Policy <span class="sr-only">for Tourist Guide</span></a>
             </div>
           </div>
           <div class="product-screen">
-            <img src="/assets/screens/tourist-guide-1.svg" alt="Tourist Guide app showing curated places in Pune" loading="lazy">
+            <img src="/assets/screens/tourist-guide-1.svg" alt="Tourist Guide place discovery interface preview" loading="lazy">
           </div>
         </div>
 
-        <!-- NEXUS -->
         <div class="product-row">
           <div class="product-info">
             <h3>NEXUS</h3>
             <span class="status-label status-development">In development</span>
-            <p>A private messaging app. Direct chats and topic channels with messages stored locally on your device. No algorithmic feeds, no stories, no ad trackers.</p>
+            <p>A private messaging application structured around direct 1:1 chats and topic-focused channels. Message histories are stored locally on your device with zero algorithmic timelines, zero tracking scripts, and no advertising networks.</p>
             <div class="product-links">
-              <a href="/nexus/">Learn more <span class="sr-only">about NEXUS</span></a>
-              <a href="/nexus/privacy/">Privacy <span class="sr-only">Policy for NEXUS</span></a>
+              <a href="/nexus/">Learn more <span class="sr-only">about NEXUS</span> &rarr;</a>
+              <a href="/nexus/privacy/">Privacy Notice <span class="sr-only">for NEXUS</span></a>
             </div>
           </div>
           <div class="product-screen">
-            <img src="/assets/screens/nexus-1.svg" alt="NEXUS app showing a chat list" loading="lazy">
+            <img src="/assets/screens/nexus-1.svg" alt="NEXUS private messaging interface preview" loading="lazy">
           </div>
         </div>
 
-        <!-- ORVIX -->
         <div class="product-row">
           <div class="product-info">
             <h3>ORVIX</h3>
             <span class="status-label status-development">In development</span>
-            <p>A bridge between your development workflow and a local Ollama instance. Send prompts to models running on your own hardware without routing anything through external servers.</p>
+            <p>A native developer bridge connecting local workflows directly to Ollama instances on your own workstation. Run prompts, inspect streaming token telemetry, and test local models without routing requests to external cloud servers.</p>
             <div class="product-links">
-              <a href="/orvix/">Learn more <span class="sr-only">about ORVIX</span></a>
-              <a href="/orvix/privacy/">Privacy <span class="sr-only">Policy for ORVIX</span></a>
+              <a href="/orvix/">Learn more <span class="sr-only">about ORVIX</span> &rarr;</a>
+              <a href="/orvix/privacy/">Privacy Notice <span class="sr-only">for ORVIX</span></a>
             </div>
           </div>
           <div class="product-screen">
-            <img src="/assets/screens/orvix-1.svg" alt="ORVIX showing a local model library" loading="lazy">
+            <img src="/assets/screens/orvix-1.svg" alt="ORVIX local model bridge interface preview" loading="lazy">
           </div>
         </div>
 
       </div>
     </section>
 
-    <!-- ABOUT -->
-    <section class="about" id="about">
+    <section class="spotlight-section" id="spotlight">
       <div class="container">
-        <h2>About</h2>
-        <p>ARRIVA was started by Sachin Bableshwar, a developer based in Pune, India. The studio focuses on native Android applications, backend services and developer tools. Every project is open-source under the MIT licence and published on GitHub.</p>
-        <p>We believe useful software should work offline, avoid unnecessary data collection and be honest about what it does.</p>
+        <div class="spotlight-card">
+          <div>
+            <span class="status-label status-testing">Flagship Spotlight</span>
+            <h2 style="margin-top: 0.75rem;">Tourist Guide for Android</h2>
+            <p>Tourist Guide is our primary focus, preparing for closed testing on Google Play. Built specifically for travelers exploring Maharashtra's historic hill forts, cave temples, Western Ghats trails, and coastal towns.</p>
+            <ul class="spotlight-features">
+              <li><strong>Curated destinations:</strong> Heritage sites, viewpoints, and cultural landmarks across Pune, Mumbai, and regional districts.</li>
+              <li><strong>On-device translation:</strong> Machine translation between Marathi, Hindi, and English powered locally by Google ML Kit models without data connectivity.</li>
+              <li><strong>Offline contour maps:</strong> 20m topographic trail lines rendered with osmdroid for navigation in remote Sahyadri areas lacking cellular reception.</li>
+              <li><strong>Intent-based safety:</strong> Emergency assistance triggers standard Android dialer or SMS apps with pre-filled GPS coordinates, keeping you in complete control.</li>
+            </ul>
+            <div class="btn-group">
+              <a href="/tourist-guide/" class="btn btn-primary">Explore Tourist Guide</a>
+              <a href="/tourist-guide/privacy/" class="btn btn-secondary">Privacy Policy</a>
+            </div>
+          </div>
+          <div class="phone-frame">
+            <img src="/assets/screens/tourist-guide-2.svg" alt="Tourist Guide route optimiser interface preview" loading="lazy">
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- CONTACT -->
-    <section class="contact">
+    <section class="about" id="about">
+      <div class="container">
+        <h2>About ARRIVA</h2>
+        <p>ARRIVA is an independent software studio founded and operated by Sachin Bableshwar in Pune, Maharashtra, India. The studio specializes in native Android development, backend architecture, and developer utilities designed for privacy and resilience.</p>
+        <p style="margin-top: 1rem;">We believe software should solve genuine daily problems, function reliably offline, avoid unnecessary telemetry, and communicate clearly about its architecture and data practices. All public projects are maintained openly on GitHub.</p>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
       <div class="container">
         <h2>Get in touch</h2>
-        <p>For questions, feedback or privacy requests:</p>
+        <p>For questions about Tourist Guide, closed testing participation, feedback, or privacy matters:</p>
         <ul class="contact-links">
-          <li><a href="mailto:sachinbableshwar1828@gmail.com">sachinbableshwar1828@gmail.com</a></li>
-          <li><a href="https://github.com/Sachin85469" target="_blank" rel="noopener noreferrer">github.com/Sachin85469
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align: -1px; margin-left: 2px;">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-              <polyline points="15 3 21 3 21 9"/>
-              <line x1="10" y1="14" x2="21" y2="3"/>
-            </svg>
-          </a></li>
+          <li>
+            <a href="mailto:sachinbableshwar1828@gmail.com">sachinbableshwar1828@gmail.com</a>
+          </li>
+          <li>
+            <a href="https://github.com/Sachin85469" target="_blank" rel="noopener noreferrer">
+              github.com/Sachin85469
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align: -1px; margin-left: 4px;">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                <polyline points="15 3 21 3 21 9"/>
+                <line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+            </a>
+          </li>
         </ul>
       </div>
     </section>
-
   </main>
-
-  <!-- FOOTER -->
   <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-col footer-brand">
         <a href="/" class="wordmark">ARRIVA</a>
-        <p>Ideas into innovation.</p>
+        <p>Independent software studio in Pune, India. Building thoughtful, offline-capable digital tools.</p>
       </div>
       <div class="footer-col">
         <p class="footer-heading">Tourist Guide</p>
         <ul>
-          <li><a href="/tourist-guide/">Product</a></li>
-          <li><a href="/tourist-guide/privacy/">Privacy</a></li>
+          <li><a href="/tourist-guide/">Product Overview</a></li>
+          <li><a href="/tourist-guide/privacy/">Privacy Policy</a></li>
+          <li><a href="/tourist-guide/delete-account/">Account Deletion</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <p class="footer-heading">NEXUS</p>
         <ul>
-          <li><a href="/nexus/">Product</a></li>
-          <li><a href="/nexus/privacy/">Privacy</a></li>
+          <li><a href="/nexus/">Product Overview</a></li>
+          <li><a href="/nexus/privacy/">Privacy Notice</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <p class="footer-heading">ORVIX</p>
         <ul>
-          <li><a href="/orvix/">Product</a></li>
-          <li><a href="/orvix/privacy/">Privacy</a></li>
+          <li><a href="/orvix/">Product Overview</a></li>
+          <li><a href="/orvix/privacy/">Privacy Notice</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -173,7 +198,6 @@
       <p>&copy; 2026 ARRIVA. All rights reserved.</p>
     </div>
   </footer>
-
   <script src="/main.js"></script>
 </body>
-</html>
+</html>\n
