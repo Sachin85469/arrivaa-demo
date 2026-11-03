@@ -4,26 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tourist Guide — ARRIVA</title>
-  <meta name="description" content="Tourist Guide is an Android travel companion for Maharashtra with offline maps, on-device translation and smart route planning.">
+  <meta name="description" content="Android travel companion for Maharashtra with curated destinations, offline contour maps, route planning, and on-device translation.">
   <link rel="canonical" href="https://arrivaa.tech/tourist-guide/">
   <meta property="og:title" content="Tourist Guide — ARRIVA">
-  <meta property="og:description" content="Tourist Guide is an Android travel companion for Maharashtra with offline maps, on-device translation and smart route planning.">
+  <meta property="og:description" content="Android travel companion for Maharashtra with curated destinations, offline contour maps, route planning, and on-device translation.">
   <meta property="og:url" content="https://arrivaa.tech/tourist-guide/">
   <meta property="og:image" content="https://arrivaa.tech/assets/og-image.png">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Tourist Guide — ARRIVA">
-  <meta name="twitter:description" content="Tourist Guide is an Android travel companion for Maharashtra with offline maps, on-device translation and smart route planning.">
+  <meta name="twitter:description" content="Android travel companion for Maharashtra with curated destinations, offline contour maps, route planning, and on-device translation.">
   <meta name="twitter:image" content="https://arrivaa.tech/assets/og-image.png">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/assets/fonts/fonts.css">
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
+  <div class="nav-backdrop" id="nav-backdrop" aria-hidden="true"></div>
   <header class="site-header">
     <div class="container header-inner">
       <a href="/" class="wordmark">ARRIVA</a>
-      <nav class="main-nav" id="main-nav">
+      <nav class="main-nav" id="main-nav" aria-label="Main Navigation">
         <a href="/#products">What we make</a>
         <a href="/#spotlight">Tourist Guide</a>
         <a href="/#about">About</a>
@@ -39,13 +40,11 @@
     </div>
   </header>
   <main>
-    <section class="product-hero">
+    <section class="hero">
       <div class="container">
-        <h1 class="product-name">Tourist Guide</h1>
-        <div style="margin-bottom: 0.85rem;">
-          <span class="status-label status-testing">In testing</span>
-        </div>
-        <p class="product-tagline">A travel companion for exploring Maharashtra — its historical forts, temples, nature sanctuaries and street food.</p>
+        <span class="status-label status-testing">In testing &middot; Preparing for closed test</span>
+        <h1 style="margin-top: var(--space-3); margin-bottom: var(--space-4);">Tourist Guide</h1>
+        <p class="hero-sub">A focused travel companion built natively for Android, designed for travelers exploring Maharashtra's historic forts, mountain trails, and cultural landmarks.</p>
         <div class="btn-group">
           <a href="https://github.com/Sachin85469/Tourist_Guide_App" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View repository on GitHub</a>
           <a href="/tourist-guide/privacy/" class="btn btn-secondary">Privacy Policy</a>
@@ -53,60 +52,115 @@
       </div>
     </section>
 
-    <section class="section">
+    <section class="section reveal">
       <div class="container">
-        <h2 style="margin-bottom: 2rem;">Interface overview</h2>
-        <div class="screenshots-grid">
-          <div class="phone-frame">
-            <img src="/assets/screens/tourist-guide-1.svg" alt="Tourist Guide place discovery interface preview" loading="lazy">
+        <h2 style="margin-bottom: var(--space-5);">Interface overview</h2>
+        <div class="screens-scroll-wrap">
+          <div class="screens-row">
+            <div class="phone-frame screen-card">
+              <img src="/assets/screens/tourist-guide-1.svg" alt="Tourist Guide place discovery interface preview" loading="lazy">
+            </div>
+            <div class="phone-frame screen-card">
+              <img src="/assets/screens/tourist-guide-2.svg" alt="Tourist Guide route optimiser interface preview" loading="lazy">
+            </div>
+            <div class="phone-frame screen-card">
+              <img src="/assets/screens/tourist-guide-3.svg" alt="Tourist Guide offline contour maps preview" loading="lazy">
+            </div>
           </div>
-          <div class="phone-frame">
-            <img src="/assets/screens/tourist-guide-2.svg" alt="Tourist Guide route optimiser interface preview" loading="lazy">
-          </div>
-          <div class="phone-frame">
-            <img src="/assets/screens/tourist-guide-3.svg" alt="Tourist Guide offline contour maps preview" loading="lazy">
-          </div>
-          <div class="phone-frame">
-            <img src="/assets/screens/tourist-guide-4.svg" alt="Tourist Guide on-device translation preview" loading="lazy">
-          </div>
+        </div>
+        <p class="phone-caption">Illustrative preview</p>
+      </div>
+    </section>
+
+    <section class="content-section reveal">
+      <div class="container">
+        <h2>What it does</h2>
+        <p>Tourist Guide helps travelers explore destinations across Maharashtra with confidence. Each destination profile provides curated historical background, operating hours, entry charges, traveler notes, and estimated visit durations.</p>
+        <p style="margin-top: var(--space-4);">The trip planning module organizes multiple stops into sensible day itineraries based on travel group style (solo, friends, or family) and pacing preferences. A Kotlin route planner sequences stops to reduce backtracking across city roads.</p>
+        <p style="margin-top: var(--space-4);">To assist travelers across linguistic regions, on-device translation enables instant speech and text translation between English, Hindi, and Marathi. Translation models execute locally through Google ML Kit without uploading text to external servers. A phrasebook with native pronunciation covers common transport, food, and safety phrases.</p>
+        <p style="margin-top: var(--space-4);">In urgent situations, an emergency SOS button launches the system phone dialer pre-populated with emergency dispatch (112) or opens the SMS client with pre-filled GPS coordinates. Actions rely on Android Intent resolution, so nothing is transmitted without your explicit physical tap.</p>
+      </div>
+    </section>
+
+    <section class="content-section reveal">
+      <div class="container">
+        <h2>How it works</h2>
+        <p>Destination information is synchronized from a cloud database hosted on Supabase and cached locally in an on-device Room SQLite database. Once downloaded, place profiles and itineraries remain accessible even without network reception.</p>
+        <p style="margin-top: var(--space-4);">Mapping utilizes a dual approach: Google Maps SDK delivers urban place searches and street-level views, while osmdroid renders offline vector contour maps for mountain trails and fort treks where cellular networks drop.</p>
+        <p style="margin-top: var(--space-4);">An optional travel chat connects through a lightweight proxy server on Render to Anthropic's Claude API. API credentials reside securely on the backend, authenticated via a private token exchange.</p>
+      </div>
+    </section>
+
+    <section class="content-section reveal">
+      <div class="container">
+        <h2>Under the hood</h2>
+        <p>Tourist Guide is engineered natively in Kotlin and Java, targeting Android 14 (API level 34) with compatibility back to Android 7.0 (API level 24).</p>
+        
+        <div class="accordion-group">
+          <details class="accordion-item" open>
+            <summary class="accordion-summary">
+              <span>Native Android Architecture</span>
+              <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </summary>
+            <div class="accordion-content">
+              <p>Built with AndroidX, Material Design components, ConstraintLayout, Room SQLite database, and Retrofit2 for fast offline-first caching and fluid UI transitions.</p>
+            </div>
+          </details>
+
+          <details class="accordion-item">
+            <summary class="accordion-summary">
+              <span>On-Device Machine Learning</span>
+              <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </summary>
+            <div class="accordion-content">
+              <p>Google ML Kit translation models for Marathi, Hindi, and English download locally to your phone. Translation inference executes entirely on-device with zero server uploads.</p>
+            </div>
+          </details>
+
+          <details class="accordion-item">
+            <summary class="accordion-summary">
+              <span>Dual Mapping Engine</span>
+              <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </summary>
+            <div class="accordion-content">
+              <p>Combines Google Play Services Maps for urban destinations with osmdroid vector tiles for 20m topographic contour navigation in Sahyadri mountain terrain.</p>
+            </div>
+          </details>
+
+          <details class="accordion-item">
+            <summary class="accordion-summary">
+              <span>Data Storage & Security</span>
+              <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </summary>
+            <div class="accordion-content">
+              <p>Supabase authentication and PostgreSQL Row-Level Security policies restrict cloud access, paired with encrypted local preferences on the client device.</p>
+            </div>
+          </details>
+
+          <details class="accordion-item">
+            <summary class="accordion-summary">
+              <span>Open-Source Licensing</span>
+              <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </summary>
+            <div class="accordion-content">
+              <p>All client application code is published openly under the permissive MIT license on GitHub.</p>
+            </div>
+          </details>
         </div>
       </div>
     </section>
 
-    <section class="content-section">
-      <div class="container">
-        <h2>What it does</h2>
-        <p>Tourist Guide helps travelers explore destinations across Maharashtra with confidence. Each destination profile provides curated historical background, operating hours, entry charges, traveler notes, and estimated visit durations.</p>
-        <p>The trip planning module organizes multiple stops into sensible day itineraries based on travel group style (solo, friends, or family) and pacing preferences. A Kotlin route planner sequences stops to reduce backtracking across city roads.</p>
-        <p>To assist travelers across linguistic regions, on-device translation enables instant speech and text translation between English, Hindi, and Marathi. Translation models execute locally through Google ML Kit without uploading text to external servers. A phrasebook with native pronunciation covers common transport, food, and safety phrases.</p>
-        <p>In urgent situations, an emergency SOS button launches the system phone dialer pre-populated with emergency dispatch (112) or opens the SMS client with pre-filled GPS coordinates. Actions rely on Android Intent resolution, so nothing is transmitted without your explicit physical tap.</p>
-      </div>
-    </section>
-
-    <section class="content-section">
-      <div class="container">
-        <h2>How it works</h2>
-        <p>Destination information is synchronized from a cloud database hosted on Supabase and cached locally in an on-device Room SQLite database. Once downloaded, place profiles and itineraries remain accessible even without network reception.</p>
-        <p>Mapping utilizes a dual approach: Google Maps SDK delivers urban place searches and street-level views, while osmdroid renders offline vector contour maps for mountain trails and fort treks where cellular networks drop.</p>
-        <p>An optional travel chat connects through a lightweight proxy server on Render to Anthropic's Claude API. API credentials reside securely on the backend, authenticated via a private token exchange.</p>
-      </div>
-    </section>
-
-    <section class="content-section">
-      <div class="container">
-        <h2>Under the hood</h2>
-        <p>Tourist Guide is engineered natively in Kotlin and Java, targeting Android 14 (API level 34) with compatibility back to Android 7.0 (API level 24).</p>
-        <ul>
-          <li><strong>Architecture:</strong> AndroidX, Material Design components, ConstraintLayout, Room SQLite database, Retrofit2, and Ktor client.</li>
-          <li><strong>On-Device Machine Learning:</strong> Google ML Kit on-device translation for Marathi, Hindi, and English.</li>
-          <li><strong>Mapping Engine:</strong> Dual integration combining Google Play Services Maps with osmdroid offline vector topography.</li>
-          <li><strong>Data Storage:</strong> Supabase authentication and PostgREST client with PostgreSQL Row-Level Security policies.</li>
-          <li><strong>Licence:</strong> Open-source under the MIT licence.</li>
-        </ul>
-      </div>
-    </section>
-
-        <section class="content-section" id="contributors">
+    <section class="content-section reveal" id="contributors">
       <div class="container">
         <h2>Contributors</h2>
         <p>Tourist Guide is designed, developed, and curated collaboratively by independent developers, designers, and researchers in Pune, India:</p>
@@ -167,12 +221,12 @@
       </div>
     </section>
 
-    <section class="content-section">
+    <section class="content-section reveal">
       <div class="container">
         <div class="privacy-data-block">
           <h2>Privacy and your data</h2>
           <p>Tourist Guide requests location, microphone, and notification permissions only when you actively trigger the corresponding feature. The application collects no advertising identifiers, device fingerprints, or contact address books.</p>
-          <p style="margin-top: 1rem;">
+          <p style="margin-top: var(--space-4);">
             <a href="/tourist-guide/privacy/">Read the Tourist Guide Privacy Policy</a> &middot;
             <a href="/tourist-guide/delete-account/">Account & data deletion guide</a> &middot;
             <a href="/contact/">Contact our developer</a>
@@ -213,16 +267,21 @@
       <div class="footer-col">
         <p class="footer-heading">Studio</p>
         <ul>
-          <li><a href="/privacy/">Studio Privacy</a></li>
-          <li><a href="/contact/">Contact</a></li>
+          <li><a href="/privacy/">Website Privacy</a></li>
           <li><a href="https://github.com/Sachin85469" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li><a href="/contact/">Contact</a></li>
         </ul>
       </div>
     </div>
     <div class="container footer-bottom">
-      <p>&copy; 2026 ARRIVA. All rights reserved.</p>
+      <p>&copy; 2026 ARRIVA. Independent software studio, Pune, Maharashtra, India. No tracking cookies or advertising scripts.</p>
     </div>
   </footer>
+  <button type="button" class="back-to-top" id="back-to-top" aria-label="Back to top">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
   <script src="/main.js"></script>
 </body>
-</html>\n
+</html>

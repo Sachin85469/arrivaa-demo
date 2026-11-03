@@ -4,26 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NEXUS — ARRIVA</title>
-  <meta name="description" content="ARRIVA NEXUS: a private messaging app with on-device storage, topic channels and no algorithmic feeds. In active development.">
+  <meta name="description" content="Private messaging application with direct chats, topic channels, and zero algorithmic feeds. Built natively for Android.">
   <link rel="canonical" href="https://arrivaa.tech/nexus/">
   <meta property="og:title" content="NEXUS — ARRIVA">
-  <meta property="og:description" content="ARRIVA NEXUS: a private messaging app with on-device storage, topic channels and no algorithmic feeds. In active development.">
+  <meta property="og:description" content="Private messaging application with direct chats, topic channels, and zero algorithmic feeds. Built natively for Android.">
   <meta property="og:url" content="https://arrivaa.tech/nexus/">
   <meta property="og:image" content="https://arrivaa.tech/assets/og-image.png">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="NEXUS — ARRIVA">
-  <meta name="twitter:description" content="ARRIVA NEXUS: a private messaging app with on-device storage, topic channels and no algorithmic feeds. In active development.">
+  <meta name="twitter:description" content="Private messaging application with direct chats, topic channels, and zero algorithmic feeds. Built natively for Android.">
   <meta name="twitter:image" content="https://arrivaa.tech/assets/og-image.png">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/assets/fonts/fonts.css">
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
+  <div class="nav-backdrop" id="nav-backdrop" aria-hidden="true"></div>
   <header class="site-header">
     <div class="container header-inner">
       <a href="/" class="wordmark">ARRIVA</a>
-      <nav class="main-nav" id="main-nav">
+      <nav class="main-nav" id="main-nav" aria-label="Main Navigation">
         <a href="/#products">What we make</a>
         <a href="/#spotlight">Tourist Guide</a>
         <a href="/#about">About</a>
@@ -39,68 +40,53 @@
     </div>
   </header>
   <main>
-    <section class="product-hero">
+    <section class="hero">
       <div class="container">
-        <h1 class="product-name">NEXUS</h1>
-        <div style="margin-bottom: 0.85rem;">
-          <span class="status-label status-development">In development</span>
-        </div>
-        <p class="product-tagline">A private messaging tool designed for direct communication and focused topic channels without algorithmic interference.</p>
+        <span class="status-label status-development">In development</span>
+        <h1 style="margin-top: var(--space-3); margin-bottom: var(--space-4);">NEXUS</h1>
+        <p class="hero-sub">A lightweight, private communication client built natively for Android. Focused entirely on clean 1:1 messaging and topic-based channels without social media feeds, stories, or surveillance telemetry.</p>
         <div class="btn-group">
-          <span class="btn btn-secondary" style="cursor: default; opacity: 0.9;">In development &middot; Source coming soon</span>
-          <a href="/nexus/privacy/" class="btn btn-secondary">Privacy Notice</a>
+          <a href="/nexus/privacy/" class="btn btn-secondary">Read Privacy Notice</a>
         </div>
       </div>
     </section>
 
-    <section class="section">
+    <section class="section reveal">
       <div class="container">
-        <h2 style="margin-bottom: 2rem;">Interface preview</h2>
-        <div class="screenshots-grid">
-          <div class="phone-frame">
-            <img src="/assets/screens/nexus-1.svg" alt="NEXUS direct chats interface preview" loading="lazy">
-          </div>
-          <div class="phone-frame">
-            <img src="/assets/screens/nexus-2.svg" alt="NEXUS conversation view interface preview" loading="lazy">
-          </div>
-          <div class="phone-frame">
-            <img src="/assets/screens/nexus-3.svg" alt="NEXUS topic channels interface preview" loading="lazy">
-          </div>
-          <div class="phone-frame">
-            <img src="/assets/screens/nexus-4.svg" alt="NEXUS local data controls preview" loading="lazy">
-          </div>
+        <h2 style="margin-bottom: var(--space-5);">Interface preview</h2>
+        <div class="phone-frame screen-card" style="max-width: 320px; margin: 0 auto;">
+          <img src="/assets/screens/nexus-1.svg" alt="NEXUS direct chat conversation preview" loading="lazy">
         </div>
+        <p class="phone-caption">Illustrative preview</p>
       </div>
     </section>
 
-    <section class="content-section">
+    <section class="content-section reveal">
       <div class="container">
-        <h2>What it is</h2>
-        <p>NEXUS is an early-stage project exploring lightweight, privacy-centered messaging. Modern communication platforms have evolved into engagement-driven networks dominated by algorithmic feeds, status updates, and advertising beacons. NEXUS returns to pure messaging utility.</p>
-        <p>Conversations are organized into direct chats and focused topic spaces. Message logs are stored in a local SQLite database on your device sandbox, avoiding centralized message mining.</p>
+        <h2>What it does</h2>
+        <p>NEXUS strips messaging down to its essential utility: prompt, unencumbered communication with people and topics you deliberately choose to follow.</p>
+        <p style="margin-top: var(--space-4);">Instead of algorithmic attention loops, NEXUS prioritizes quiet utility: fast text transmission, clean image sharing, and instant local search across your historical chat archive.</p>
       </div>
     </section>
 
-    <section class="content-section">
+    <section class="content-section reveal">
       <div class="container">
-        <h2>Architectural commitments</h2>
-        <ul>
-          <li><strong>Local data ownership:</strong> Messages and cached media are stored in device storage, purgeable with a single tap.</li>
-          <li><strong>No algorithmic ranking:</strong> Messages appear strictly in chronological order without engagement filtering or suggestions.</li>
-          <li><strong>Zero tracking SDKs:</strong> No third-party behavioral analytics or advertising beacons embedded in the codebase.</li>
-          <li><strong>Open development:</strong> When test builds are ready, source code will be published on GitHub under open-source licensing.</li>
-        </ul>
+        <h2>How it works</h2>
+        <p>Conversations are cached in an encrypted SQLite database on your device. Network exchanges utilize low-overhead binary WebSockets to minimize battery and memory consumption on mobile hardware.</p>
+        <p style="margin-top: var(--space-4);">NEXUS incorporates zero third-party advertising SDKs, tracking pixels, or cross-service profiling beacons.</p>
       </div>
     </section>
 
-    <section class="content-section">
+    <section class="content-section reveal">
       <div class="container">
         <div class="privacy-data-block">
-          <h2>Privacy disclosure</h2>
-          <p>NEXUS is currently in active development and has not yet been released for public testing. Read our preliminary architectural privacy notice for further details.</p>
-          <p style="margin-top: 1rem;">
-            <a href="/nexus/privacy/">Read the NEXUS Privacy Notice &rarr;</a>
+          <h2>Privacy &amp; Development Status</h2>
+          <p>NEXUS is currently in active development at our Pune studio. Before public release, comprehensive architectural documentation and cryptographic specifications will be published.</p>
+          <p style="margin-top: var(--space-4);">
+            <a href="/nexus/privacy/">Read the preliminary NEXUS Privacy Notice</a> &middot;
+            <a href="/contact/">Contact the studio</a>
           </p>
+          <p class="last-updated">Status: Prototype workbench</p>
         </div>
       </div>
     </section>
@@ -136,16 +122,21 @@
       <div class="footer-col">
         <p class="footer-heading">Studio</p>
         <ul>
-          <li><a href="/privacy/">Studio Privacy</a></li>
-          <li><a href="/contact/">Contact</a></li>
+          <li><a href="/privacy/">Website Privacy</a></li>
           <li><a href="https://github.com/Sachin85469" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li><a href="/contact/">Contact</a></li>
         </ul>
       </div>
     </div>
     <div class="container footer-bottom">
-      <p>&copy; 2026 ARRIVA. All rights reserved.</p>
+      <p>&copy; 2026 ARRIVA. Independent software studio, Pune, Maharashtra, India. No tracking cookies or advertising scripts.</p>
     </div>
   </footer>
+  <button type="button" class="back-to-top" id="back-to-top" aria-label="Back to top">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
   <script src="/main.js"></script>
 </body>
-</html>\n
+</html>

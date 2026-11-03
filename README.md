@@ -80,11 +80,14 @@ ARRIVAA/
 
 ## Technical Specifications
 
-- **Architecture:** Static HTML5 and CSS3 with minimal vanilla JavaScript for the mobile navigation toggle. No build step or bundler required.
-- **Dependencies:** Zero external CDN dependencies. All fonts (Fraunces and Inter) and icon glyphs are self-hosted locally on domain.
-- **Design System:** Editorial aesthetic with warm off-white surfaces (`#FAF8F4`), sand panels (`#EEE8DA`), hairline borders (`#E2DBCB`), deep charcoal body text (`#1E1B16`), and brand purple accents (`#6D28D9`).
-- **Responsiveness & Accessibility:** Fully responsive from 360px up with zero horizontal overflow, WCAG 2.1 AA text contrast compliance, 44px minimum touch targets, visible focus indicators, and `prefers-reduced-motion` support.
-- **Security:** Strict Content Security Policy, `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`, `Referrer-Policy: strict-origin-when-cross-origin`, and `Permissions-Policy` configured in `firebase.json`.
+- **Architecture:** Static HTML5, modern CSS, and lightweight vanilla JavaScript (zero libraries, zero CDNs, zero build tools).
+- **Dependencies:** Completely self-contained. All typography (Fraunces variable serif, Inter sans) is self-hosted in WOFF2 format.
+- **Design System:** Calm editorial aesthetic with warm off-white surfaces (#FAF8F4), sand panels (#EEE8DA), hairline borders (#E2DBCB), deep charcoal body text (#1E1B16), and single accent purple (#6D28D9).
+- **Spacing Scale:** Strict 10-point custom property scale (4, 8, 12, 16, 24, 32, 48, 64, 96, 128 px), fluid typography and section vertical padding via clamp(), and 66ch reading width limits.
+- **Motion & Interaction Tokens:** Tasteful animations governed by --ease: cubic-bezier(0.22, 0.7, 0.2, 1) and durations 160ms, 320ms, 600ms. Includes FLIP route sorting, interactive tablist with self-drawing SVG routes, pointer parallax tilt, scroll reveals, and sticky reading progress.
+- **Responsiveness & Accessibility:** Tested across 360px, 768px, and 1280px with 0 horizontal overflow. Perfect WCAG AA contrast, >= 44px touch targets, full keyboard accessibility (focus traps, Escape handlers, arrow navigation), and complete graceful degradation when JavaScript is disabled.
+- **Motion Reduction:** Full @media (prefers-reduced-motion: reduce) support with immediate state display.
+- **Security:** Strict Content Security Policy, X-Content-Type-Options: nosniff, X-Frame-Options: DENY, Referrer-Policy: strict-origin-when-cross-origin, and Permissions-Policy configured in irebase.json.
 
 ---
 

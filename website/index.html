@@ -3,27 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ARRIVA — Ideas Into Innovation</title>
-  <meta name="description" content="ARRIVA is an independent software studio in Pune, India, building focused digital products: Tourist Guide, NEXUS and ORVIX.">
+  <title>ARRIVA — Independent Software Studio | Pune, India</title>
+  <meta name="description" content="ARRIVA is an independent software studio in Pune, India, founded by Sachin Bableshwar. Makers of Tourist Guide, NEXUS, and ORVIX.">
   <link rel="canonical" href="https://arrivaa.tech/">
-  <meta property="og:title" content="ARRIVA — Ideas Into Innovation">
-  <meta property="og:description" content="ARRIVA is an independent software studio in Pune, India, building focused digital products: Tourist Guide, NEXUS and ORVIX.">
+  <meta property="og:title" content="ARRIVA — Independent Software Studio">
+  <meta property="og:description" content="Makers of Tourist Guide, NEXUS, and ORVIX. Built for offline utility, privacy, and simplicity.">
   <meta property="og:url" content="https://arrivaa.tech/">
   <meta property="og:image" content="https://arrivaa.tech/assets/og-image.png">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="ARRIVA — Ideas Into Innovation">
-  <meta name="twitter:description" content="ARRIVA is an independent software studio in Pune, India, building focused digital products: Tourist Guide, NEXUS and ORVIX.">
+  <meta name="twitter:title" content="ARRIVA — Independent Software Studio">
+  <meta name="twitter:description" content="Makers of Tourist Guide, NEXUS, and ORVIX. Built for offline utility, privacy, and simplicity.">
   <meta name="twitter:image" content="https://arrivaa.tech/assets/og-image.png">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/assets/fonts/fonts.css">
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
+  <div class="nav-backdrop" id="nav-backdrop" aria-hidden="true"></div>
   <header class="site-header">
     <div class="container header-inner">
       <a href="/" class="wordmark">ARRIVA</a>
-      <nav class="main-nav" id="main-nav">
+      <nav class="main-nav" id="main-nav" aria-label="Main Navigation">
         <a href="/#products">What we make</a>
         <a href="/#spotlight">Tourist Guide</a>
         <a href="/#about">About</a>
@@ -40,27 +41,48 @@
   </header>
   <main>
     <section class="hero">
-      <div class="container">
-        <h1>We build focused software for real problems.</h1>
-        <p class="hero-sub">ARRIVA is an independent software studio based in Pune, India, run by developer Sachin Bableshwar. We craft native Android apps and developer tools that work offline and respect your privacy.</p>
-        <div class="btn-group">
-          <a href="/tourist-guide/" class="btn btn-primary">See Tourist Guide</a>
-          <a href="/#products" class="btn btn-secondary">Explore products</a>
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <h1 class="hero-reveal">We build focused software for real problems.</h1>
+          <p class="hero-sub hero-reveal">ARRIVA is an independent software studio based in Pune, India, run by developer Sachin Bableshwar. We craft native Android apps and developer tools that work offline and respect your privacy.</p>
+          <div class="btn-group hero-reveal">
+            <a href="/tourist-guide/" class="btn btn-primary">See Tourist Guide</a>
+            <a href="/#products" class="btn btn-secondary">Explore products</a>
+          </div>
+        </div>
+        <div class="hero-phone-wrap hero-reveal" id="hero-phone-wrap">
+          <div class="phone-frame hero-phone" id="hero-phone" aria-label="Illustrative preview of Tourist Guide itinerary planner">
+            <div class="phone-status-bar">
+              <span class="phone-time">09:41</span>
+              <span class="phone-network" aria-hidden="true">
+                <svg width="14" height="10" viewBox="0 0 14 10" fill="currentColor"><path d="M0 7h2v3H0V7zm3-2h2v5H3V5zm3-2h2v7H6V3zm3-3h2v10H9V0z"/></svg>
+              </span>
+            </div>
+            <div class="phone-screen-header">
+              <span class="phone-kicker">Day route &middot; Pune</span>
+              <h2 class="phone-title">South Ridge Circuit</h2>
+            </div>
+            <div class="itinerary-stops" id="itinerary-stops" role="list" aria-label="Planned route stops"></div>
+            <div class="itinerary-footer">
+              <button type="button" class="btn-tidy" id="btn-tidy-route" aria-pressed="false">Tidy up the route</button>
+            </div>
+          </div>
+          <p class="phone-caption">Illustrative preview</p>
         </div>
       </div>
     </section>
 
-    <section class="products" id="products">
+    <section class="products reveal" id="products">
       <div class="container">
         <h2>What we make</h2>
 
-        <div class="product-row">
+        <div class="product-row" data-href="/tourist-guide/" tabindex="0" role="link" aria-label="Tourist Guide product page">
           <div class="product-info">
             <h3>Tourist Guide</h3>
             <span class="status-label status-testing">In testing</span>
             <p>An Android travel companion for Maharashtra. Browse curated heritage sites and nature spots, generate route-optimised itineraries, translate on-device between English, Hindi and Marathi, and navigate Sahyadri trails with offline topographic maps.</p>
             <div class="product-links">
-              <a href="/tourist-guide/">Learn more <span class="sr-only">about Tourist Guide</span> &rarr;</a>
+              <a href="/tourist-guide/" class="product-row-link">Learn more <span class="sr-only">about Tourist Guide</span> <span class="product-arrow" aria-hidden="true">&rarr;</span></a>
               <a href="/tourist-guide/privacy/">Privacy Policy <span class="sr-only">for Tourist Guide</span></a>
             </div>
           </div>
@@ -69,13 +91,13 @@
           </div>
         </div>
 
-        <div class="product-row">
+        <div class="product-row" data-href="/nexus/" tabindex="0" role="link" aria-label="NEXUS product page">
           <div class="product-info">
             <h3>NEXUS</h3>
             <span class="status-label status-development">In development</span>
             <p>A private messaging application structured around direct 1:1 chats and topic-focused channels. Message histories are stored locally on your device with zero algorithmic timelines, zero tracking scripts, and no advertising networks.</p>
             <div class="product-links">
-              <a href="/nexus/">Learn more <span class="sr-only">about NEXUS</span> &rarr;</a>
+              <a href="/nexus/" class="product-row-link">Learn more <span class="sr-only">about NEXUS</span> <span class="product-arrow" aria-hidden="true">&rarr;</span></a>
               <a href="/nexus/privacy/">Privacy Notice <span class="sr-only">for NEXUS</span></a>
             </div>
           </div>
@@ -84,13 +106,13 @@
           </div>
         </div>
 
-        <div class="product-row">
+        <div class="product-row" data-href="/orvix/" tabindex="0" role="link" aria-label="ORVIX product page">
           <div class="product-info">
             <h3>ORVIX</h3>
             <span class="status-label status-development">In development</span>
             <p>A native developer bridge connecting local workflows directly to Ollama instances on your own workstation. Run prompts, inspect streaming token telemetry, and test local models without routing requests to external cloud servers.</p>
             <div class="product-links">
-              <a href="/orvix/">Learn more <span class="sr-only">about ORVIX</span> &rarr;</a>
+              <a href="/orvix/" class="product-row-link">Learn more <span class="sr-only">about ORVIX</span> <span class="product-arrow" aria-hidden="true">&rarr;</span></a>
               <a href="/orvix/privacy/">Privacy Notice <span class="sr-only">for ORVIX</span></a>
             </div>
           </div>
@@ -102,12 +124,12 @@
       </div>
     </section>
 
-    <section class="spotlight-section" id="spotlight">
+    <section class="spotlight-section reveal" id="spotlight">
       <div class="container">
         <div class="spotlight-card">
           <div>
             <span class="status-label status-testing">Flagship Spotlight</span>
-            <h2 style="margin-top: 0.75rem;">Tourist Guide for Android</h2>
+            <h2 style="margin-top: var(--space-2);">Tourist Guide for Android</h2>
             <p>Tourist Guide is our primary focus, preparing for closed testing on Google Play. Built specifically for travelers exploring Maharashtra's historic hill forts, cave temples, Western Ghats trails, and coastal towns.</p>
             <ul class="spotlight-features">
               <li><strong>Curated destinations:</strong> Heritage sites, viewpoints, and cultural landmarks across Pune, Mumbai, and regional districts.</li>
@@ -120,21 +142,120 @@
               <a href="/tourist-guide/privacy/" class="btn btn-secondary">Privacy Policy</a>
             </div>
           </div>
-          <div class="phone-frame">
-            <img src="/assets/screens/tourist-guide-2.svg" alt="Tourist Guide route optimiser interface preview" loading="lazy">
+          <div class="spotlight-interactive">
+            <div class="spotlight-tablist" role="tablist" aria-label="Tourist Guide previews">
+              <button type="button" role="tab" id="tab-plan" aria-selected="true" aria-controls="panel-plan" tabindex="0">Plan</button>
+              <button type="button" role="tab" id="tab-map" aria-selected="false" aria-controls="panel-map" tabindex="-1">Map</button>
+              <button type="button" role="tab" id="tab-phrasebook" aria-selected="false" aria-controls="panel-phrasebook" tabindex="-1">Phrasebook</button>
+            </div>
+            <div class="phone-frame spotlight-phone" aria-label="Interactive Tourist Guide preview">
+              <div class="spotlight-panel is-active" id="panel-plan" role="tabpanel" aria-labelledby="tab-plan" tabindex="0">
+                <div class="phone-status-bar">
+                  <span class="phone-time">10:15</span>
+                  <span class="phone-network" aria-hidden="true">
+                    <svg width="14" height="10" viewBox="0 0 14 10" fill="currentColor"><path d="M0 7h2v3H0V7zm3-2h2v5H3V5zm3-2h2v7H6V3zm3-3h2v10H9V0z"/></svg>
+                  </span>
+                </div>
+                <div class="phone-screen-header">
+                  <span class="phone-kicker">Itinerary · Day 1</span>
+                  <h3 class="phone-title">Peshwa Heritage Trail</h3>
+                </div>
+                <div class="spotlight-plan-preview">
+                  <div class="stop-card">
+                    <span class="stop-number">1</span>
+                    <div class="stop-details">
+                      <span class="stop-name">Shaniwar Wada</span>
+                      <span class="stop-meta">09:00 AM · Fortifications & Gates</span>
+                    </div>
+                  </div>
+                  <div class="stop-card">
+                    <span class="stop-number">2</span>
+                    <div class="stop-details">
+                      <span class="stop-name">Pataleshwar Cave Temple</span>
+                      <span class="stop-meta">11:30 AM · Monolithic rock-cut shrine</span>
+                    </div>
+                  </div>
+                  <div class="stop-card">
+                    <span class="stop-number">3</span>
+                    <div class="stop-details">
+                      <span class="stop-name">Raja Dinkar Kelkar Museum</span>
+                      <span class="stop-meta">02:30 PM · Historical artifacts</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="spotlight-panel" id="panel-map" role="tabpanel" aria-labelledby="tab-map" tabindex="0" hidden>
+                <div class="phone-status-bar">
+                  <span class="phone-time">11:02</span>
+                  <span class="phone-network" aria-hidden="true">
+                    <svg width="14" height="10" viewBox="0 0 14 10" fill="currentColor"><path d="M0 7h2v3H0V7zm3-2h2v5H3V5zm3-2h2v7H6V3zm3-3h2v10H9V0z"/></svg>
+                  </span>
+                </div>
+                <svg class="map-svg" viewBox="0 0 300 340" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Sahyadri topographic trail preview">
+                  <path d="M10 50 Q 80 20 160 60 T 290 40" stroke="#2F2C24" stroke-width="1.2" stroke-dasharray="3 3"/>
+                  <path d="M10 120 Q 90 90 170 130 T 290 110" stroke="#2F2C24" stroke-width="1.2" stroke-dasharray="3 3"/>
+                  <path d="M10 190 Q 70 160 150 200 T 290 180" stroke="#2F2C24" stroke-width="1.2" stroke-dasharray="3 3"/>
+                  <path d="M10 260 Q 100 230 180 270 T 290 250" stroke="#2F2C24" stroke-width="1.2" stroke-dasharray="3 3"/>
+                  <path id="trail-route-path" class="trail-route" d="M 50 290 C 80 240, 70 190, 130 150 C 180 120, 160 70, 230 45" stroke="#6D28D9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                  <g class="map-pin pin-1" transform="translate(50, 290)">
+                    <circle r="7" fill="#6D28D9"/>
+                    <circle r="3" fill="#FFFFFF"/>
+                    <text x="12" y="4" font-family="Inter, sans-serif" font-size="10" font-weight="600" fill="#FAF8F4">Base</text>
+                  </g>
+                  <g class="map-pin pin-2" transform="translate(130, 150)">
+                    <circle r="7" fill="#6D28D9"/>
+                    <circle r="3" fill="#FFFFFF"/>
+                    <text x="12" y="4" font-family="Inter, sans-serif" font-size="10" font-weight="600" fill="#FAF8F4">Ridge</text>
+                  </g>
+                  <g class="map-pin pin-3" transform="translate(230, 45)">
+                    <circle r="8" fill="#10B981"/>
+                    <circle r="3.5" fill="#FFFFFF"/>
+                    <text x="-10" y="-12" font-family="Inter, sans-serif" font-size="10" font-weight="700" fill="#FAF8F4">Fort</text>
+                  </g>
+                </svg>
+              </div>
+
+              <div class="spotlight-panel" id="panel-phrasebook" role="tabpanel" aria-labelledby="tab-phrasebook" tabindex="0" hidden>
+                <div class="phone-status-bar">
+                  <span class="phone-time">12:20</span>
+                  <span class="phone-network" aria-hidden="true">
+                    <svg width="14" height="10" viewBox="0 0 14 10" fill="currentColor"><path d="M0 7h2v3H0V7zm3-2h2v5H3V5zm3-2h2v7H6V3zm3-3h2v10H9V0z"/></svg>
+                  </span>
+                </div>
+                <div class="phrasebook-card">
+                  <div class="phrasebook-tag">Marathi &middot; Wayfinding</div>
+                  <p class="phrase-marathi">नमस्कार, शनिवार वाडा कुठे आहे?</p>
+                  <p class="phrase-latin">Namaskār, Shanivār Vādā kuthe āhe?</p>
+                  <p class="phrase-en">Hello, where is Shaniwar Wada?</p>
+                  <button type="button" class="btn-play-phrase" id="btn-play-phrase" aria-label="Listen to phrase pronunciation">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    <span class="waveform" id="phrase-waveform" aria-hidden="true">
+                      <span class="bar bar-1"></span>
+                      <span class="bar bar-2"></span>
+                      <span class="bar bar-3"></span>
+                      <span class="bar bar-4"></span>
+                    </span>
+                    <span>Listen</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <p class="phone-caption">Illustrative preview</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="about" id="about">
+    <section class="about reveal" id="about">
       <div class="container">
         <h2>About ARRIVA</h2>
         <p>ARRIVA is an independent software studio founded and operated by Sachin Bableshwar in Pune, Maharashtra, India. The studio specializes in native Android development, backend architecture, and developer utilities designed for privacy and resilience.</p>
-        <p style="margin-top: 1rem;">We believe software should solve genuine daily problems, function reliably offline, avoid unnecessary telemetry, and communicate clearly about its architecture and data practices. All public projects are maintained openly on GitHub.</p>
-        <div class="about-contributors" style="margin-top: 2.75rem;">
+        <p style="margin-top: var(--space-4);">We believe software should solve genuine daily problems, function reliably offline, avoid unnecessary telemetry, and communicate clearly about its architecture and data practices. All public projects are maintained openly on GitHub.</p>
+
+        <div style="margin-top: var(--space-7);">
           <h3>App Contributors</h3>
-          <p style="margin-top: 0.5rem; margin-bottom: 1.5rem;">Our flagship applications are built in close collaboration with independent developers, designers, and regional researchers from Pune:</p>
+          <p style="margin-top: var(--space-2); margin-bottom: var(--space-5);">Our flagship applications are built in close collaboration with independent developers, designers, and regional researchers from Pune:</p>
           <div class="contributors-grid">
             <div class="contributor-card">
               <div>
@@ -193,25 +314,21 @@
       </div>
     </section>
 
-    <section class="contact" id="contact">
+    <section class="contact reveal" id="contact">
       <div class="container">
         <h2>Get in touch</h2>
         <p>For questions about Tourist Guide, closed testing participation, feedback, or privacy matters:</p>
-        <ul class="contact-links">
-          <li>
-            <a href="mailto:sachinbableshwar1828@gmail.com">sachinbableshwar1828@gmail.com</a>
-          </li>
-          <li>
-            <a href="https://github.com/Sachin85469" target="_blank" rel="noopener noreferrer">
-              github.com/Sachin85469
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align: -1px; margin-left: 4px;">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                <polyline points="15 3 21 3 21 9"/>
-                <line x1="10" y1="14" x2="21" y2="3"/>
-              </svg>
-            </a>
-          </li>
-        </ul>
+        <div class="email-copy-wrap" style="margin-top: var(--space-5);">
+          <a href="mailto:sachinbableshwar1828@gmail.com" class="btn btn-primary">sachinbableshwar1828@gmail.com</a>
+          <button type="button" class="btn-copy" id="copy-email-btn" data-email="sachinbableshwar1828@gmail.com" aria-label="Copy email address to clipboard">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span>Copy email</span>
+          </button>
+          <span class="copy-status" id="copy-status" role="status" aria-live="polite"></span>
+        </div>
       </div>
     </section>
   </main>
@@ -246,16 +363,21 @@
       <div class="footer-col">
         <p class="footer-heading">Studio</p>
         <ul>
-          <li><a href="/privacy/">Studio Privacy</a></li>
-          <li><a href="/contact/">Contact</a></li>
+          <li><a href="/privacy/">Website Privacy</a></li>
           <li><a href="https://github.com/Sachin85469" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li><a href="/contact/">Contact</a></li>
         </ul>
       </div>
     </div>
     <div class="container footer-bottom">
-      <p>&copy; 2026 ARRIVA. All rights reserved.</p>
+      <p>&copy; 2026 ARRIVA. Independent software studio, Pune, Maharashtra, India. No tracking cookies or advertising scripts.</p>
     </div>
   </footer>
+  <button type="button" class="back-to-top" id="back-to-top" aria-label="Back to top">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
   <script src="/main.js"></script>
 </body>
-</html>\n
+</html>
