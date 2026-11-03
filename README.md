@@ -1,65 +1,103 @@
 # ARRIVA — Software Studio & Product Suite
 
 **ARRIVA** — *Ideas Into Innovation.*  
-Independent software engineering studio based in Pune, India. We design and build focused digital products prioritizing on-device privacy, offline utility, and high-performance native architecture.
+Independent software engineering studio based in Pune, Maharashtra, India, run by developer Sachin Bableshwar. We build native Android applications and developer utilities focused on offline utility, privacy, and simplicity.
 
-- **Live Web Portal**: [https://arrivaa.tech](https://arrivaa.tech)
-- **Web Portal Repository**: [https://github.com/Sachin85469/arrivaa-demo](https://github.com/Sachin85469/arrivaa-demo)
-- **Flagship Android App**: [https://github.com/Sachin85469/Tourist_Guide_App](https://github.com/Sachin85469/Tourist_Guide_App)
-
----
-
-## The ARRIVA Fleet
-
-### 01 · ARRIVA Tourist Guide (Flagship Android App)
-- **Status**: Live / Version 1.0.4 (Target SDK 34 / Android 10+)
-- **Package**: `com.arriva.touristguide`
-- **Core Technology**: Kotlin & Java, Room SQLite DB, osmdroid 20m contour topography, Google ML Kit on-device Marathi translation, Simulated Annealing route optimizer.
-- **Safety**: 100% Intent-based emergency distress (`Intent.ACTION_SENDTO` and `Intent.ACTION_DIAL`) with zero dangerous background SMS or phone call permissions.
-
-### 02 · ARRIVA NEXUS (Private Messaging)
-- **Status**: In Active Development (Android Native)
-- **Core Philosophy**: Zero algorithmic feeds, zero timeline ads, on-device SQLite message storage, topic channels, and low background battery overhead (<2% per day).
-
-### 03 · ARRIVA ORVIX (Local AI Bridge)
-- **Status**: Developer System / Local Compute
-- **Core Technology**: Connects directly to local Ollama on `127.0.0.1:11434`. Streaming token inspection, raw REST API console, zero external cloud telemetry leaks.
+- **Live Website:** [https://arrivaa.tech](https://arrivaa.tech)
+- **Studio GitHub:** [https://github.com/Sachin85469](https://github.com/Sachin85469)
+- **Tourist Guide Repository:** [https://github.com/Sachin85469/Tourist_Guide_App](https://github.com/Sachin85469/Tourist_Guide_App)
 
 ---
 
-## Directory Layout
+## Products
+
+### 1. Tourist Guide (Flagship Android App)
+- **Status:** In Testing (Preparing for Google Play closed testing)
+- **Description:** A dedicated travel companion for Maharashtra. Features curated destination discovery (heritage forts, temples, nature sanctuaries), multi-stop route planning, on-device translation between Marathi, Hindi, and English via Google ML Kit, and offline 20m topographic contour maps for Sahyadri trekking routes.
+- **Privacy Policy:** [https://arrivaa.tech/tourist-guide/privacy/](https://arrivaa.tech/tourist-guide/privacy/)
+- **Account Deletion:** [https://arrivaa.tech/tourist-guide/delete-account/](https://arrivaa.tech/tourist-guide/delete-account/)
+
+### 2. NEXUS (Private Messaging)
+- **Status:** In Development
+- **Description:** An early-stage project exploring lightweight, private messaging with local SQLite message storage, direct chats, topic channels, and zero algorithmic tracking feeds.
+
+### 3. ORVIX (Local AI Bridge)
+- **Status:** In Development
+- **Description:** A native developer interface for interacting with and inspecting local Ollama instances on your own hardware without routing prompts through external cloud telemetry.
+
+---
+
+## Directory Structure
 
 ```text
 ARRIVAA/
-├── website/
+├── website/                         # Deployed root (Firebase Hosting public directory)
 │   ├── assets/
-│   │   ├── fonts/               # Self-hosted typography (Poppins, JetBrains Mono)
-│   │   ├── screens/             # SVG & image mockups (Tourist Guide, NEXUS, ORVIX)
-│   │   ├── favicon.svg          # Official ARRIVA studio mark
-│   │   └── og-image.png         # OpenGraph preview card
-│   ├── 404.html                 # Diagnostics & error page
-│   ├── index.html               # Official studio showcase & interactive fleet portal
-│   ├── privacy.html             # Standalone Google Play 2026 compliant privacy policy
-│   ├── robots.txt               # Crawler directives
-│   └── sitemap.xml              # XML Sitemap
-├── brand/                       # Vector wordmarks and design guidelines
-├── dev/                         # Local development test suites
-└── README.md                    # Project documentation
+│   │   ├── favicon.svg             # Vector brand icon mark
+│   │   ├── fonts/                  # Self-hosted typography (Fraunces serif & Inter sans)
+│   │   │   ├── fonts.css
+│   │   │   ├── fraunces-latin.woff2
+│   │   │   └── inter-latin-*.woff2
+│   │   ├── og-image.png            # OpenGraph and Twitter card image card
+│   │   └── screens/                # Vector phone interface previews
+│   ├── tourist-guide/
+│   │   ├── index.html              # Tourist Guide product showcase
+│   │   ├── privacy/
+│   │   │   └── index.html          # Google Play Console Privacy Policy
+│   │   └── delete-account/
+│   │       └── index.html          # Account and data deletion instructions
+│   ├── nexus/
+│   │   ├── index.html              # NEXUS product page
+│   │   └── privacy/
+│   │       └── index.html          # NEXUS privacy notice
+│   ├── orvix/
+│   │   ├── index.html              # ORVIX product page
+│   │   └── privacy/
+│   │       └── index.html          # ORVIX privacy notice
+│   ├── privacy/
+│   │   └── index.html              # Studio website privacy policy (arrivaa.tech only)
+│   ├── contact/
+│   │   └── index.html              # Studio contact information
+│   ├── index.html                  # Studio home page
+│   ├── privacy.html                # Legacy redirect to /tourist-guide/privacy/
+│   ├── 404.html                    # Error page
+│   ├── styles.css                  # Shared editorial stylesheet (zero CDN dependencies)
+│   ├── main.js                     # Minimal mobile menu navigation script
+│   ├── robots.txt                  # Search engine crawler directives
+│   └── sitemap.xml                 # XML Sitemap indexing all canonical URLs
+├── brand/                          # Brand wordmarks and design guidelines
+├── social/                         # Marketing and launch planning documents
+├── dev/                            # Verification tools and scripts
+├── screenshots/                    # Multi-viewport verification captures
+├── firebase.json                   # Firebase Hosting configuration (security headers, caching)
+├── .firebaserc                     # Firebase project binding
+├── ISSUES.md                       # Comprehensive project audit findings
+├── CHANGES.md                      # Changelog detailing all modifications
+└── README.md                       # Project documentation
 ```
 
 ---
 
-## Google Play Developer Policy Compliance
+## Technical Specifications
 
-The web portal hosts the standalone **Privacy Policy & Data Safety Disclosures** required by Google Play Console:
-- Direct URL: `https://arrivaa.tech/privacy.html`
-- Prominent runtime permission disclosures: `ACCESS_FINE_LOCATION`, `CAMERA`, `INTERNET`
-- Explicit zero-permission declaration: No `SEND_SMS` or `CALL_PHONE`
-- Self-serve account and telemetry deletion instructions
-- Grievance Redressal Officer: Sachin Bableshwar (`sachinbableshwar1828@gmail.com`)
+- **Architecture:** Static HTML5 and CSS3 with minimal vanilla JavaScript for the mobile navigation toggle. No build step or bundler required.
+- **Dependencies:** Zero external CDN dependencies. All fonts (Fraunces and Inter) and icon glyphs are self-hosted locally on domain.
+- **Design System:** Editorial aesthetic with warm off-white surfaces (`#FAF8F4`), sand panels (`#EEE8DA`), hairline borders (`#E2DBCB`), deep charcoal body text (`#1E1B16`), and brand purple accents (`#6D28D9`).
+- **Responsiveness & Accessibility:** Fully responsive from 360px up with zero horizontal overflow, WCAG 2.1 AA text contrast compliance, 44px minimum touch targets, visible focus indicators, and `prefers-reduced-motion` support.
+- **Security:** Strict Content Security Policy, `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`, `Referrer-Policy: strict-origin-when-cross-origin`, and `Permissions-Policy` configured in `firebase.json`.
+
+---
+
+## Contact & Grievance Redressal
+
+**Sachin Bableshwar**  
+Lead Developer & Privacy Contact, ARRIVA  
+Pune, Maharashtra, India  
+Email: [sachinbableshwar1828@gmail.com](mailto:sachinbableshwar1828@gmail.com)  
+GitHub: [https://github.com/Sachin85469](https://github.com/Sachin85469)
 
 ---
 
 ## License
 
-Open source under the [MIT License](https://opensource.org/licenses/MIT).
+Open-source under the [MIT License](https://opensource.org/licenses/MIT).
