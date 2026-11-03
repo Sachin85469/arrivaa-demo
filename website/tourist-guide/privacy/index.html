@@ -4,43 +4,44 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy Policy — Tourist Guide — ARRIVA</title>
-  <meta name="description" content="Privacy policy for the ARRIVA Tourist Guide Android application. Details on data collection, permissions, third-party services and account deletion.">
+  <meta name="description" content="Privacy policy for the ARRIVA Tourist Guide Android application. Details data collection, permissions, third-party services, and deletion procedures.">
   <link rel="canonical" href="https://arrivaa.tech/tourist-guide/privacy/">
   <meta property="og:title" content="Privacy Policy — Tourist Guide — ARRIVA">
-  <meta property="og:description" content="Privacy policy for the ARRIVA Tourist Guide Android application. Details on data collection, permissions, third-party services and account deletion.">
+  <meta property="og:description" content="Privacy policy for the ARRIVA Tourist Guide Android application. Details data collection, permissions, third-party services, and deletion procedures.">
   <meta property="og:url" content="https://arrivaa.tech/tourist-guide/privacy/">
-  <meta property="og:image" content="/assets/og-image.png">
+  <meta property="og:image" content="https://arrivaa.tech/assets/og-image.png">
   <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Privacy Policy — Tourist Guide — ARRIVA">
+  <meta name="twitter:description" content="Privacy policy for the ARRIVA Tourist Guide Android application. Details data collection, permissions, third-party services, and deletion procedures.">
+  <meta name="twitter:image" content="https://arrivaa.tech/assets/og-image.png">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/assets/fonts/fonts.css">
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-
-  <!-- Header -->
   <header class="site-header">
-    <div class="header-inner">
+    <div class="container header-inner">
       <a href="/" class="wordmark">ARRIVA</a>
       <nav class="main-nav" id="main-nav">
-        <a href="/#products">Products</a>
+        <a href="/#products">What we make</a>
+        <a href="/#spotlight">Tourist Guide</a>
         <a href="/#about">About</a>
         <a href="/contact/">Contact</a>
       </nav>
-      <button class="menu-toggle" id="menu-toggle" aria-label="Open menu" aria-expanded="false">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <line x1="3" y1="6" x2="21" y2="6"></line>
-          <line x1="3" y1="12" x2="21" y2="12"></line>
-          <line x1="3" y1="18" x2="21" y2="18"></line>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
         </svg>
       </button>
     </div>
   </header>
-
-  <!-- Main Content -->
   <main class="privacy-layout">
     <h1>Privacy Policy</h1>
-    <p class="privacy-subtitle">Tourist Guide — Android Application</p>
-    <p><strong>Effective date:</strong> November 3, 2026</p>
+    <p class="privacy-subtitle">Tourist Guide &middot; Android Application</p>
+    <p class="effective-date">Effective date: November 3, 2026</p>
 
     <nav class="toc" aria-label="Table of Contents">
       <h2>Table of Contents</h2>
@@ -59,225 +60,195 @@
       </ol>
     </nav>
 
-    <!-- 1. Who We Are -->
     <section class="privacy-section" id="who-we-are">
       <h2>1. Who We Are</h2>
-      <p>ARRIVA is an independent software studio based in Pune, Maharashtra, India, founded by Sachin Bableshwar. This policy covers the Tourist Guide Android application (package name: <code>com.arriva.touristguideapp</code>).</p>
+      <p>ARRIVA is an independent software studio based in Pune, Maharashtra, India, founded and run by developer Sachin Bableshwar. This policy covers the Tourist Guide Android application [confirm package name from release build: com.arriva.touristguide or com.arriva.touristguideapp].</p>
     </section>
 
-    <!-- 2. Data We Collect -->
     <section class="privacy-section" id="data-we-collect">
       <h2>2. Data We Collect</h2>
 
       <h3>Account information</h3>
-      <p>If you sign in with email or Google Sign-In, your email address and display name are stored in Supabase. Sign-in is optional.</p>
+      <p>If you create an optional user account, your email address and display name are stored in Supabase. Account registration is optional; core destination browsing, phrasebook translation, and offline maps work without an account.</p>
 
-      <h3>Location</h3>
-      <p>When you use map features, the app accesses your device's GPS location to show nearby places and calculate routes. Location is used only while the app is in the foreground. The app also requests foreground service location permission to support the SOS emergency feature while it is active.</p>
+      <h3>Location data</h3>
+      <p>When you use mapping or nearby search features, the app accesses your device GPS coordinates to display your position and calculate routes. Location is accessed while the app is actively in use [confirm from release build: foreground service location permission used during active SOS emergency mode].</p>
 
-      <h3>Audio</h3>
-      <p>If you use voice input for the translator or phrasebook, the app accesses the microphone. Audio is processed on-device and not recorded or transmitted.</p>
+      <h3>Audio and voice</h3>
+      <p>If you use spoken input in the translator, the app accesses the microphone. Speech recognition models run on-device; audio recordings are not stored or transmitted to external servers.</p>
 
-      <h3>Photos and files</h3>
-      <p>Write external storage is requested on Android 12 and below for saving offline map tiles. On Android 13 and above, this permission is not needed.</p>
+      <h3>Storage and offline files</h3>
+      <p>The app caches destination details and map tiles in local application storage [confirm from release build: WRITE_EXTERNAL_STORAGE declared for Android 12 and below only for saving offline map tiles].</p>
 
-      <h3>Chat messages</h3>
-      <p>If you use the AI travel chat, your messages are sent to our backend server (hosted on Render), which forwards them to the Anthropic API. The backend does not store message content to disk.</p>
+      <h3>Chat interactions</h3>
+      <p>If you use the optional AI travel assistant, your questions are forwarded through our backend server hosted on Render to the Anthropic API. The proxy does not log or persist message contents to disk.</p>
 
-      <h3>Place reviews</h3>
-      <p>If you submit a review, the text and any attached photo are stored in Supabase and Cloudinary respectively.</p>
+      <h3>Place reviews and feedback</h3>
+      <p>If you choose to submit a destination review or rating, the text and optional user-submitted photo are stored in Supabase and Cloudinary respectively.</p>
 
-      <h3>Push notifications</h3>
-      <p>The app requests notification permission on Android 13+ to deliver trip reminders and updates.</p>
-
-      <h3>We do NOT collect</h3>
-      <p>Advertising identifiers, device fingerprints, contact lists, call logs, or browsing history.</p>
+      <h3>What we do NOT collect</h3>
+      <p>We do not collect advertising identifiers, device telemetry fingerprints, contact address books, phone logs, or background tracking data.</p>
     </section>
 
-    <!-- 3. Why We Collect This Data -->
     <section class="privacy-section" id="why">
       <h2>3. Why We Collect This Data</h2>
-      <p>Each piece of data serves a specific app feature: location for maps and routing, email for account recovery and review authorship, audio for translation, photos for reviews, and chat text for AI responses. We do not use collected data for advertising or profiling.</p>
+      <p>Every data point collected serves an explicit user-facing feature: location for navigation and routing, optional email for account sync, audio for speech translation, and review submissions for community destination notes. We do not sell data, build advertising profiles, or monetize user information.</p>
     </section>
 
-    <!-- 4. Permissions Explained -->
     <section class="privacy-section" id="permissions">
       <h2>4. Permissions Explained</h2>
+      <p>The permissions requested by Tourist Guide correspond directly to specific in-app features:</p>
       <div class="table-wrapper">
         <table class="permission-table">
           <thead>
             <tr>
               <th scope="col">Permission</th>
               <th scope="col">Purpose</th>
-              <th scope="col">When requested</th>
+              <th scope="col">Scope</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td><code>INTERNET</code></td>
-              <td>Communicate with backend services (Supabase, AI chat proxy, weather data, map tiles)</td>
-              <td>Always granted</td>
+              <td>Sync place data from Supabase, retrieve weather, and stream AI chat responses</td>
+              <td>Granted by system</td>
             </tr>
             <tr>
               <td><code>ACCESS_NETWORK_STATE</code></td>
-              <td>Check whether the device is online before making network requests</td>
-              <td>Always granted</td>
+              <td>Detect offline connectivity before making network calls</td>
+              <td>Granted by system</td>
             </tr>
             <tr>
               <td><code>ACCESS_FINE_LOCATION</code></td>
-              <td>Show your position on maps, find nearby places, calculate routes, pre-fill GPS coordinates in emergency SMS</td>
-              <td>When you open a map feature</td>
+              <td>Pinpoint user location on map and pre-fill emergency coordinates</td>
+              <td>Runtime prompt when opening maps</td>
             </tr>
             <tr>
               <td><code>ACCESS_COARSE_LOCATION</code></td>
-              <td>Approximate positioning fallback</td>
-              <td>When you open a map feature</td>
-            </tr>
-            <tr>
-              <td><code>WRITE_EXTERNAL_STORAGE</code> <span class="permission-note">(Android 12 and below only)</span></td>
-              <td>Save offline map tile data</td>
-              <td>When you download offline maps</td>
+              <td>Approximate location fallback for regional weather</td>
+              <td>Runtime prompt when opening maps</td>
             </tr>
             <tr>
               <td><code>RECORD_AUDIO</code></td>
-              <td>Voice input for the translator and phrasebook</td>
-              <td>When you tap the voice/microphone button</td>
+              <td>Spoken input for on-device Marathi, Hindi and English translation</td>
+              <td>Runtime prompt when tapping microphone</td>
             </tr>
             <tr>
               <td><code>POST_NOTIFICATIONS</code></td>
-              <td>Trip reminders and app updates</td>
-              <td>On first relevant action (Android 13+)</td>
+              <td>Trip reminders and download completion updates [confirm from release build]</td>
+              <td>Runtime prompt on Android 13+</td>
             </tr>
             <tr>
-              <td><code>FOREGROUND_SERVICE</code> / <code>FOREGROUND_SERVICE_LOCATION</code></td>
-              <td>Keep the SOS emergency service active while in use</td>
-              <td>When you activate the SOS feature</td>
+              <td><code>WRITE_EXTERNAL_STORAGE</code></td>
+              <td>Cache offline map tiles on legacy devices [confirm from release build: Android 12 and below only]</td>
+              <td>Runtime prompt on Android 12 and below</td>
+            </tr>
+            <tr>
+              <td><code>FOREGROUND_SERVICE_LOCATION</code></td>
+              <td>Maintain location awareness during active SOS distress feature [confirm from release build]</td>
+              <td>While SOS feature is actively running</td>
             </tr>
           </tbody>
         </table>
       </div>
-      <p><strong>Note:</strong> The app does <strong>not</strong> declare <code>SEND_SMS</code>, <code>CALL_PHONE</code>, <code>READ_CONTACTS</code>, <code>CAMERA</code>, or <code>ACCESS_BACKGROUND_LOCATION</code>. Emergency calling and SMS use Android's standard Intent system, which opens the phone's dialer or SMS app and requires your confirmation before anything is sent.</p>
+      <p><strong>Note on emergency calling and messaging:</strong> The application does not declare <code>SEND_SMS</code>, <code>CALL_PHONE</code>, or accessibility services [confirm from release build]. Emergency calling and SMS are initiated via Android Intent actions (<code>Intent.ACTION_DIAL</code> and <code>Intent.ACTION_SENDTO</code>), which open your phone's native dialer or messaging app and require your physical confirmation before sending.</p>
     </section>
 
-    <!-- 5. Third-Party Services -->
     <section class="privacy-section" id="third-parties">
       <h2>5. Third-Party Services</h2>
-
-      <h3>Supabase</h3>
-      <p>Hosts user accounts and place data. Supabase's privacy policy applies to data stored on their infrastructure.</p>
-
-      <h3>Google Maps SDK and Places API</h3>
-      <p>Used for map rendering and place search. Subject to Google's privacy policy.</p>
-
-      <h3>Google ML Kit</h3>
-      <p>On-device translation between English, Hindi and Marathi. Translation models run locally on your device; no text is sent to Google's servers for this feature.</p>
-
-      <h3>OpenWeatherMap</h3>
-      <p>Provides weather forecasts for destinations. Your approximate location may be sent to their API.</p>
-
-      <h3>Anthropic (Claude)</h3>
-      <p>Powers the AI travel chat. Your chat messages are forwarded through our backend proxy hosted on Render. The proxy does not log message content. Anthropic's usage policy applies.</p>
-
-      <h3>Cloudinary</h3>
-      <p>Stores photos attached to place reviews. Subject to Cloudinary's privacy policy.</p>
-
-      <h3>NVIDIA API</h3>
-      <p>Used for optional AI-generated travel narratives. Subject to NVIDIA's terms of service.</p>
+      <p>The application interacts with the following external service providers to support specific features:</p>
+      <ul>
+        <li><strong>Supabase:</strong> Provides account authentication and destination database storage. Subject to Supabase's privacy policy.</li>
+        <li><strong>Google Play Services & Maps SDK:</strong> Used for map rendering and location resolution. Subject to Google's privacy policy.</li>
+        <li><strong>Google ML Kit:</strong> On-device translation models run locally on your hardware; no translation text is uploaded to Google.</li>
+        <li><strong>OpenWeatherMap:</strong> Destination weather forecast retrieval. Only approximate regional coordinates are transmitted.</li>
+        <li><strong>Anthropic (Claude):</strong> Powers AI travel assistant responses forwarded through our Render backend proxy.</li>
+        <li><strong>Cloudinary:</strong> Stores user-submitted photos attached to destination reviews.</li>
+        <li><strong>NVIDIA API:</strong> [confirm if narrative storytelling API is enabled in release build; subject to NVIDIA terms of service].</li>
+      </ul>
     </section>
 
-    <!-- 6. Data Retention and Deletion -->
     <section class="privacy-section" id="retention">
       <h2>6. Data Retention and Deletion</h2>
-      <p>Local data (favourites, cached places, trip plans) is stored on your device in a Room SQLite database. You can clear it at any time through the app settings or by uninstalling.</p>
-      <p>Account data stored in Supabase can be deleted by going to <strong>Settings &gt; Profile &gt; Delete Account</strong> within the app. You can also email <a href="mailto:sachinbableshwar1828@gmail.com">sachinbableshwar1828@gmail.com</a> with the subject <em>"ARRIVA: Account Deletion Request"</em> and your registered email address. We will process deletion requests within 7 business days.</p>
-      <p>For a detailed guide on account deletion, see our <a href="/tourist-guide/delete-account/">dedicated account deletion page</a>.</p>
+      <p>Local data (bookmarked places, downloaded trail maps, cached trip plans) is stored on your device in a Room SQLite database. You can clear this data at any time via Android application settings or by uninstalling the application.</p>
+      <p>Cloud account data stored in Supabase can be deleted directly in-app [confirm in-app navigation: Settings &gt; Profile &gt; Delete Account]. You may also submit a deletion request via email to <a href="mailto:sachinbableshwar1828@gmail.com">sachinbableshwar1828@gmail.com</a> with the subject <em>"ARRIVA: Account Deletion Request"</em> [confirm deletion turnaround timeframe: typically processed within 7 to 30 business days].</p>
+      <p>For full instructions, visit our dedicated <a href="/tourist-guide/delete-account/">Account &amp; Data Deletion page</a>.</p>
     </section>
 
-    <!-- 7. Security -->
     <section class="privacy-section" id="security">
       <h2>7. Security</h2>
-      <p>We transmit data over encrypted HTTPS connections. API keys for third-party services are not embedded in the app binary; they are stored server-side or in local configuration files excluded from source control. Our backend proxy uses a shared-secret token for request authentication.</p>
+      <p>All data transmitted between the application and backend services uses HTTPS with TLS encryption. API credentials for cloud services are managed server-side and excluded from public version control.</p>
     </section>
 
-    <!-- 8. Children -->
     <section class="privacy-section" id="children">
-      <h2>8. Children</h2>
-      <p>Tourist Guide is a general-audience app. We do not knowingly collect personal information from children under 13 (or under 18 under India's Digital Personal Data Protection Act, 2023). If we learn that we have collected data from a child without parental consent, we will delete that data.</p>
+      <h2>8. Children's Privacy</h2>
+      <p>Tourist Guide is a general-audience travel planning tool. We do not knowingly collect personal information from children under 13 (or under 18 under India's Digital Personal Data Protection Act, 2023). If we become aware that personal data of a minor has been gathered without parental consent, we will promptly delete it.</p>
     </section>
 
-    <!-- 9. Your Rights -->
     <section class="privacy-section" id="your-rights">
       <h2>9. Your Rights</h2>
-      <p>You may request access to, correction of, or deletion of your personal data at any time by contacting us. If you are in the European Economic Area, you may also have rights under the GDPR. Indian residents may exercise rights under the Digital Personal Data Protection Act, 2023.</p>
+      <p>You may request access to, correction of, or permanent deletion of your personal data at any time. Users in India may exercise statutory rights under the Digital Personal Data Protection Act, 2023. International users may exercise applicable data protection rights under relevant regional legislation.</p>
     </section>
 
-    <!-- 10. Changes to This Policy -->
     <section class="privacy-section" id="changes">
       <h2>10. Changes to This Policy</h2>
-      <p>We may update this policy when the app changes. The effective date at the top of this page will be updated accordingly. Continued use of the app after changes constitutes acceptance.</p>
+      <p>We may periodically update this policy as new app features are introduced. The effective date at the top of this page indicates the date of latest revision. Continued use of the app constitutes acceptance of the updated policy.</p>
     </section>
 
-    <!-- 11. Contact -->
     <section class="privacy-section" id="contact">
-      <h2>11. Contact</h2>
+      <h2>11. Contact &amp; Grievance Redressal</h2>
       <p>
         Sachin Bableshwar<br>
-        Lead Developer and Privacy Officer, ARRIVA<br>
+        Lead Developer &amp; Privacy Contact, ARRIVA<br>
         Pune, Maharashtra, India
       </p>
-      <p>
+      <p style="margin-top: 0.75rem;">
         Email: <a href="mailto:sachinbableshwar1828@gmail.com">sachinbableshwar1828@gmail.com</a><br>
-        GitHub: <a href="https://github.com/Sachin85469" target="_blank" rel="noopener noreferrer">github.com/Sachin85469
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align: -1px; margin-left: 2px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-        </a>
+        GitHub: <a href="https://github.com/Sachin85469" target="_blank" rel="noopener noreferrer">github.com/Sachin85469</a>
       </p>
     </section>
   </main>
-
-  <!-- Footer -->
   <footer class="site-footer">
-    <div class="footer-inner">
-      <div class="footer-columns">
-        <div class="footer-col footer-brand">
-          <span class="wordmark">ARRIVA</span>
-          <p>Software studio crafting thoughtful Android experiences.</p>
-        </div>
-        <div class="footer-col">
-          <h3>Tourist Guide</h3>
-          <ul>
-            <li><a href="/tourist-guide/">Product</a></li>
-            <li><a href="/tourist-guide/privacy/">Privacy</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h3>NEXUS</h3>
-          <ul>
-            <li><a href="/nexus/">Product</a></li>
-            <li><a href="/nexus/privacy/">Privacy</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h3>ORVIX</h3>
-          <ul>
-            <li><a href="/orvix/">Product</a></li>
-            <li><a href="/orvix/privacy/">Privacy</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h3>Studio</h3>
-          <ul>
-            <li><a href="/privacy/">Studio Privacy</a></li>
-            <li><a href="/contact/">Contact</a></li>
-            <li><a href="https://github.com/Sachin85469" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-          </ul>
-        </div>
+    <div class="container footer-grid">
+      <div class="footer-col footer-brand">
+        <a href="/" class="wordmark">ARRIVA</a>
+        <p>Independent software studio in Pune, India. Building thoughtful, offline-capable digital tools.</p>
       </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 ARRIVA. All rights reserved.</p>
+      <div class="footer-col">
+        <p class="footer-heading">Tourist Guide</p>
+        <ul>
+          <li><a href="/tourist-guide/">Product Overview</a></li>
+          <li><a href="/tourist-guide/privacy/">Privacy Policy</a></li>
+          <li><a href="/tourist-guide/delete-account/">Account Deletion</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-heading">NEXUS</p>
+        <ul>
+          <li><a href="/nexus/">Product Overview</a></li>
+          <li><a href="/nexus/privacy/">Privacy Notice</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-heading">ORVIX</p>
+        <ul>
+          <li><a href="/orvix/">Product Overview</a></li>
+          <li><a href="/orvix/privacy/">Privacy Notice</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-heading">Studio</p>
+        <ul>
+          <li><a href="/privacy/">Studio Privacy</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="https://github.com/Sachin85469" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        </ul>
       </div>
     </div>
+    <div class="container footer-bottom">
+      <p>&copy; 2026 ARRIVA. All rights reserved.</p>
+    </div>
   </footer>
-
   <script src="/main.js"></script>
 </body>
-</html>
+</html>\n
